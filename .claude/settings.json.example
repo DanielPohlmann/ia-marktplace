@@ -1,0 +1,19 @@
+{
+  "extraKnownMarketplaces": {
+    "ia-marketplace": {
+      "source": {
+        "source": "directory",
+        "path": "C:\\workspace\\Diary\\Projeto\\ia-marktplace"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "dev@ia-marketplace": true,
+    "stack@ia-marketplace": true,
+    "security@ia-marketplace": true,
+    "legal@ia-marketplace": true,
+    "tools@ia-marketplace": true,
+    "playwright-cli@ia-marketplace": true,
+    "run-plan@ia-marketplace": true
+  }
+}

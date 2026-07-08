@@ -1,0 +1,10 @@
+{
+  "name": "tools",
+  "description": "Cross-cutting developer tools: Docker (Dockerfiles, multi-stage builds, Compose, image optimization, registries) and Git (branching, merge vs rebase, conflict resolution, hooks, worktrees, bisect, conventional commits).",
+  "version": "1.0.0",
+  "author": {
+    "name": "Daniel Heler Pohlmann",
+    "email": "daniel.heler@way2.com.br"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,48 @@
+{
+  "name": "ia-marketplace",
+  "owner": {
+    "name": "Daniel Heler Pohlmann",
+    "email": "daniel.heler@way2.com.br"
+  },
+  "metadata": {
+    "description": "Claude Code skills marketplace — engineering, stack, security, legal and workflow skills, organized one plugin per domain",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "dev",
+      "source": "./dev",
+      "description": "Software engineering fundamentals (41 skills): GoF design patterns, algorithms & data structures, architectural styles (DDD, hexagonal, microservices, event-driven, monoliths, well-architected), backend/frontend architecture, craftsmanship (SOLID, clean code, refactoring, twelve-factor, clean architecture), and enterprise integration patterns."
+    },
+    {
+      "name": "stack",
+      "source": "./stack",
+      "description": ".NET library selection and usage (19 skills): MassTransit, MediatR, AutoMapper, Dapper, Serilog, Polly, Redis, Validot, NCrontab, Topshelf, OpenAPI, ASP.NET Identity, i18n, observability/OTLP, Plunk email, Docker, and project hygiene."
+    },
+    {
+      "name": "security",
+      "source": "./security",
+      "description": "Security practices and OWASP (16 skills): threat modeling, authentication, cryptography, data protection, input validation, API security, logging & monitoring, supply chain, penetration testing, red teaming, secure SDLC, security testing, and AI security."
+    },
+    {
+      "name": "legal",
+      "source": "./legal",
+      "description": "Compliance and regulation for SaaS (16 skills): privacy & data protection (GDPR/LGPD/CCPA), open-source licensing, billing & taxation, accessibility, consumer protection, content moderation, contracts, cybersecurity compliance, employment, export controls, financial/healthcare regulation, IP, and AI regulation."
+    },
+    {
+      "name": "tools",
+      "source": "./tools",
+      "description": "Cross-cutting developer tools (3 skills): Docker (Dockerfiles, multi-stage builds, Compose, image optimization, registries) and Git (branching, merge vs rebase, conflict resolution, hooks, worktrees, bisect, conventional commits)."
+    },
+    {
+      "name": "playwright-cli",
+      "source": "./playwright-cli",
+      "description": "Browser automation and E2E testing with playwright-cli: navigation, form submission, network interception, screenshots, a11y/perf/SEO audits, console/network error capture, and spec-driven testing."
+    },
+    {
+      "name": "run-plan",
+      "source": "./run-plan",
+      "description": "Plan execution orchestrator: execute a single plan file end-to-end — branch setup, phased execution, commit/push/PR, and the completion signal."
+    }
+  ]
+}

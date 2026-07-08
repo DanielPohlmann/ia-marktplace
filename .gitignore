@@ -1,0 +1,7 @@
+.DS_Store
+.claude/*
+!.claude/settings.json.example
+node_modules/
+
+# git worktrees (local, never committed)
+.worktrees/

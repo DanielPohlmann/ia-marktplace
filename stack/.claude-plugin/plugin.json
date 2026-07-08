@@ -1,0 +1,10 @@
+{
+  "name": "stack",
+  "description": ".NET library selection and usage: MassTransit, MediatR, AutoMapper, Dapper, Serilog, Polly, Redis, Validot, NCrontab, Topshelf, OpenAPI, ASP.NET Identity, i18n, observability/OTLP, Plunk email, Docker, and project hygiene.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Daniel Heler Pohlmann",
+    "email": "daniel.heler@way2.com.br"
+  },
+  "license": "MIT"
+}
