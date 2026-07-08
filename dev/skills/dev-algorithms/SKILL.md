@@ -74,16 +74,16 @@ Amortized analysis averages the cost of operations over a sequence, even when in
 
 | Problem Type | Recommended Approach | Sub-Skill |
 |--------------|---------------------|-----------|
-| Ordering elements | Comparison sort (Quicksort, Mergesort) or linear sort (Radix) | sorting-searching |
-| Finding elements | Binary search, hash-based lookup | sorting-searching |
-| Storing/retrieving structured data | Choose appropriate data structure by access pattern | data-structures |
-| Shortest path / connectivity | Graph algorithms (BFS, DFS, Dijkstra) | graph-algorithms |
-| Optimization with overlapping subproblems | Dynamic programming | dynamic-programming |
-| Enumerating configurations / constraint solving | Backtracking, branch and bound | combinatorial |
-| String matching | KMP, Rabin-Karp, suffix structures | sorting-searching |
-| Scheduling / ordering dependencies | Topological sort | graph-algorithms |
-| Minimum spanning tree | Prim's, Kruskal's | graph-algorithms |
-| Subset/permutation generation | Combinatorial generation | combinatorial |
+| Ordering elements | Comparison sort (Quicksort, Mergesort) or linear sort (Radix) | dev-algorithms-sorting-searching |
+| Finding elements | Binary search, hash-based lookup | dev-algorithms-sorting-searching |
+| Storing/retrieving structured data | Choose appropriate data structure by access pattern | dev-algorithms-data-structures |
+| Shortest path / connectivity | Graph algorithms (BFS, DFS, Dijkstra) | dev-algorithms-graph-algorithms |
+| Optimization with overlapping subproblems | Dynamic programming | dev-algorithms-dynamic-programming |
+| Enumerating configurations / constraint solving | Backtracking, branch and bound | dev-algorithms-combinatorial |
+| String matching | KMP, Rabin-Karp, suffix structures | dev-algorithms-sorting-searching |
+| Scheduling / ordering dependencies | Topological sort | dev-algorithms-graph-algorithms |
+| Minimum spanning tree | Prim's, Kruskal's | dev-algorithms-graph-algorithms |
+| Subset/permutation generation | Combinatorial generation | dev-algorithms-combinatorial |
 
 ## Algorithm Analysis Checklist
 

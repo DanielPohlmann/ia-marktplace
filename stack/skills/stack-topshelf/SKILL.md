@@ -1,6 +1,6 @@
 ---
 name: stack-topshelf
-description: Topshelf Windows service hosting framework for .NET Framework / early .NET Core. Use when maintaining or extending a legacy Windows service that already uses Topshelf's fluent host factory. USE FOR: Topshelf HostFactory.Run, service install/uninstall from the command line, service recovery configuration, running a Windows service as a console app during development, .NET Framework Windows service lifecycle. DO NOT USE FOR: new .NET 6+ worker services — use BackgroundService with AddWindowsService instead (LinkDaily.Worker uses IHostedService, not Topshelf), Linux daemons or systemd hosting, cross-platform services, ASP.NET Core web hosting.
+description: Topshelf Windows service hosting framework for .NET Framework / early .NET Core. Use when maintaining or extending a legacy Windows service that already uses Topshelf's fluent host factory. USE FOR: Topshelf HostFactory.Run, service install/uninstall from the command line, service recovery configuration, running a Windows service as a console app during development, .NET Framework Windows service lifecycle. DO NOT USE FOR: new .NET 6+ worker services — use BackgroundService with AddWindowsService instead, Linux daemons or systemd hosting, cross-platform services, ASP.NET Core web hosting.
 ---
 
 # Topshelf

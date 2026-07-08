@@ -231,5 +231,3 @@ Where alpha is the inverse Ackermann function, which grows extremely slowly.
 
 - [The Art of Computer Programming, Vol. 4B: Combinatorial Algorithms — Donald Knuth](https://www-cs-faculty.stanford.edu/~knuth/taocp.html)
 - [Graph Algorithm — Wikipedia](https://en.wikipedia.org/wiki/Graph_algorithm)
-
-See references/rules.md for the full rule catalog.

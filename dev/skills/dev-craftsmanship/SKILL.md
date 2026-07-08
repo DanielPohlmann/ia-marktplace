@@ -65,11 +65,11 @@ From *The Pragmatic Programmer* by Andrew Hunt and David Thomas:
 
 | Book | Author(s) | Sub-Skill | Key Contribution |
 |------|-----------|-----------|------------------|
-| *Clean Code* | Robert C. Martin | `clean-code` | Naming, functions, formatting, comments, error handling |
-| *Clean Architecture* | Robert C. Martin | `clean-architecture` | Dependency Rule, concentric layers, boundaries |
-| *Refactoring* | Martin Fowler | `refactoring` | Code smells catalog, refactoring techniques, safe transformation |
-| *SOLID Principles* | Robert C. Martin | `solid` | Five principles for maintainable object-oriented design |
-| *The Twelve-Factor App* | Adam Wiggins | `twelve-factor` | Cloud-native application methodology |
+| *Clean Code* | Robert C. Martin | `dev-craftsmanship-clean-code` | Naming, functions, formatting, comments, error handling |
+| *Clean Architecture* | Robert C. Martin | `dev-craftsmanship-clean-architecture` | Dependency Rule, concentric layers, boundaries |
+| *Refactoring* | Martin Fowler | `dev-craftsmanship-refactoring` | Code smells catalog, refactoring techniques, safe transformation |
+| *SOLID Principles* | Robert C. Martin | `dev-craftsmanship-solid` | Five principles for maintainable object-oriented design |
+| *The Twelve-Factor App* | Adam Wiggins | `dev-craftsmanship-twelve-factor` | Cloud-native application methodology |
 | *The Pragmatic Programmer* | Hunt & Thomas | (this skill) | Professional mindset, pragmatic philosophy, career practices |
 | *A Philosophy of Software Design* | John Ousterhout | — | Deep vs. shallow modules, complexity management |
 | *Code Complete* | Steve McConnell | — | Construction practices, defensive programming, self-documenting code |
@@ -79,12 +79,12 @@ From *The Pragmatic Programmer* by Andrew Hunt and David Thomas:
 
 | Situation | Reach For |
 |-----------|-----------|
-| Code is hard to read, names are unclear, functions are long | `clean-code` |
-| Dependencies flow in the wrong direction, layers are tangled | `clean-architecture` |
-| Classes have too many responsibilities, changes break unrelated things | `solid` |
-| Deploying to the cloud, configuring environments, managing processes | `twelve-factor` |
-| Code smells accumulate, need systematic improvement without changing behavior | `refactoring` |
-| General quality mindset, deciding which approach to take first | This skill (`craftsmanship`) |
+| Code is hard to read, names are unclear, functions are long | `dev-craftsmanship-clean-code` |
+| Dependencies flow in the wrong direction, layers are tangled | `dev-craftsmanship-clean-architecture` |
+| Classes have too many responsibilities, changes break unrelated things | `dev-craftsmanship-solid` |
+| Deploying to the cloud, configuring environments, managing processes | `dev-craftsmanship-twelve-factor` |
+| Code smells accumulate, need systematic improvement without changing behavior | `dev-craftsmanship-refactoring` |
+| General quality mindset, deciding which approach to take first | This skill (`dev-craftsmanship`) |
 
 ## The Craftsmanship Mindset
 

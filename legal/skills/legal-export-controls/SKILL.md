@@ -112,5 +112,3 @@ An effective export control compliance program should include:
 - [U.S. Bureau of Industry and Security — Export Administration Regulations (EAR)](https://www.bis.gov/regulations)
 - [The Wassenaar Arrangement](https://www.wassenaar.org)
 - [OFAC Sanctions Programs and Information](https://ofac.treasury.gov/sanctions-programs-and-information)
-
-See references/rules.md for the full rule catalog.

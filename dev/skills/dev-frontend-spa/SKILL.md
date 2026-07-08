@@ -1,6 +1,6 @@
 ---
 name: dev-frontend-spa
-description: Single Page Application architecture — client-side routing, state management, data fetching, bundle optimization, and the SPA vs MPA tradeoff. Covers React, Vue, Angular, Svelte, and Solid ecosystems. In LinkDaily this applies to the Vue 3 admin SPA (frontend/admin-spa). USE FOR: SPA architecture decisions, client-side routing, state management patterns (Pinia, Vuex, Redux), data fetching strategies, bundle optimization, code splitting, lazy loading, SPA vs MPA tradeoff DO NOT USE FOR: server-side rendering or SSG (use dev-frontend-ssr), progressive web apps (use dev-frontend-pwa), micro-frontend composition (use dev-frontend-micro-frontends)
+description: Single Page Application architecture — client-side routing, state management, data fetching, bundle optimization, and the SPA vs MPA tradeoff. Covers React, Vue, Angular, Svelte, and Solid ecosystems. USE FOR: SPA architecture decisions, client-side routing, state management patterns (Pinia, Vuex, Redux), data fetching strategies, bundle optimization, code splitting, lazy loading, SPA vs MPA tradeoff DO NOT USE FOR: server-side rendering or SSG (use dev-frontend-ssr), progressive web apps (use dev-frontend-pwa), micro-frontend composition (use dev-frontend-micro-frontends)
 ---
 
 # Single Page Applications (SPA)
