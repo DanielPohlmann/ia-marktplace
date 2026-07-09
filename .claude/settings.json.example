@@ -1,27 +1,79 @@
 {
-  "extraKnownMarketplaces": {
-    "ia-marketplace": {
-      "source": {
-        "source": "directory",
-        "path": "C:\\workspace\\Diary\\Projeto\\ia-marktplace"
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"$(git rev-parse --show-toplevel)\" && bash .claude/hooks/protect-branch.sh'",
+            "timeout": 10,
+            "statusMessage": "Verificando segurança do comando..."
+          }
+        ]
       }
-    },
-    "pm-skills": {
-      "source": {
-        "source": "github",
-        "repo": "deanpeters/Product-Manager-Skills"
-      },
-      "autoUpdate": true
-    }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Grep|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"$(git rev-parse --show-toplevel)\" && bash .claude/hooks/truncation-check.sh'",
+            "timeout": 5,
+            "statusMessage": "Verificando truncamento de resultados..."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"$(git rev-parse --show-toplevel)\" && bash .claude/hooks/stop-verify.sh'",
+            "timeout": 300,
+            "statusMessage": "Verificando build do projeto..."
+          }
+        ]
+      }
+    ]
   },
+  
   "enabledPlugins": {
+    "skill-creator@claude-plugins-official": true,
+    "dotnet@dotnet-agent-skills": true,
+    "dotnet-aspnetcore@dotnet-agent-skills": true,
+    "dotnet-data@dotnet-agent-skills": true,
+    "dotnet-nuget@dotnet-agent-skills": true,
+    "dotnet-test@dotnet-agent-skills": true,
+    "dotnet-upgrade@dotnet-agent-skills": true,
+    "twilio-developer-kit@twilio": true,
+    "postgres-best-practices@postgres-skills": true,
+    "supabase@supabase-agent-skills": true,
+    "postgres-best-practices@supabase-agent-skills": true,
+    "elastic-elasticsearch@elastic-agent-skills": true,
+    "elastic-kibana@elastic-agent-skills": true,
+    "elastic-observability@elastic-agent-skills": true,
+    "elastic-security@elastic-agent-skills": true,
+    "elastic-cloud@elastic-agent-skills": true,
+    "vue-best-practices@vue-skills": true,
+    "vue-testing-best-practices@vue-skills": true,
+    "vue-router-best-practices@vue-skills": true,
+    "vue-pinia-best-practices@vue-skills": true,
+    "vue-debug-guides@vue-skills": true,
+    "create-adaptable-composable@vue-skills": true,
+    "superpowers@superpowers-dev": true,
+    "interface-design@interface-design": true,
+    "aspire@aspire-skills": true,
     "dev@ia-marketplace": true,
     "stack@ia-marketplace": true,
     "security@ia-marketplace": true,
     "legal@ia-marketplace": true,
     "tools@ia-marketplace": true,
     "QA@ia-marketplace": true,
-    "run-plan@ia-marketplace": true,
+    "workflows@ia-marketplace": true,
+    "specs@ia-marketplace": true,
     "acquisition-channel-advisor@pm-skills": true,
     "agent-orchestration-advisor@pm-skills": true,
     "ai-shaped-readiness-advisor@pm-skills": true,
@@ -78,5 +130,84 @@
     "user-story-splitting@pm-skills": true,
     "vp-cpo-readiness-advisor@pm-skills": true,
     "workshop-facilitation@pm-skills": true
+  },
+  "extraKnownMarketplaces": {
+    "ia-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "DanielPohlmann/ia-marktplace"
+      },
+      "autoUpdate": true
+    },
+    "dotnet-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "dotnet/skills"
+      },
+      "autoUpdate": true
+    },
+    "twilio": {
+      "source": {
+        "source": "github",
+        "repo": "twilio/ai"
+      },
+      "autoUpdate": true
+    },
+    "postgres-skills": {
+      "source": {
+        "source": "github",
+        "repo": "neondatabase/postgres-skills"
+      },
+      "autoUpdate": true
+    },
+    "supabase-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "supabase/agent-skills"
+      },
+      "autoUpdate": true
+    },
+    "elastic-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "elastic/agent-skills"
+      },
+      "autoUpdate": true
+    },
+    "vue-skills": {
+      "source": {
+        "source": "github",
+        "repo": "vuejs-ai/skills"
+      },
+      "autoUpdate": true
+    },
+    "superpowers-dev": {
+      "source": {
+        "source": "github",
+        "repo": "obra/superpowers"
+      },
+      "autoUpdate": true
+    },
+    "interface-design": {
+      "source": {
+        "source": "github",
+        "repo": "Dammyjay93/interface-design"
+      },
+      "autoUpdate": true
+    },
+    "aspire-skills": {
+      "source": {
+        "source": "github",
+        "repo": "microsoft/aspire-skills"
+      },
+      "autoUpdate": true
+    },
+    "pm-skills": {
+      "source": {
+        "source": "github",
+        "repo": "deanpeters/Product-Manager-Skills"
+      },
+      "autoUpdate": true
+    }
   }
 }

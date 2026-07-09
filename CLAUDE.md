@@ -9,7 +9,7 @@ as installable plugins, organized **one plugin per domain**.
 ```
 ia-marktplace/
 ├── .claude-plugin/
-│   └── marketplace.json          ← declares the 7 plugins
+│   └── marketplace.json          ← declares the 8 plugins
 ├── dev/                          ← plugin: dev (41 skills)
 │   ├── .claude-plugin/plugin.json
 │   └── skills/<skill>/SKILL.md
@@ -19,8 +19,9 @@ ia-marktplace/
 ├── security/                     ← plugin: security (16 skills)
 ├── legal/                        ← plugin: legal (16 skills)
 ├── tools/                        ← plugin: tools (3 skills)
-├── QA/                           ← plugin: QA (1 skill)
-├── run-plan/                     ← plugin: run-plan (1 skill)
+├── QA/                           ← plugin: QA (2 skills)
+├── workflows/                    ← plugin: workflows (1 skill)
+├── specs/                        ← plugin: specs (19 skills)
 ├── CLAUDE.md
 ├── README.md
 ├── AGENTS.md
@@ -50,7 +51,7 @@ Code only discovers `SKILL.md` one level deep inside `skills/`.
   skill needs it). No `license`, `compatibility`, or `references` keys — dropped
   reference URLs live in a `## References` body section.
 
-## The 7 plugins
+## The 8 plugins
 
 | Plugin | Skills | Domain |
 |---|---|---|
@@ -59,8 +60,9 @@ Code only discovers `SKILL.md` one level deep inside `skills/`.
 | `security` | 16 | OWASP, threat modeling, auth, crypto, input validation, supply chain, pen testing |
 | `legal` | 16 | Privacy/GDPR/LGPD, licensing, billing/taxation, accessibility, compliance |
 | `tools` | 3 | Docker & Git |
-| `QA` | 1 | Browser automation & E2E testing |
-| `run-plan` | 1 | Plan execution orchestrator |
+| `QA` | 2 | Browser automation, E2E testing & BDD/Gherkin authoring |
+| `workflows` | 1 | Plan execution orchestrator |
+| `specs` | 19 | Diagramming (C4, Mermaid, UML, PlantUML, D2, ERD, TOGAF, ArchiMate, functional) & specification documents (PRD, TRD, BRD, ADR, RFC, Gherkin, Gauge) |
 
 ## Adding a skill
 

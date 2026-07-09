@@ -37,12 +37,17 @@
     {
       "name": "QA",
       "source": "./QA",
-      "description": "Browser automation and E2E testing with playwright-cli: navigation, form submission, network interception, screenshots, a11y/perf/SEO audits, console/network error capture, and spec-driven testing."
+      "description": "Browser automation, E2E testing, and BDD: playwright-cli (navigation, form submission, network interception, screenshots, a11y/perf/SEO audits, console/network error capture) and bdd-gherkin (authoring domain-driven Gherkin/Cucumber .feature files and acceptance criteria)."
     },
     {
-      "name": "run-plan",
-      "source": "./run-plan",
+      "name": "workflows",
+      "source": "./workflows",
       "description": "Plan execution orchestrator: execute a single plan file end-to-end — branch setup, phased execution, commit/push/PR, and the completion signal."
+    },
+    {
+      "name": "specs",
+      "source": "./specs",
+      "description": "Specifications & architecture documentation (19 skills): diagramming (C4, Mermaid, UML, PlantUML, D2, ERD, TOGAF, ArchiMate, functional) and specification documents (PRD, TRD, BRD, ADR, RFC, Gherkin, Gauge)."
     }
   ]
 }
