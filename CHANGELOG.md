@@ -6,6 +6,16 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ---
 
+## [Unreleased]
+
+### Changed
+
+- Renamed plugin `playwright-cli` → `QA` (directory, `marketplace.json` entry, and
+  `plugin.json` manifest). The skill inside remains `playwright-cli`, so it is now
+  invoked as `QA:playwright-cli`.
+
+---
+
 ## [1.0.0] — 2026-07-08
 
 ### Added

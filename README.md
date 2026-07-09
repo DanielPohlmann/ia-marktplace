@@ -16,7 +16,7 @@ the subsets it needs.
 | **security** | `/plugin install security@ia-marketplace` | 16 | OWASP, threat modeling, auth, cryptography, data protection, input validation, API security, logging/monitoring, supply chain, pen testing, red teaming, secure SDLC, AI security |
 | **legal** | `/plugin install legal@ia-marketplace` | 16 | Privacy & data protection (GDPR/LGPD/CCPA), open-source licensing, billing & taxation, accessibility, consumer protection, content moderation, contracts, compliance, IP, AI regulation |
 | **tools** | `/plugin install tools@ia-marketplace` | 3 | Docker & Git |
-| **playwright-cli** | `/plugin install playwright-cli@ia-marketplace` | 1 | Browser automation & E2E testing with playwright-cli |
+| **QA** | `/plugin install QA@ia-marketplace` | 1 | Browser automation & E2E testing with playwright-cli |
 | **run-plan** | `/plugin install run-plan@ia-marketplace` | 1 | Plan execution orchestrator |
 
 **97 skills total.**
@@ -56,7 +56,7 @@ Add to the consuming project's `.claude/settings.json`:
     "security@ia-marketplace": true,
     "legal@ia-marketplace": true,
     "tools@ia-marketplace": true,
-    "playwright-cli@ia-marketplace": true,
+    "QA@ia-marketplace": true,
     "run-plan@ia-marketplace": true
   }
 }
@@ -94,7 +94,7 @@ ia-marktplace/
 ├── security/     .claude-plugin/plugin.json + skills/  (16)
 ├── legal/        .claude-plugin/plugin.json + skills/  (16)
 ├── tools/        .claude-plugin/plugin.json + skills/  (3)
-├── playwright-cli/ .claude-plugin/plugin.json + skills/ (1)
+├── QA/           .claude-plugin/plugin.json + skills/  (1)
 ├── run-plan/     .claude-plugin/plugin.json + skills/  (1)
 ├── CLAUDE.md · AGENTS.md · CHANGELOG.md · LICENSE
 ```

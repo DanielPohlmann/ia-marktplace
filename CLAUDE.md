@@ -19,7 +19,7 @@ ia-marktplace/
 ├── security/                     ← plugin: security (16 skills)
 ├── legal/                        ← plugin: legal (16 skills)
 ├── tools/                        ← plugin: tools (3 skills)
-├── playwright-cli/               ← plugin: playwright-cli (1 skill)
+├── QA/                           ← plugin: QA (1 skill)
 ├── run-plan/                     ← plugin: run-plan (1 skill)
 ├── CLAUDE.md
 ├── README.md
@@ -59,7 +59,7 @@ Code only discovers `SKILL.md` one level deep inside `skills/`.
 | `security` | 16 | OWASP, threat modeling, auth, crypto, input validation, supply chain, pen testing |
 | `legal` | 16 | Privacy/GDPR/LGPD, licensing, billing/taxation, accessibility, compliance |
 | `tools` | 3 | Docker & Git |
-| `playwright-cli` | 1 | Browser automation & E2E testing |
+| `QA` | 1 | Browser automation & E2E testing |
 | `run-plan` | 1 | Plan execution orchestrator |
 
 ## Adding a skill

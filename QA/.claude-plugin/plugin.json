@@ -1,5 +1,5 @@
 {
-  "name": "playwright-cli",
+  "name": "QA",
   "description": "Browser automation and E2E testing with playwright-cli: navigation, form submission, network interception, screenshots, a11y/perf/SEO audits, console/network error capture, and spec-driven testing.",
   "version": "1.0.0",
   "author": {

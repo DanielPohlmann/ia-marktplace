@@ -13,7 +13,7 @@
     "security@ia-marketplace": true,
     "legal@ia-marketplace": true,
     "tools@ia-marketplace": true,
-    "playwright-cli@ia-marketplace": true,
+    "QA@ia-marketplace": true,
     "run-plan@ia-marketplace": true
   }
 }

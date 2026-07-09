@@ -35,8 +35,8 @@
       "description": "Cross-cutting developer tools (3 skills): Docker (Dockerfiles, multi-stage builds, Compose, image optimization, registries) and Git (branching, merge vs rebase, conflict resolution, hooks, worktrees, bisect, conventional commits)."
     },
     {
-      "name": "playwright-cli",
-      "source": "./playwright-cli",
+      "name": "QA",
+      "source": "./QA",
       "description": "Browser automation and E2E testing with playwright-cli: navigation, form submission, network interception, screenshots, a11y/perf/SEO audits, console/network error capture, and spec-driven testing."
     },
     {
