@@ -1,6 +1,6 @@
 {
   "name": "QA",
-  "description": "Browser automation and E2E testing with playwright-cli: navigation, form submission, network interception, screenshots, a11y/perf/SEO audits, console/network error capture, and spec-driven testing.",
+  "description": "Browser automation, E2E testing, and BDD (2 skills): playwright-cli (navigation, form submission, network interception, screenshots, a11y/perf/SEO audits, console/network error capture) and bdd-gherkin (authoring domain-driven Gherkin/Cucumber .feature files and acceptance criteria).",
   "version": "1.0.0",
   "author": {
     "name": "Daniel Heler Pohlmann",
