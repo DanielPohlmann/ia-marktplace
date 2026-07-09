@@ -18,9 +18,9 @@ the subsets it needs.
 | **tools** | `/plugin install tools@ia-marketplace` | 3 | Docker & Git |
 | **QA** | `/plugin install QA@ia-marketplace` | 2 | Browser automation & E2E testing (playwright-cli) + BDD/Gherkin `.feature` authoring (bdd-gherkin) |
 | **workflows** | `/plugin install workflows@ia-marketplace` | 1 | Plan execution orchestrator |
-| **specs** | `/plugin install specs@ia-marketplace` | 19 | Specifications & architecture documentation: diagramming (C4, Mermaid, UML, PlantUML, D2, ERD, TOGAF, ArchiMate, functional) and specification documents (PRD, TRD, BRD, ADR, RFC, Gherkin, Gauge) |
+| **specs** | `/plugin install specs@ia-marketplace` | 21 | Specifications & architecture documentation: diagramming (C4, Mermaid, UML, PlantUML, D2, ERD, TOGAF, ArchiMate, functional), specification documents (PRD, TRD, BRD, ADR, RFC, Gherkin, Gauge, user guide) and knowledge-base building (LLM Wiki) |
 
-**117 skills total.**
+**119 skills total.**
 
 ---
 
@@ -98,7 +98,7 @@ ia-marktplace/
 ├── tools/        .claude-plugin/plugin.json + skills/  (3)
 ├── QA/           .claude-plugin/plugin.json + skills/  (2)
 ├── workflows/    .claude-plugin/plugin.json + skills/  (1)
-├── specs/        .claude-plugin/plugin.json + skills/  (19)
+├── specs/        .claude-plugin/plugin.json + skills/  (21)
 ├── CLAUDE.md · AGENTS.md · CHANGELOG.md · LICENSE
 ```
 

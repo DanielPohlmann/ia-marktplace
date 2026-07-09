@@ -21,7 +21,7 @@ ia-marktplace/
 ├── tools/                        ← plugin: tools (3 skills)
 ├── QA/                           ← plugin: QA (2 skills)
 ├── workflows/                    ← plugin: workflows (1 skill)
-├── specs/                        ← plugin: specs (19 skills)
+├── specs/                        ← plugin: specs (21 skills)
 ├── CLAUDE.md
 ├── README.md
 ├── AGENTS.md
@@ -62,7 +62,7 @@ Code only discovers `SKILL.md` one level deep inside `skills/`.
 | `tools` | 3 | Docker & Git |
 | `QA` | 2 | Browser automation, E2E testing & BDD/Gherkin authoring |
 | `workflows` | 1 | Plan execution orchestrator |
-| `specs` | 19 | Diagramming (C4, Mermaid, UML, PlantUML, D2, ERD, TOGAF, ArchiMate, functional) & specification documents (PRD, TRD, BRD, ADR, RFC, Gherkin, Gauge) |
+| `specs` | 21 | Diagramming (C4, Mermaid, UML, PlantUML, D2, ERD, TOGAF, ArchiMate, functional), specification documents (PRD, TRD, BRD, ADR, RFC, Gherkin, Gauge, user guide) & knowledge-base building (LLM Wiki) |
 
 ## Adding a skill
 
