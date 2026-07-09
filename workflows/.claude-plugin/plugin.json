@@ -1,5 +1,5 @@
 {
-  "name": "run-plan",
+  "name": "workflows",
   "description": "Plan execution orchestrator: execute a single plan file end-to-end — branch setup, phased execution, commit/push/PR, and the completion signal.",
   "version": "1.0.0",
   "author": {
