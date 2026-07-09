@@ -9,7 +9,7 @@ as installable plugins, organized **one plugin per domain**.
 ```
 ia-marktplace/
 ├── .claude-plugin/
-│   └── marketplace.json          ← declares the 8 plugins
+│   └── marketplace.json          ← declares the 9 plugins
 ├── dev/                          ← plugin: dev (41 skills)
 │   ├── .claude-plugin/plugin.json
 │   └── skills/<skill>/SKILL.md
@@ -22,6 +22,7 @@ ia-marktplace/
 ├── QA/                           ← plugin: QA (2 skills)
 ├── workflows/                    ← plugin: workflows (1 skill)
 ├── specs/                        ← plugin: specs (21 skills)
+├── agents/                       ← plugin: agents (1 skill)
 ├── CLAUDE.md
 ├── README.md
 ├── AGENTS.md
@@ -56,7 +57,7 @@ produce a PDF report. It is deliberately excluded from the marketplace (no `plug
   skill needs it). No `license`, `compatibility`, or `references` keys — dropped
   reference URLs live in a `## References` body section.
 
-## The 8 plugins
+## The 9 plugins
 
 | Plugin | Skills | Domain |
 |---|---|---|
@@ -68,6 +69,7 @@ produce a PDF report. It is deliberately excluded from the marketplace (no `plug
 | `QA` | 2 | Browser automation, E2E testing & BDD/Gherkin authoring |
 | `workflows` | 1 | Plan execution orchestrator |
 | `specs` | 21 | Diagramming (C4, Mermaid, UML, PlantUML, D2, ERD, TOGAF, ArchiMate, functional), specification documents (PRD, TRD, BRD, ADR, RFC, Gherkin, Gauge, user guide) & knowledge-base building (LLM Wiki) |
+| `agents` | 1 | Multi-agent orchestration: driving Tamandua (workflow runs, step lifecycle, worktrees, services, AutoResearch loops) |
 
 ## Adding a skill
 

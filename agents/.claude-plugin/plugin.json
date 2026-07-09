@@ -1,0 +1,10 @@
+{
+  "name": "agents",
+  "description": "Multi-agent orchestration (1 skill): tamandua-agents (drive Tamandua, a local CLI/workflow orchestrator on top of pi — workflow runs, step lifecycle, worktrees, dashboard/control-plane services, logs, pause/resume, AutoResearch experiment loops, and the STATUS output contract).",
+  "version": "1.0.0",
+  "author": {
+    "name": "Daniel Heler Pohlmann",
+    "email": "daniel.heler@way2.com.br"
+  },
+  "license": "MIT"
+}

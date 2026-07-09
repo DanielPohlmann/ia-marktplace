@@ -19,8 +19,9 @@ the subsets it needs.
 | **QA** | `/plugin install QA@ia-marketplace` | 2 | Browser automation & E2E testing (playwright-cli) + BDD/Gherkin `.feature` authoring (bdd-gherkin) |
 | **workflows** | `/plugin install workflows@ia-marketplace` | 1 | Plan execution orchestrator |
 | **specs** | `/plugin install specs@ia-marketplace` | 21 | Specifications & architecture documentation: diagramming (C4, Mermaid, UML, PlantUML, D2, ERD, TOGAF, ArchiMate, functional), specification documents (PRD, TRD, BRD, ADR, RFC, Gherkin, Gauge, user guide) and knowledge-base building (LLM Wiki) |
+| **agents** | `/plugin install agents@ia-marketplace` | 1 | Multi-agent orchestration: driving Tamandua (tamandua-agents) — workflow runs, step lifecycle, worktrees, dashboard/control-plane services, logs, pause/resume, AutoResearch loops, STATUS output contract |
 
-**119 skills total.**
+**120 skills total.**
 
 ---
 
@@ -59,7 +60,8 @@ Add to the consuming project's `.claude/settings.json`:
     "tools@ia-marketplace": true,
     "QA@ia-marketplace": true,
     "workflows@ia-marketplace": true,
-    "specs@ia-marketplace": true
+    "specs@ia-marketplace": true,
+    "agents@ia-marketplace": true
   }
 }
 ```
@@ -79,6 +81,7 @@ Skills are auto-namespaced by their plugin once installed:
 | `security-owasp` | security | `Skill("security:security-owasp")` |
 | `tools-git` | tools | `Skill("tools:tools-git")` |
 | `workflows` | workflows | `Skill("workflows:workflows")` |
+| `tamandua-agents` | agents | `Skill("agents:tamandua-agents")` |
 
 Each domain keeps a **thin index skill** (`dev`, `stack`, `security`, `legal`,
 `tools`) that maps the domain and points to the specific `<domain>-*` skill to
@@ -90,7 +93,7 @@ reach for. Prefer the most specific skill over its index.
 
 ```
 ia-marktplace/
-├── .claude-plugin/marketplace.json     ← 8 plugins
+├── .claude-plugin/marketplace.json     ← 9 plugins
 ├── dev/          .claude-plugin/plugin.json + skills/  (41)
 ├── stack/        .claude-plugin/plugin.json + skills/  (19)
 ├── security/     .claude-plugin/plugin.json + skills/  (16)
@@ -99,6 +102,7 @@ ia-marktplace/
 ├── QA/           .claude-plugin/plugin.json + skills/  (2)
 ├── workflows/    .claude-plugin/plugin.json + skills/  (1)
 ├── specs/        .claude-plugin/plugin.json + skills/  (21)
+├── agents/       .claude-plugin/plugin.json + skills/  (1)
 ├── CLAUDE.md · AGENTS.md · CHANGELOG.md · LICENSE
 ```
 
