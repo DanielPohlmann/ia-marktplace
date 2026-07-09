@@ -50,8 +50,8 @@
       "description": "Specifications & architecture documentation (21 skills): diagramming (C4, Mermaid, UML, PlantUML, D2, ERD, TOGAF, ArchiMate, functional), specification documents (PRD, TRD, BRD, ADR, RFC, Gherkin, Gauge, user guide), and knowledge-base building (LLM Wiki)."
     },
     {
-      "name": "agents",
-      "source": "./agents",
+      "name": "custom-agent",
+      "source": "./custom-agent",
       "description": "Multi-agent orchestration (1 skill): tamandua-agents (drive Tamandua, a local CLI/workflow orchestrator on top of pi — workflow runs, step lifecycle, worktrees, dashboard/control-plane services, logs, pause/resume, AutoResearch experiment loops, and the STATUS output contract)."
     }
   ]
