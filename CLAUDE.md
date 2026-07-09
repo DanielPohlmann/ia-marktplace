@@ -34,6 +34,11 @@ Each plugin directory holds `.claude-plugin/plugin.json` (manifest) plus a
 `SKILL.md`, plus optional `references/` and `scripts/`. **No nesting** — Claude
 Code only discovers `SKILL.md` one level deep inside `skills/`.
 
+**Not a plugin:** `ai-harness-audit/` is internal **tooling** for devs working on this repo — a reusable
+framework to audit a repository's agent harness (contract, skills, guides, sensors, hooks, memory) and
+produce a PDF report. It is deliberately excluded from the marketplace (no `plugin.json`). See
+`ai-harness-audit/README.md` to run an audit or read the PIM baseline.
+
 ## Naming & invocation
 
 - Skill directory name **equals** the SKILL.md `name:` frontmatter (kebab-case,
