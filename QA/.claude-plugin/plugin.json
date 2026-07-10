@@ -1,7 +1,7 @@
 {
   "name": "QA",
   "description": "Browser automation, E2E testing, and BDD (3 skills): playwright-cli (navigation, form submission, network interception, screenshots, a11y/perf/SEO audits, console/network error capture), bdd-gherkin (authoring domain-driven Gherkin/Cucumber .feature files and acceptance criteria), and e2e-functional-testing (xUnit + Playwright .NET + Aspire.Hosting.Testing functional tests that boot the whole distributed app and simulate a real user).",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "Daniel Heler Pohlmann",
     "email": "daniel.heler@way2.com.br"
