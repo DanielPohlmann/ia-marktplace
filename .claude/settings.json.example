@@ -74,6 +74,7 @@
     "QA@ia-marketplace": true,
     "workflows@ia-marketplace": true,
     "specs@ia-marketplace": true,
+    "custom-agent@ia-marketplace": true,
     "acquisition-channel-advisor@pm-skills": true,
     "agent-orchestration-advisor@pm-skills": true,
     "ai-shaped-readiness-advisor@pm-skills": true,
@@ -135,7 +136,8 @@
     "ia-marketplace": {
       "source": {
         "source": "github",
-        "repo": "DanielPohlmann/ia-marktplace"
+        "repo": "DanielPohlmann/ia-marktplace",
+        "ref": "chore/skills-conventions-audit"
       },
       "autoUpdate": true
     },

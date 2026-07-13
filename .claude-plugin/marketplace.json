@@ -1,8 +1,7 @@
 {
   "name": "ia-marketplace",
   "owner": {
-    "name": "Daniel Heler Pohlmann",
-    "email": "daniel.heler@way2.com.br"
+    "name": "Daniel Heler Pohlmann"
   },
   "metadata": {
     "description": "Claude Code skills marketplace — engineering, stack, security, legal and workflow skills, organized one plugin per domain",

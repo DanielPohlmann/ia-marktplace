@@ -41,6 +41,6 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ### Changed
 
-- Replaced the previous "way2-ai-plugin" template scaffold (marketplace.json,
+- Replaced the previous plugin template scaffold (marketplace.json,
   README, CLAUDE.md, AGENTS.md) — its plugin entries referenced directories that
   never existed in this repo.
