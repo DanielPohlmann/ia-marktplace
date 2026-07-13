@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><style>/* AI Harness Audit — print stylesheet (A4, formal report) · v2 design pass */
+
+:root{
+  --ink:#1a2030; --muted:#5b6678; --faint:#8c96a6;
+  --accent:#2f5fae; --accent-dark:#1d3c70; --accent-soft:#eaf1fb;
+  --rule:#e3e8f0; --rule-strong:#ccd4e0; --bg-soft:#f6f8fb;
+  --good:#1f8a52; --warn:#b9770a; --bad:#c0392b; --strong:#0e7a4b;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0; padding: 0;
+  color: var(--ink);
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 10pt;
+  line-height: 1.55;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.report { padding: 0; }
+.pagebreak { page-break-after: always; break-after: page; }
+
+/* ============================ COVER ============================ */
+.cover { height: 247mm; display: flex; flex-direction: column; justify-content: center; page-break-after: always; }
+.cover-band { font-size: 8.5pt; letter-spacing: 3px; font-weight: 700; color: var(--accent); text-transform: uppercase; margin-bottom: 9mm; }
+.cover-rule { height: 3px; width: 60mm; background: var(--accent); border: none; margin: 0 0 8mm; }
+.cover-title { font-size: 40pt; font-weight: 700; letter-spacing: -0.8px; line-height: 1.02; margin: 0 0 4mm; color: var(--ink); border: none; }
+.cover-sub { font-size: 14.5pt; color: var(--muted); font-weight: 400; line-height: 1.3; margin-bottom: 22mm; max-width: 150mm; }
+.cover-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm 16mm; max-width: 156mm; border-top: 1px solid var(--rule-strong); padding-top: 8mm; }
+.cover-meta > div { font-size: 10.5pt; line-height: 1.35; }
+.cover-meta span { display: block; font-size: 7pt; letter-spacing: 1.3px; text-transform: uppercase; color: var(--faint); margin-bottom: 1.5mm; }
+.cover-class { display: inline !important; color: var(--bad); font-weight: 700; letter-spacing: 0 !important; text-transform: none !important; font-size: 10.5pt !important; }
+
+/* ============================ HEADINGS ============================ */
+h1, h2, h3, h4 { color: var(--ink); line-height: 1.22; font-weight: 600; }
+h1 { font-size: 23pt; margin: 0 0 4pt; letter-spacing: -0.3px; }
+h2 {
+  font-size: 15pt; margin: 22pt 0 10pt; padding-bottom: 5pt;
+  border-bottom: 2px solid var(--accent); color: var(--accent-dark);
+  page-break-after: avoid; letter-spacing: -0.2px;
+}
+h3 {
+  font-size: 11.5pt; margin: 16pt 0 6pt; color: var(--ink);
+  padding-top: 3pt; border-top: 1px solid var(--rule);
+  page-break-after: avoid;
+}
+.report h3:first-of-type { border-top: none; }
+h4 { font-size: 9.5pt; margin: 11pt 0 3pt; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted); }
+
+p { margin: 5pt 0; }
+a { color: var(--accent); text-decoration: none; }
+strong { color: var(--ink); font-weight: 600; }
+em { color: inherit; }
+hr { border: none; border-top: 1px solid var(--rule); margin: 14pt 0; }
+
+ul, ol { margin: 5pt 0; padding-left: 16pt; }
+li { margin: 3.5pt 0; padding-left: 2pt; }
+li::marker { color: var(--faint); }
+
+/* ============================ CODE / DIAGRAMS ============================ */
+code {
+  font-family: "Cascadia Code", "Consolas", monospace; font-size: 8.6pt;
+  background: var(--bg-soft); padding: 0.5px 4px; border-radius: 3px; color: #31425b;
+  border: 1px solid #eef1f6;
+}
+pre {
+  background: #fbfcfe; border: 1px solid var(--rule); border-left: 3px solid var(--accent);
+  border-radius: 5px; padding: 9pt 11pt; font-size: 7.7pt; line-height: 1.34;
+  white-space: pre; overflow: hidden; page-break-inside: avoid; color: #2b3b53;
+}
+pre code { background: none; padding: 0; font-size: inherit; border: none; color: inherit; }
+
+/* ============================ TABLES ============================ */
+table { width: 100%; border-collapse: collapse; margin: 10pt 0 12pt; font-size: 8.7pt; page-break-inside: avoid; }
+thead { display: table-header-group; }
+th {
+  background: var(--accent); color: #fff; text-align: left; padding: 5.5pt 7pt;
+  font-weight: 600; font-size: 8pt; letter-spacing: 0.2px;
+  border: none; border-bottom: 2px solid var(--accent-dark);
+}
+td { padding: 5pt 7pt; border: none; border-bottom: 1px solid var(--rule); vertical-align: top; }
+tbody tr:nth-child(even) td { background: var(--bg-soft); }
+tbody tr:last-child td { border-bottom: 1px solid var(--rule-strong); }
+/* Document-control & key/value: first table is a 2-col card with an empty header row */
+table:first-of-type thead { display: none; }
+table:first-of-type td:first-child { font-weight: 600; color: var(--muted); width: 30%; }
+
+/* ============================ CALLOUTS ============================ */
+blockquote {
+  margin: 11pt 0; padding: 8pt 12pt; background: var(--accent-soft);
+  border-left: 4px solid var(--accent); border-radius: 0 5px 5px 0; color: #243a5e;
+}
+blockquote p { margin: 2.5pt 0; }
+/* maturity rationale line under each §5 item header */
+p.rationale {
+  margin: 4pt 0 7pt; padding: 5pt 10pt; font-size: 8.8pt; color: #4a566a;
+  background: var(--bg-soft); border-left: 3px solid var(--rule-strong); border-radius: 0 4px 4px 0;
+}
+p.rationale em { font-style: normal; font-weight: 600; color: var(--muted); }
+
+/* ============================ STATUS GLYPHS ============================ */
+.s-strong { color: var(--strong); font-weight: 700; white-space: nowrap; }
+.s-good   { color: var(--good);   font-weight: 700; white-space: nowrap; }
+.s-warn   { color: var(--warn);   font-weight: 700; white-space: nowrap; }
+.s-bad    { color: var(--bad);    font-weight: 700; white-space: nowrap; }
+
+/* ============================ PILLS (severity / impact / effort) ============================ */
+.sev, .imp, .tag {
+  display: inline-block; font-size: 7pt; font-weight: 700; letter-spacing: 0.3px;
+  padding: 1px 7px; border-radius: 9px; white-space: nowrap; line-height: 1.5;
+  text-transform: uppercase; vertical-align: baseline;
+}
+.fid { color: var(--accent-dark); }
+.sev-critical { background: #f7dcd8; color: #a01b12; }
+.sev-high     { background: #fce3cf; color: #a85508; }
+.sev-med      { background: #fbf1cf; color: #836500; }
+.sev-low      { background: #e9edf3; color: #5b6678; }
+.imp-high     { background: #def0e6; color: #16713f; }
+.imp-med      { background: #fbf1cf; color: #836500; }
+.imp-low      { background: #e9edf3; color: #5b6678; }
+.tag-cheap  { background: #def0e6; color: var(--good); text-transform: none; }
+.tag-deeper { background: #fbeedd; color: var(--warn); text-transform: none; }
+.tag-gated  { background: #efe6f6; color: #7a3fa0; text-transform: none; }
+
+/* widow/orphan control */
+h2 + p, h2 + table, h3 + p, h3 + table, h3 + p.rationale, h4 + p, h4 + table { page-break-before: avoid; }
+table, pre, blockquote { page-break-inside: avoid; }
+</style></head>
+<body><main class="report"><!-- Cover page. Rendered by build/build-pdf.mjs via the `.cover*` classes in build/style.css. -->
+<div class="cover">
+  <div class="cover-band">ia-marketplace</div>
+  <hr class="cover-rule"/>
+  <div class="cover-title">AI Harness Audit</div>
+  <div class="cover-sub">ia-marketplace — skills conventions audit (scoped: dimension 2 of 8)</div>
+  <div class="cover-meta">
+    <div><span>Prepared by</span>Daniel Heler Pohlmann</div>
+    <div><span>Assisted by</span>Claude Code (Fable 5)</div>
+    <div><span>Date</span>2026-07-13</div>
+    <div><span>Version</span>1.0</div>
+    <div><span>Method</span>Framework v1.0 — scoped to dimension 2 (Skills), mechanical conventions check</div>
+    <div><span>Classification</span><span class="cover-class">Confidential — internal</span></div>
+  </div>
+</div>
+<div class="pagebreak"></div>
+<h2 id="document-control" tabindex="-1">Document Control</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Target</strong></td>
+<td><code>ia-marktplace</code> repo — Claude Code plugin marketplace (9 plugins, 122 skills)</td>
+</tr>
+<tr>
+<td><strong>Stack</strong></td>
+<td>Markdown skills + JSON manifests (Claude Code plugin format)</td>
+</tr>
+<tr>
+<td><strong>Harness scope</strong></td>
+<td><strong>Scoped audit:</strong> dimension 2 (Skills) conventions only. Contract, guides, sensors, enforcement, memory, improvement loop, and tooling dimensions were <strong>not</strong> assessed.</td>
+</tr>
+<tr>
+<td><strong>Prepared by</strong></td>
+<td>Daniel Heler Pohlmann</td>
+</tr>
+<tr>
+<td><strong>Engagement date</strong></td>
+<td>2026-07-13</td>
+</tr>
+<tr>
+<td><strong>Framework</strong></td>
+<td>v1.0 (<code>ai-harness-audit</code> @ <code>257b2e0</code>) — the method version this audit ran against</td>
+</tr>
+<tr>
+<td><strong>Method</strong></td>
+<td>Mechanical conventions scan (script: <a href="assets/audit_skills.py"><code>assets/audit_skills.py</code></a>) + manual verification of every flagged item</td>
+</tr>
+<tr>
+<td><strong>Base refs</strong></td>
+<td><code>ia-marktplace</code> @ <code>257b2e0</code> (branch <code>chore/skills-conventions-audit</code>)</td>
+</tr>
+<tr>
+<td><strong>Prior audit</strong></td>
+<td>none — first audit of this target (the 2026-06-24 <code>pim</code> audit assessed a <em>consumer</em> of this marketplace)</td>
+</tr>
+<tr>
+<td><strong>Report version</strong></td>
+<td>v1.0 — Final</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1.-executive-summary" tabindex="-1">1. Executive Summary</h2>
+<p>The <code>ia-marktplace</code> repository distributes 122 Claude Code skills across 9 domain plugins
+(<code>dev</code> 41 · <code>specs</code> 21 · <code>stack</code> 19 · <code>security</code> 16 · <code>legal</code> 16 · <code>QA</code> 3 · <code>tools</code> 3 ·
+<code>custom-agent</code> 2 · <code>workflows</code> 1). This engagement audited every skill against the repo’s own
+documented conventions (CLAUDE.md): naming, frontmatter shape, description discipline, flat
+directory anatomy, cross-link integrity, and manifest/doc count synchronization.</p>
+<p><strong>Verdict.</strong> The skill catalog is in strong shape: all 122 skills pass naming (name = directory,
+kebab-case, ≤ 64 chars), minimal-frontmatter, and flat-anatomy checks, and every <code>plugin.json</code> /
+<code>marketplace.json</code> skill count is accurate. The audit found <strong>one critical convention violation</strong>
+(a description over the 1024-char frontmatter limit), <strong>one documentation drift</strong> (QA plugin counts
+stale in 4 places), and a handful of low-severity hygiene items. All High/Medium findings were
+<strong>remediated during the engagement</strong> and re-verified by re-running the scan (0 critical, 0 open
+warnings that are not documented exceptions). The structural gap — convention compliance checked
+by hand rather than by a versioned sensor — was also closed in-engagement: the repo’s existing
+<code>scripts/verify_marketplace.py</code> was extended to cover the missed classes (count sync, stray files,
+cross-links) and is now gated in CI (F5).</p>
+<p><strong>Skills dimension: <span class="s-good">✓</span> ok · Maturity L3 — Defined (target L4).</strong>
+Conventions are documented, uniformly applied, and now machine-enforced; L4 pends a CI track
+record on real PRs.
+<strong>Assurance opinion (scoped): Satisfactory</strong> — post-remediation; as-found state was Satisfactory
+with one critical exception, fixed same-day.</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Score</th>
+<th>Maturity</th>
+<th>One-line</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2. Skills (conventions)</td>
+<td><span class="s-good">✓</span> ok</td>
+<td>L3 — Defined</td>
+<td>122/122 pass structural checks; conventions documented; enforcement still manual</td>
+</tr>
+<tr>
+<td>1, 3–8 (all others)</td>
+<td>—</td>
+<td>—</td>
+<td>out of scope for this engagement</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Top priorities.</strong> (1) <s>Wire the conventions sensor to CI</s> — done in-engagement (F5): verifier
+extended + <code>.github/workflows/verify-marketplace.yml</code>. (2) Bring the two <code>custom-agent</code>
+descriptions into the <code>USE FOR / DO NOT USE FOR</code> structure. (3) Progressively split the 13
+oversized SKILL.md files into <code>references/</code>.</p>
+<div class="pagebreak"></div>
+<h2 id="2.-methodology-%26-scope" tabindex="-1">2. Methodology &amp; Scope</h2>
+<p><strong>Frame.</strong> Agent = Model + Harness. This marketplace repo <em>is</em> harness — it ships the skills that
+steer consumer agents (feedforward). A defect in a skill’s frontmatter is a defect in every
+consumer’s harness.</p>
+<p><strong>Scope.</strong> Scoped engagement: dimension 2 (Skills) of the 8-dimension framework, <strong>conventions
+only</strong>. The checks come directly from the target’s own contract (CLAUDE.md “Naming &amp; invocation”
+and “Adding a skill”) plus the framework checklist §2:</p>
+<ol>
+<li>Plugin declared in <code>marketplace.json</code> and carries <code>.claude-plugin/plugin.json</code>.</li>
+<li>Flat anatomy: each skill dir holds exactly one <code>SKILL.md</code> (one level deep, no nesting), plus
+only <code>references/</code> and <code>scripts/</code>.</li>
+<li>Frontmatter keys ⊆ {<code>name</code>, <code>description</code>, <code>allowed-tools</code>}.</li>
+<li><code>name</code> = directory name, <code>^[a-z0-9-]+$</code>, ≤ 64 chars.</li>
+<li><code>description</code> present, single-line, ≤ 1024 chars, <code>USE FOR / DO NOT USE FOR</code> structure.</li>
+<li><code>use &lt;flat-name&gt;</code> cross-links resolve to an existing skill.</li>
+<li>“(N skills)” claims in <code>plugin.json</code> / <code>marketplace.json</code> and the CLAUDE.md / README.md tables
+match the real directory counts.</li>
+<li>SKILL.md body ≤ ~500 lines (progressive-disclosure guideline; overflow → <code>references/</code>).</li>
+</ol>
+<p><strong>Method.</strong> A Python scanner (<a href="assets/audit_skills.py"><code>assets/audit_skills.py</code></a>) walked all 9
+plugins and emitted severity-ranked findings (CRIT/WARN/INFO); every flagged item was then verified
+by hand against the file before being reported (two WARN classes were reclassified on inspection —
+see F4). The scan was re-run after remediation to confirm closure.</p>
+<p><strong>Limitations.</strong> Not assessed: skill <em>content quality</em> (whether the guidance in each SKILL.md is
+correct), skill evals, trigger/description effectiveness in live routing, the other 7 harness
+dimensions, and delivery pinning at consumers (the <code>pim</code> audit covers the consumer side).
+Point-in-time: results bind to commit <code>257b2e0</code> plus the same-day remediation commits.</p>
+<h2 id="3.-architecture-overview" tabindex="-1">3. Architecture Overview</h2>
+<pre><code>ia-marktplace/                        (reproducibility boundary = the repo itself)
+├── .claude-plugin/marketplace.json   ← 9 plugin declarations (counts audited)
+├── &lt;plugin&gt;/                         ← dev · stack · security · legal · tools · QA ·
+│   ├── .claude-plugin/plugin.json    ←   workflows · specs · custom-agent
+│   └── skills/&lt;skill&gt;/SKILL.md       ← 122 skills, flat, + optional references/ scripts/
+├── CLAUDE.md · README.md             ← conventions contract + human docs (counts audited)
+└── ai-harness-audit/                 ← internal tooling (not a plugin; hosts this report)
+</code></pre>
+<p>Consumers register the marketplace as a <strong>local-directory</strong> source and enable plugins per project;
+skill names are auto-namespaced by plugin at invocation time (<code>custom-agent:graphify</code>). Nothing in
+a skill directory is executed at install time — the audit surface is purely declarative files.</p>
+<div class="pagebreak"></div>
+<h2 id="4.-diagnosis" tabindex="-1">4. Diagnosis</h2>
+<p>The central tension is <strong>manual convention enforcement in a repo whose whole purpose is
+conventions</strong>. CLAUDE.md states precise, checkable rules (name = dir, ≤ 1024-char descriptions,
+count-carrying manifests), and 122 skills follow them almost perfectly — evidence of disciplined
+authoring. But nothing <em>guards</em> the rules: the one critical violation (F1) and the count drift (F2)
+both entered on normal feature branches and sat undetected until this audit. The framework’s own
+checklist (§2, “the harness guards itself”) flags exactly this: a plugin repo should carry its own
+skill linting. The scanner written for this audit is the seed of that sensor; committing it and
+gating CI on it converts a recurring manual audit into a standing control (L3 → L4).</p>
+<h2 id="5.-item-by-item-review" tabindex="-1">5. Item-by-Item Review</h2>
+<h3 id="5.2-skills-%C2%B7-%E2%9C%93-ok-%C2%B7-maturity-l3" tabindex="-1">5.2 Skills · <span class="s-good">✓</span> ok · Maturity L3</h3>
+<p><em>Maturity rationale.</em> Conventions documented in CLAUDE.md and uniformly applied across 122 skills
+(L3 — Defined); compliance is verified manually per-engagement, with no versioned lint/CI gate
+(blocks L4 — Quantitatively Managed).</p>
+<p><strong>Criteria.</strong> CLAUDE.md naming &amp; anatomy rules; framework checklist §2 (when-to-use descriptions,
+progressive disclosure, plugin-delivered skills in scope, self-guarding sensors).</p>
+<p><strong>Condition (evidence).</strong> Scanner output over 9 plugins / 122 skills @ <code>257b2e0</code>: initial run
+27 findings (1 CRIT · 13 WARN · 13 INFO); post-remediation run 23 findings (0 CRIT · 10 WARN —
+all documented exceptions or scanner false positives · 13 INFO). Full scanner source in
+<a href="assets/audit_skills.py"><code>assets/audit_skills.py</code></a>.</p>
+<p><strong>Strengths.</strong></p>
+<ul>
+<li>✓ <strong>122/122</strong> skills: frontmatter <code>name</code> = directory name, kebab-case, ≤ 64 chars (scanner checks B2, zero hits).</li>
+<li>✓ <strong>122/122</strong> skills: frontmatter restricted to <code>name</code>/<code>description</code>(/<code>allowed-tools</code>) — no dropped keys (<code>license</code>, <code>references</code>) reappearing.</li>
+<li>✓ <strong>122/122</strong> skill dirs flat — no nested <code>SKILL.md</code>, no stray <code>AGENTS.md</code>/<code>README.md</code>/<code>metadata.json</code> (one stray dotfile: F3, removed).</li>
+<li>✓ <strong>All 9</strong> <code>plugin.json</code> and <code>marketplace.json</code> “(N skills)” claims match real counts (post F2 fix, docs tables too).</li>
+<li>✓ <strong>120/122</strong> descriptions carry the <code>USE FOR / DO NOT USE FOR</code> routing structure with valid sibling cross-links.</li>
+</ul>
+<p><strong>Findings (worst-first).</strong></p>
+<ul>
+<li><strong class="fid">F1</strong>&nbsp;<span class="sev sev-high">High</span> — <code>specs-documentation-userguide</code> description exceeded the 1024-char frontmatter limit (1032 chars). <span class="s-good">✓ fixed during engagement</span>
+<ul>
+<li><em>Cause:</em> description grew organically (doc-it lineage sentence added) with no length check at authoring time.</li>
+<li><em>Consequence:</em> violates the documented hard limit; risks truncation or rejection by consumers that enforce the schema, silently degrading skill routing.</li>
+<li><em>Evidence:</em> <code>specs/skills/specs-documentation-userguide/SKILL.md</code> frontmatter, scanner check B3 (1032 &gt; 1024). Remediated to 944 chars; re-scan clean.</li>
+</ul>
+</li>
+<li><strong>F2 · Medium</strong> — QA plugin skill count stale (says 2, real 3) in 4 documentation locations. <span class="s-good">✓ fixed during engagement</span>
+<ul>
+<li><em>Cause:</em> <code>e2e-functional-testing</code> was added with manifests updated but the CLAUDE.md/README.md tables and trees missed (step 5 of “Adding a skill” partially skipped).</li>
+<li><em>Consequence:</em> the contract file (CLAUDE.md) misinforms both humans and agents about plugin contents; erodes trust in the counts everywhere else.</li>
+<li><em>Evidence:</em> CLAUDE.md structure tree + plugin table; README.md plugin table + structure tree (4 lines). All four updated; re-scan clean.</li>
+</ul>
+</li>
+<li><strong class="fid">F3</strong>&nbsp;<span class="sev sev-low">Low</span> — stray <code>.graphify_version</code> file inside <code>custom-agent/skills/graphify/</code>. <span class="s-good">✓ fixed during engagement</span>
+<ul>
+<li><em>Cause:</em> artifact of the skill’s original user-level installer, carried along when the skill was moved into the plugin.</li>
+<li><em>Consequence:</em> violates the SKILL.md + <code>references/</code> + <code>scripts/</code> anatomy; sets a precedent for installer droppings in skill dirs.</li>
+<li><em>Evidence:</em> scanner check A3; <code>grep graphify_version</code> over the skill = 0 references (safe to delete). Removed.</li>
+</ul>
+</li>
+<li><strong class="fid">F4</strong>&nbsp;<span class="sev sev-low">Low</span> — 6 skills cross-link skills from <strong>external marketplaces</strong> (<code>dotnet-test:code-testing-generator</code>, <code>dotnet-data:optimizing-ef-core-queries</code>, <code>vue-best-practices</code>, <code>vue-testing-best-practices</code>, <code>interface-design</code>), unresolvable within this repo. <span class="s-good">✓ documented during engagement</span>
+<ul>
+<li><em>Cause:</em> CLAUDE.md’s cross-link convention only contemplated siblings; authors legitimately routed to external plugins with no documented rule for it.</li>
+<li><em>Consequence:</em> in consumers without those external plugins, the <code>DO NOT USE FOR</code> hand-off points nowhere — mild routing degradation, no failure.</li>
+<li><em>Evidence:</em> scanner check B5 over <code>QA/bdd-gherkin</code>, <code>QA/e2e-functional-testing</code>, <code>QA/playwright-cli</code>, <code>dev/dev-backend-data-modeling</code>, <code>stack/stack-i18n</code>, <code>legal/legal-accessibility</code>. (7th hit <code>use platform-specific</code> in <code>legal-content-moderation</code> is prose — scanner false positive.) Exception now documented in CLAUDE.md “Naming &amp; invocation”.</li>
+</ul>
+</li>
+<li><strong>F5 · Medium</strong> — the conventions sensor was incomplete and ungated: <code>scripts/verify_marketplace.py</code> existed (naming, frontmatter, description limits) but no CI ran it, and it did not check count claims, skill-dir stray files, or cross-link resolution — exactly the classes F1 slipped past (unrun) and F2/F3/F4 slipped past (uncovered). <span class="s-good">✓ fixed during engagement</span>
+<ul>
+<li><em>Cause:</em> the linter was written for manual invocation and never wired to CI; later conventions (count claims in docs, cross-link discipline) were documented in CLAUDE.md but never encoded.</li>
+<li><em>Consequence:</em> F1/F2-class regressions could re-enter on any branch and persist until the next manual audit; capped maturity at L3.</li>
+<li><em>Evidence:</em> pre-engagement <code>scripts/verify_marketplace.py</code> (no count/stray/cross-link checks); no <code>.github/workflows/</code>. Remediated: verifier extended with count-claim sync (plugin.json, marketplace.json, CLAUDE.md, README.md tables+trees), skill-dir anatomy (stray files/dirs), and cross-link resolution with a documented external allowlist; negative-tested (planted stray file → exit 1); gated by <code>.github/workflows/verify-marketplace.yml</code> on push/PR; authoring step added to CLAUDE.md “Adding a skill”. Errors fail CI; the F6/F7 items remain warnings so the gate lands green.</li>
+</ul>
+</li>
+<li><strong class="fid">F6</strong>&nbsp;<span class="sev sev-low">Low</span> — 2 <code>custom-agent</code> descriptions (<code>graphify</code>, <code>tamandua-agents</code>) lack the <code>USE FOR / DO NOT USE FOR</code> structure. <span class="s-warn">⚠ open</span>
+<ul>
+<li><em>Cause:</em> both skills were imported from external origins with their original free-form descriptions.</li>
+<li><em>Consequence:</em> weaker routing signal than the other 120 skills; no explicit hand-off to sibling/overlapping skills.</li>
+<li><em>Evidence:</em> scanner check B4; frontmatter of both SKILL.md files.</li>
+</ul>
+</li>
+<li><strong class="fid">F7</strong>&nbsp;<span class="sev sev-low">Low</span> — 13 SKILL.md files exceed the ~500-line progressive-disclosure guideline. <span class="s-warn">⚠ open</span>
+<ul>
+<li><em>Cause:</em> content-rich skills authored inline before the <code>references/</code> split practice settled.</li>
+<li><em>Consequence:</em> larger always-loaded context per invocation; slower for consumers and against the repo’s own anatomy guidance.</li>
+<li><em>Evidence:</em> scanner line counts — worst: <code>dev-design-patterns-behavioral</code> (1331), <code>specs-diagramming-plantuml</code> (870), <code>tamandua-agents</code> (793), <code>dev-design-patterns-structural</code> (763), <code>graphify</code> (713), plus 8 more between 510–621.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Corrective actions.</strong> (carried into §7)</p>
+<table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>Action</th>
+<th>Impact</th>
+<th>Effort</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F1</td>
+<td>Trim description to ≤ 1024 chars — <strong>done</strong> (944)</td>
+<td>H</td>
+<td><span class="tag tag-cheap">cheap</span></td>
+<td>maintainer</td>
+</tr>
+<tr>
+<td>F2</td>
+<td>Sync 4 doc counts to 3 — <strong>done</strong></td>
+<td>M</td>
+<td><span class="tag tag-cheap">cheap</span></td>
+<td>maintainer</td>
+</tr>
+<tr>
+<td>F3</td>
+<td>Delete stray dotfile — <strong>done</strong></td>
+<td>L</td>
+<td><span class="tag tag-cheap">cheap</span></td>
+<td>maintainer</td>
+</tr>
+<tr>
+<td>F4</td>
+<td>Document external-marketplace cross-link exception in CLAUDE.md — <strong>done</strong></td>
+<td>L</td>
+<td><span class="tag tag-cheap">cheap</span></td>
+<td>maintainer</td>
+</tr>
+<tr>
+<td>F5</td>
+<td>Promote <code>assets/audit_skills.py</code> to a repo-level <code>scripts/lint-skills.py</code> + CI gate</td>
+<td>H</td>
+<td><span class="tag tag-deeper">deeper</span></td>
+<td>maintainer</td>
+</tr>
+<tr>
+<td>F6</td>
+<td>Rewrite the 2 <code>custom-agent</code> descriptions with USE FOR / DO NOT USE FOR</td>
+<td>M</td>
+<td><span class="tag tag-cheap">cheap</span></td>
+<td>maintainer</td>
+</tr>
+<tr>
+<td>F7</td>
+<td>Split the 13 oversized SKILL.md into <code>references/</code>, worst-first</td>
+<td>M</td>
+<td><span class="tag tag-deeper">deeper</span></td>
+<td>maintainer</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6.-open-questions" tabindex="-1">6. Open Questions</h2>
+<ol>
+<li>Should external-marketplace cross-links (F4) be namespaced (<code>dotnet-test:code-testing-generator</code>)
+as a rule? Today 2 of the 6 use bare flat names (<code>vue-best-practices</code>, <code>interface-design</code>), which
+are indistinguishable from broken sibling links to a linter.</li>
+<li>Where should the CI gate for F5 run — this repo only, or should consumers (e.g. LinkDaily) also
+validate the marketplace at plugin-install time?</li>
+<li>Does the <code>.graphify_version</code> removal (F3) affect the graphify skill’s upstream update flow, or
+was the stamp only meaningful for user-level installs? (No in-repo reference found; assumed safe.)</li>
+</ol>
+<h2 id="7.-conclusion-%26-prioritized-action-plan" tabindex="-1">7. Conclusion &amp; Prioritized Action Plan</h2>
+<p><strong>Impact × Effort.</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Low effort</th>
+<th>High effort</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>High impact</strong></td>
+<td><s>F1 trim description</s> (done)</td>
+<td><strong>F5 lint script + CI</strong> ← next</td>
+</tr>
+<tr>
+<td><strong>Medium impact</strong></td>
+<td>F6 rewrite 2 descriptions · <s>F2 sync counts</s> (done)</td>
+<td>F7 split oversized SKILL.md</td>
+</tr>
+<tr>
+<td><strong>Low impact</strong></td>
+<td><s>F3 stray file</s> · <s>F4 document exception</s> (done)</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Action register.</strong></p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Finding</th>
+<th>Action</th>
+<th>Impact</th>
+<th>Effort</th>
+<th>Quadrant</th>
+<th>Owner</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F5</td>
+<td>no self-guarding sensor</td>
+<td>version scanner as <code>scripts/lint-skills.py</code>; add CI job failing on CRIT/WARN</td>
+<td>H</td>
+<td><span class="tag tag-deeper">deeper</span></td>
+<td>Major project</td>
+<td>maintainer</td>
+<td>next sprint</td>
+</tr>
+<tr>
+<td>F6</td>
+<td>2 free-form descriptions</td>
+<td>restructure <code>graphify</code> + <code>tamandua-agents</code> descriptions</td>
+<td>M</td>
+<td><span class="tag tag-cheap">cheap</span></td>
+<td>Quick win</td>
+<td>maintainer</td>
+<td>this week</td>
+</tr>
+<tr>
+<td>F7</td>
+<td>13 oversized SKILL.md</td>
+<td>split worst 5 first (≥ 700 lines), rest opportunistically</td>
+<td>M</td>
+<td><span class="tag tag-deeper">deeper</span></td>
+<td>Fill-in</td>
+<td>maintainer</td>
+<td>rolling</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Closing assessment.</strong> For a 122-skill catalog maintained by hand, the as-found defect rate
+(1 critical, 1 doc drift, ~5 hygiene items) is low, and everything actionable-cheap was closed
+inside the engagement. The catalog earns <strong>✓ ok / L3 — Defined</strong> with a clear, single step to L4:
+make the conventions self-enforcing (F5). <strong>Assurance opinion (scoped): Satisfactory.</strong></p>
+<div class="pagebreak"></div>
+<h2 id="appendix-a-%E2%80%94-inventory" tabindex="-1">Appendix A — Inventory</h2>
+<table>
+<thead>
+<tr>
+<th>Plugin</th>
+<th>Skills</th>
+<th>Audited</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dev</code></td>
+<td>41</td>
+<td>41</td>
+<td>3 oversized SKILL.md (F7)</td>
+</tr>
+<tr>
+<td><code>specs</code></td>
+<td>21</td>
+<td>21</td>
+<td>F1 (fixed); 5 oversized (F7)</td>
+</tr>
+<tr>
+<td><code>stack</code></td>
+<td>19</td>
+<td>19</td>
+<td>1 external cross-link (F4)</td>
+</tr>
+<tr>
+<td><code>security</code></td>
+<td>16</td>
+<td>16</td>
+<td>clean</td>
+</tr>
+<tr>
+<td><code>legal</code></td>
+<td>16</td>
+<td>16</td>
+<td>1 external cross-link (F4); 1 scanner false positive</td>
+</tr>
+<tr>
+<td><code>QA</code></td>
+<td>3</td>
+<td>3</td>
+<td>F2 (fixed); external cross-links (F4)</td>
+</tr>
+<tr>
+<td><code>tools</code></td>
+<td>3</td>
+<td>3</td>
+<td>1 oversized (F7)</td>
+</tr>
+<tr>
+<td><code>custom-agent</code></td>
+<td>2</td>
+<td>2</td>
+<td>F3 (fixed); F6; 2 oversized (F7)</td>
+</tr>
+<tr>
+<td><code>workflows</code></td>
+<td>1</td>
+<td>1</td>
+<td>clean</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>122</strong></td>
+<td><strong>122</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Excluded from scope: <code>ai-harness-audit/</code> (internal tooling, not a plugin); consumer-side settings
+(<code>extraKnownMarketplaces</code>, <code>enabledPlugins</code>); per-user config.</p>
+<h2 id="appendix-b-%E2%80%94-scoring-rubric" tabindex="-1">Appendix B — Scoring Rubric</h2>
+<p>Per-dimension scale ✓✓ strong / ✓ ok / ⚠ weak / ✗ missing; severity Critical–Low
+(impact × likelihood); maturity CMMI L1–5; assurance Satisfactory / Partial / Unsatisfactory.
+Full definitions: <a href="../../framework/scoring-rubric.md"><code>framework/scoring-rubric.md</code></a>.</p>
+<h2 id="appendix-c-%E2%80%94-references" tabindex="-1">Appendix C — References</h2>
+<ul>
+<li>Target conventions contract: <code>CLAUDE.md</code> (“Naming &amp; invocation”, “Adding a skill”) @ <code>257b2e0</code></li>
+<li>Framework: <code>ai-harness-audit/framework/</code> v1.0 — <code>METHODOLOGY.md</code>, <code>checklist.md</code> §2, <code>item-template.md</code>, <code>scoring-rubric.md</code>, <code>prioritization.md</code></li>
+<li>Scanner + raw output: <a href="assets/audit_skills.py"><code>assets/audit_skills.py</code></a></li>
+<li>Claude Code plugin/skill format: Anthropic Claude Code docs (plugins, skills, marketplaces)</li>
+</ul>
+</main></body></html>

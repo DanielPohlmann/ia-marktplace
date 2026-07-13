@@ -16,7 +16,7 @@ the subsets it needs.
 | **security** | `/plugin install security@ia-marketplace` | 16 | OWASP, threat modeling, auth, cryptography, data protection, input validation, API security, logging/monitoring, supply chain, pen testing, red teaming, secure SDLC, AI security |
 | **legal** | `/plugin install legal@ia-marketplace` | 16 | Privacy & data protection (GDPR/LGPD/CCPA), open-source licensing, billing & taxation, accessibility, consumer protection, content moderation, contracts, compliance, IP, AI regulation |
 | **tools** | `/plugin install tools@ia-marketplace` | 3 | Docker & Git |
-| **QA** | `/plugin install QA@ia-marketplace` | 2 | Browser automation & E2E testing (playwright-cli) + BDD/Gherkin `.feature` authoring (bdd-gherkin) |
+| **QA** | `/plugin install QA@ia-marketplace` | 3 | Browser automation & E2E testing (playwright-cli) + BDD/Gherkin `.feature` authoring (bdd-gherkin) + Aspire/Playwright .NET functional tests (e2e-functional-testing) |
 | **workflows** | `/plugin install workflows@ia-marketplace` | 1 | Plan execution orchestrator |
 | **specs** | `/plugin install specs@ia-marketplace` | 21 | Specifications & architecture documentation: diagramming (C4, Mermaid, UML, PlantUML, D2, ERD, TOGAF, ArchiMate, functional), specification documents (PRD, TRD, BRD, ADR, RFC, Gherkin, Gauge, user guide) and knowledge-base building (LLM Wiki) |
 | **custom-agent** | `/plugin install custom-agent@ia-marketplace` | 2 | Multi-agent orchestration: driving Tamandua (tamandua-agents) — workflow runs, step lifecycle, worktrees, dashboard/control-plane services, logs, pause/resume, AutoResearch loops, STATUS output contract — and graphify (knowledge-graph building & querying over any input) |
@@ -100,7 +100,7 @@ ia-marktplace/
 ├── security/     .claude-plugin/plugin.json + skills/  (16)
 ├── legal/        .claude-plugin/plugin.json + skills/  (16)
 ├── tools/        .claude-plugin/plugin.json + skills/  (3)
-├── QA/           .claude-plugin/plugin.json + skills/  (2)
+├── QA/           .claude-plugin/plugin.json + skills/  (3)
 ├── workflows/    .claude-plugin/plugin.json + skills/  (1)
 ├── specs/        .claude-plugin/plugin.json + skills/  (21)
 ├── custom-agent/ .claude-plugin/plugin.json + skills/  (2)

@@ -19,7 +19,7 @@ ia-marktplace/
 ├── security/                     ← plugin: security (16 skills)
 ├── legal/                        ← plugin: legal (16 skills)
 ├── tools/                        ← plugin: tools (3 skills)
-├── QA/                           ← plugin: QA (2 skills)
+├── QA/                           ← plugin: QA (3 skills)
 ├── workflows/                    ← plugin: workflows (1 skill)
 ├── specs/                        ← plugin: specs (21 skills)
 ├── custom-agent/                 ← plugin: custom-agent (2 skills)
@@ -52,7 +52,11 @@ produce a PDF report. It is deliberately excluded from the marketplace (no `plug
 - `description` is a single line (≤ 1024 chars) with a `USE FOR` / `DO NOT USE
   FOR` structure. `DO NOT USE FOR` cross-links the sibling skill that should win
   **by its flat name** (e.g. `use dev-architecture-microservices`) — those
-  cross-links stay valid because sibling names are unchanged.
+  cross-links stay valid because sibling names are unchanged. A few descriptions
+  also cross-link skills from **external marketplaces** (e.g.
+  `use dotnet-test:code-testing-generator`, `use vue-testing-best-practices`);
+  those only resolve in consumers that have the external plugin installed —
+  intentional, not broken links.
 - Frontmatter keeps only `name` + `description` (plus `allowed-tools` where a
   skill needs it). No `license`, `compatibility`, or `references` keys — dropped
   reference URLs live in a `## References` body section.
@@ -66,7 +70,7 @@ produce a PDF report. It is deliberately excluded from the marketplace (no `plug
 | `security` | 16 | OWASP, threat modeling, auth, crypto, input validation, supply chain, pen testing |
 | `legal` | 16 | Privacy/GDPR/LGPD, licensing, billing/taxation, accessibility, compliance |
 | `tools` | 3 | Docker & Git |
-| `QA` | 2 | Browser automation, E2E testing & BDD/Gherkin authoring |
+| `QA` | 3 | Browser automation, E2E/functional testing & BDD/Gherkin authoring |
 | `workflows` | 1 | Plan execution orchestrator |
 | `specs` | 21 | Diagramming (C4, Mermaid, UML, PlantUML, D2, ERD, TOGAF, ArchiMate, functional), specification documents (PRD, TRD, BRD, ADR, RFC, Gherkin, Gauge, user guide) & knowledge-base building (LLM Wiki) |
 | `custom-agent` | 2 | Multi-agent orchestration: driving Tamandua (workflow runs, step lifecycle, worktrees, services, AutoResearch loops) & graphify (knowledge-graph building & querying over any input) |
@@ -80,6 +84,9 @@ produce a PDF report. It is deliberately excluded from the marketplace (no `plug
 4. If the plugin is brand new, add `<plugin>/.claude-plugin/plugin.json` and a
    new entry in `.claude-plugin/marketplace.json`.
 5. Update this file's plugin table and `README.md`.
+6. Run `python scripts/verify_marketplace.py` — it gates naming, frontmatter,
+   anatomy, description cross-links, and every "(N skills)" count claim (also
+   enforced in CI by `.github/workflows/verify-marketplace.yml`).
 
 ## Consuming this marketplace
 

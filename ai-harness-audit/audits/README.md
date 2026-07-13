@@ -7,6 +7,7 @@ against (see `../framework/METHODOLOGY.md` changelog); `Report` is that audit's 
 | Date | Target | Framework | Overall maturity | Assurance | Report | Rev |
 |---|---|---|---|---|---|---|
 | 2026-06-24 | `pim` monolith + harness plugins | v1.0 (8-dim) | L2 — Managed (→ L3) | Partial | [md](2026-06-24-pim/pim-2026-06-24-v1.0.md) · [pdf](2026-06-24-pim/pim-2026-06-24-v1.0.pdf) | 1.0 |
+| 2026-07-13 | `ia-marketplace` skills — conventions (scoped: dim 2 of 8) | v1.0 (dim 2 only) | L3 — Defined (→ L4) | Satisfactory | [md](2026-07-13-ia-marketplace-skills/ia-marketplace-skills-2026-07-13-v1.0.md) · [pdf](2026-07-13-ia-marketplace-skills/ia-marketplace-skills-2026-07-13-v1.0.pdf) | 1.0 |
 
 > **Future — benchmark comparison.** Today the ledger tracks only overall maturity + opinion. A later
 > iteration should capture the **per-dimension scorecard** per audit (a column per dimension, or a
