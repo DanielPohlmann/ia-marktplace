@@ -22,7 +22,7 @@ ia-marktplace/
 ├── QA/                           ← plugin: QA (2 skills)
 ├── workflows/                    ← plugin: workflows (1 skill)
 ├── specs/                        ← plugin: specs (21 skills)
-├── custom-agent/                 ← plugin: custom-agent (1 skill)
+├── custom-agent/                 ← plugin: custom-agent (2 skills)
 ├── CLAUDE.md
 ├── README.md
 ├── AGENTS.md
@@ -69,7 +69,7 @@ produce a PDF report. It is deliberately excluded from the marketplace (no `plug
 | `QA` | 2 | Browser automation, E2E testing & BDD/Gherkin authoring |
 | `workflows` | 1 | Plan execution orchestrator |
 | `specs` | 21 | Diagramming (C4, Mermaid, UML, PlantUML, D2, ERD, TOGAF, ArchiMate, functional), specification documents (PRD, TRD, BRD, ADR, RFC, Gherkin, Gauge, user guide) & knowledge-base building (LLM Wiki) |
-| `custom-agent` | 1 | Multi-agent orchestration: driving Tamandua (workflow runs, step lifecycle, worktrees, services, AutoResearch loops) |
+| `custom-agent` | 2 | Multi-agent orchestration: driving Tamandua (workflow runs, step lifecycle, worktrees, services, AutoResearch loops) & graphify (knowledge-graph building & querying over any input) |
 
 ## Adding a skill
 

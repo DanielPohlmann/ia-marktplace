@@ -1,6 +1,6 @@
 {
   "name": "custom-agent",
-  "description": "Multi-agent orchestration (1 skill): tamandua-agents (drive Tamandua, a local CLI/workflow orchestrator on top of pi — workflow runs, step lifecycle, worktrees, dashboard/control-plane services, logs, pause/resume, AutoResearch experiment loops, and the STATUS output contract).",
+  "description": "Multi-agent orchestration (2 skills): tamandua-agents (drive Tamandua, a local CLI/workflow orchestrator on top of pi — workflow runs, step lifecycle, worktrees, dashboard/control-plane services, logs, pause/resume, AutoResearch experiment loops, and the STATUS output contract) and graphify (turn any input — code, docs, papers, images, videos — into a persistent knowledge graph with god nodes, community detection, and query/path/explain tools).",
   "version": "1.0.0",
   "author": {
     "name": "Daniel Heler Pohlmann",
