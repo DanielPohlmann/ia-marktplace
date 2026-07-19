@@ -27,8 +27,9 @@ the subsets it needs.
 
 ## Installation
 
-This marketplace lives on the local filesystem (it is not published to a git
-remote). Register it once, then install the plugins you need.
+This marketplace is published on GitHub (`DanielPohlmann/ia-marktplace`) and can
+also be registered as a local-directory source. Register it once, then install
+the plugins you need.
 
 ### Option A — via CLI
 

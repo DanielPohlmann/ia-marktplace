@@ -39,7 +39,21 @@
       }
     ]
   },
-  
+
+  "permissions": {
+    "deny": [
+      "Read(./.env*)",
+      "Read(./secrets/**)",
+      "Edit(.claude/**)",
+      "Edit(scripts/verify_marketplace.py)"
+    ],
+    "ask": [
+      "Bash(git push --force*)",
+      "Bash(git reset --hard*)",
+      "Bash(git clean*)"
+    ]
+  },
+
   "enabledPlugins": {
     "skill-creator@claude-plugins-official": true,
     "dotnet@dotnet-agent-skills": true,

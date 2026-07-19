@@ -1,6 +1,8 @@
 .DS_Store
 .claude/*
 !.claude/settings.json.example
+!.claude/hooks/
+!.claude/hooks/*.sh
 node_modules/
 
 # git worktrees (local, never committed)
