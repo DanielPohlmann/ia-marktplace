@@ -1,6 +1,6 @@
 ---
 name: dev-craftsmanship-clean-architecture
-description: Use when designing or evaluating system boundaries, dependency direction, and layered architecture — based on Robert C. Martin's Clean Architecture. USE FOR: enforcing the Dependency Rule, separating Entities/Use Cases/Interface Adapters/Frameworks layers, use case isolation, boundary design, screaming architecture — including validating that LinkDaily's Application/Domain layers do not reference infrastructure or framework types. DO NOT USE FOR: code-level readability and naming (use dev-craftsmanship-clean-code), hexagonal/ports-adapters pattern specifically (use dev-architecture-hexagonal), microservices decomposition (use dev-architecture-microservices), SOLID principle evaluation (use dev-craftsmanship-solid).
+description: Use when designing or evaluating system boundaries, dependency direction, and layered architecture — based on Robert C. Martin's Clean Architecture. USE FOR: enforcing the Dependency Rule, separating Entities/Use Cases/Interface Adapters/Frameworks layers, use case isolation, boundary design, screaming architecture, validating that Application/Domain layers do not reference infrastructure or framework types. DO NOT USE FOR: code-level readability and naming (use dev-craftsmanship-clean-code), hexagonal/ports-adapters pattern specifically (use dev-architecture-hexagonal), microservices decomposition (use dev-architecture-microservices), SOLID principle evaluation (use dev-craftsmanship-solid).
 ---
 
 # Clean Architecture

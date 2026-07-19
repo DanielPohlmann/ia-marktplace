@@ -1,0 +1,9 @@
+{
+  "name": "specs",
+  "description": "Specifications & architecture documentation (21 skills): diagramming (C4, Mermaid, UML, PlantUML, D2, ERD, TOGAF, ArchiMate, functional), specification documents (PRD, TRD, BRD, ADR, RFC, Gherkin, Gauge, user guide), and knowledge-base building (LLM Wiki).",
+  "version": "1.0.0",
+  "author": {
+    "name": "Daniel Heler Pohlmann"
+  },
+  "license": "MIT"
+}

@@ -16,6 +16,19 @@ NAME_RE = re.compile(r"^[a-z0-9-]+$")
 FORBIDDEN_KEYS = ("license", "compatibility", "references", "metadata")
 FORBIDDEN_FILES = ("AGENTS.md", "README.md", "metadata.json")
 ALLOWED_KEYS = {"name", "description", "allowed-tools"}
+ALLOWED_SKILL_DIRS = {"references", "scripts"}
+# `use <name>` cross-links in descriptions must resolve to a sibling skill.
+# Namespaced refs (`plugin:skill`) point at external marketplaces and are
+# allowed as-is (see CLAUDE.md "Naming & invocation"); these bare names are
+# known external skills; NON_LINKS are prose that merely looks like a link.
+XLINK_RE = re.compile(r"use ([a-z0-9]+(?:[-:][a-z0-9]+)+)")
+EXTERNAL_BARE_XLINKS = {
+    "vue-best-practices",
+    "vue-testing-best-practices",
+    "interface-design",
+}
+NON_LINKS = {"platform-specific"}
+COUNT_RE = re.compile(r"\((\d+) skills?\)")
 
 
 def split_frontmatter(text):
@@ -34,9 +47,30 @@ def top_level_keys(fm):
     return re.findall(r"(?m)^([A-Za-z0-9_-]+):", fm)
 
 
+def doc_count_claims(text, plugin):
+    """Yield every skill-count claim for `plugin` in a CLAUDE.md/README.md:
+    table rows (first numeric cell) and structure-tree lines '(N skills)'/'(N)'."""
+    table_re = re.compile(
+        r"^\|\s*\*{0,2}`?%s`?\*{0,2}\s*\|" % re.escape(plugin))
+    tree_re = re.compile(
+        r"[├└]──\s*%s/.*\((\d+)(?:\s*skills?)?\)" % re.escape(plugin))
+    for line in text.splitlines():
+        if table_re.match(line.strip()):
+            cells = [c.strip() for c in line.split("|")]
+            for c in cells:
+                if c.isdigit():
+                    yield int(c), line.strip()
+                    break
+        m = tree_re.search(line)
+        if m:
+            yield int(m.group(1)), line.strip()
+
+
 def main():
     errors, warnings = [], []
     names = defaultdict(list)
+    descs = {}          # flat skill name -> (tag, description)
+    plugin_counts = {}  # plugin name -> real skill count
 
     # --- marketplace.json ---
     mkt_path = ROOT / ".claude-plugin" / "marketplace.json"
@@ -48,6 +82,7 @@ def main():
 
     # --- per plugin ---
     total_skills = 0
+    pj_descs = {}
     for pname, p in declared.items():
         src = (ROOT / p["source"]).resolve()
         if not src.is_dir():
@@ -62,6 +97,7 @@ def main():
                 errors.append(
                     f"plugin '{pname}': plugin.json name '{mj.get('name')}' != marketplace name"
                 )
+            pj_descs[pname] = mj.get("description", "")
         skills_dir = src / "skills"
         if not skills_dir.is_dir():
             errors.append(f"plugin '{pname}': no skills/ dir")
@@ -72,6 +108,7 @@ def main():
             if f.is_file() and f.name in FORBIDDEN_FILES:
                 errors.append(f"forbidden file: {f.relative_to(ROOT).as_posix()}")
 
+        plugin_counts[pname] = 0
         for skill_md in skills_dir.rglob("SKILL.md"):
             rel = skill_md.relative_to(skills_dir)
             tag = f"{pname}/{rel.parts[0] if rel.parts else '?'}"
@@ -79,7 +116,15 @@ def main():
                 errors.append(f"SKILL.md not at depth 1: {pname}/skills/{rel.as_posix()}")
                 continue
             total_skills += 1
+            plugin_counts[pname] += 1
             d = rel.parts[0]
+
+            # skill dir anatomy: SKILL.md + references/ + scripts/ only
+            for entry in skill_md.parent.iterdir():
+                if entry.is_dir() and entry.name not in ALLOWED_SKILL_DIRS:
+                    errors.append(f"{tag}: unexpected subdirectory '{entry.name}/'")
+                elif entry.is_file() and entry.name != "SKILL.md":
+                    errors.append(f"{tag}: stray file '{entry.name}' in skill dir")
             body = skill_md.read_text(encoding="utf-8")
             fm = split_frontmatter(body)
             if fm is None:
@@ -113,6 +158,9 @@ def main():
                         warnings.append(f"{tag}: description has no 'USE FOR' cue")
                     if "DO NOT USE FOR" not in desc:
                         warnings.append(f"{tag}: description has no 'DO NOT USE FOR' cue")
+                if name:
+                    descs[name] = (tag, desc.strip().strip('"').strip("'"))
+
 
             for k in top_level_keys(fm):
                 if k in FORBIDDEN_KEYS:
@@ -127,6 +175,42 @@ def main():
     for n, tags in names.items():
         if len(tags) > 1:
             errors.append(f"duplicate skill name '{n}': {tags}")
+
+    # --- '(N skills)' claims must match real counts ---
+    for pname, real in plugin_counts.items():
+        for label, text in (
+            ("plugin.json", pj_descs.get(pname, "")),
+            ("marketplace.json", declared[pname].get("description", "")),
+        ):
+            m = COUNT_RE.search(text)
+            if m and int(m.group(1)) != real:
+                errors.append(
+                    f"plugin '{pname}': {label} claims {m.group(1)} skills, found {real}"
+                )
+        for doc in ("CLAUDE.md", "README.md"):
+            path = ROOT / doc
+            if not path.exists():
+                continue
+            for claimed, line in doc_count_claims(
+                path.read_text(encoding="utf-8"), pname
+            ):
+                if claimed != real:
+                    errors.append(
+                        f"plugin '{pname}': {doc} claims {claimed} skills, "
+                        f"found {real} — '{line[:60]}'"
+                    )
+
+    # --- cross-links in descriptions resolve to a sibling or known external ---
+    for name, (tag, desc) in sorted(descs.items()):
+        for ref in XLINK_RE.findall(desc):
+            if ref == name or ref in names or ref in NON_LINKS:
+                continue
+            if ":" in ref or ref in EXTERNAL_BARE_XLINKS:
+                continue  # external marketplace — allowed, see CLAUDE.md
+            errors.append(
+                f"{tag}: cross-link 'use {ref}' resolves to no skill "
+                f"(rename it, or allowlist it if external)"
+            )
 
     print(f"Plugins declared: {len(declared)} | Skills found: {total_skills}")
     if warnings:

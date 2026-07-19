@@ -1,6 +1,6 @@
 ---
 name: security-ai-security
-description: Use when addressing security risks specific to AI and LLM applications. Covers OWASP Top 10 for LLM Applications (2025), prompt injection, model poisoning, excessive agency, insecure output handling, AI red teaming, and responsible AI frameworks. USE FOR: LLM security, prompt injection, model poisoning, excessive agency, AI red teaming, OWASP LLM Top 10, insecure output handling, responsible AI, AI governance, supply chain security for ML models DO NOT USE FOR: general web application security (use security-owasp), traditional application security testing (use security-security-testing), ML model training and optimization (use AI/ML skills), API endpoint hardening (use security-api-security)
+description: Use when addressing security risks specific to AI and LLM applications. Covers OWASP Top 10 for LLM Applications (2025), prompt injection, model poisoning, excessive agency, insecure output handling, AI red teaming, and responsible AI frameworks. USE FOR: LLM security, prompt injection, model poisoning, excessive agency, AI red teaming, OWASP LLM Top 10, insecure output handling, responsible AI, AI governance, supply chain security for ML models DO NOT USE FOR: general web application security (use security-owasp), traditional application security testing (use security-security-testing), ML model training and optimization, API endpoint hardening (use security-api-security)
 ---
 
 # AI Security

@@ -6,16 +6,16 @@ description: Plunk transactional and marketing email integration for .NET. Use w
 # Plunk Email
 
 ## Overview
-Plunk é uma plataforma open-source de email para desenvolvedores, suportando emails transacionais e de marketing com escalabilidade para milhões de contatos. Oferece API REST, SDK Node.js/TypeScript, gerenciamento de contatos, workflows automatizados e segmentação dinâmica de audiência.
+Plunk is an open-source email platform for developers, supporting transactional and marketing emails with scalability to millions of contacts. It offers a REST API, a Node.js/TypeScript SDK, contact management, automated workflows, and dynamic audience segmentation.
 
-## Variáveis de Ambiente
+## Environment Variables
 
 ```bash
-PLUNK_SECRET_KEY=sk_...   # Nunca expor no frontend
-PLUNK_PUBLIC_KEY=pk_...   # Seguro para uso client-side
+PLUNK_SECRET_KEY=sk_...   # Never expose on frontend
+PLUNK_PUBLIC_KEY=pk_...   # Safe for client-side use
 ```
 
-## SDK Node.js/TypeScript
+## Node.js/TypeScript SDK
 
 ```bash
 npm install @plunk/node
@@ -27,21 +27,21 @@ import Plunk from "@plunk/node";
 const plunk = new Plunk(process.env.PLUNK_SECRET_KEY!);
 ```
 
-## Envio de Email Transacional
+## Transactional Email Sending
 
 ```typescript
-// Simples
+// Simple
 await plunk.emails.send({
-  to: "destinatario@exemplo.com",
-  subject: "Assunto do email",
-  body: "<p>Corpo do email em HTML</p>",
+  to: "recipient@example.com",
+  subject: "Email subject",
+  body: "<p>Email body in HTML</p>",
 });
 
-// Com variáveis de template
+// With template variables
 await plunk.emails.send({
-  to: "destinatario@exemplo.com",
-  subject: "Bem-vindo, {{name}}!",
-  body: "<p>Olá {{name}}, sua conta foi criada com o plano {{plan}}.</p>",
+  to: "recipient@example.com",
+  subject: "Welcome, {{name}}!",
+  body: "<p>Hi {{name}}, your account was created on the {{plan}} plan.</p>",
   data: {
     name: "Daniel",
     plan: "Pro",
@@ -49,7 +49,7 @@ await plunk.emails.send({
 });
 ```
 
-### Via API REST
+### Via REST API
 
 ```http
 POST https://api.useplunk.com/v1/send
@@ -57,21 +57,21 @@ Authorization: Bearer <PLUNK_SECRET_KEY>
 Content-Type: application/json
 
 {
-  "to": "destinatario@exemplo.com",
-  "subject": "Assunto do email",
-  "body": "<p>Corpo do email em HTML</p>"
+  "to": "recipient@example.com",
+  "subject": "Email subject",
+  "body": "<p>Email body in HTML</p>"
 }
 ```
 
-## Rastreamento de Eventos (Contatos)
+## Event Tracking (Contacts)
 
-Eventos criam ou atualizam contatos automaticamente e disparam workflows.
+Events automatically create or update contacts and trigger workflows.
 
 ```typescript
-// Rastrear evento (cria contato se não existir)
+// Track event (creates the contact if it does not exist)
 await plunk.events.track({
   event: "user-signup",
-  email: "contato@exemplo.com",
+  email: "contact@example.com",
   data: {
     name: "Daniel",
     plan: "pro",
@@ -79,7 +79,7 @@ await plunk.events.track({
 });
 ```
 
-### Via API REST
+### Via REST API
 
 ```http
 POST https://api.useplunk.com/v1/track
@@ -88,7 +88,7 @@ Content-Type: application/json
 
 {
   "event": "user-signup",
-  "email": "contato@exemplo.com",
+  "email": "contact@example.com",
   "data": {
     "name": "Daniel",
     "plan": "pro"
@@ -96,37 +96,37 @@ Content-Type: application/json
 }
 ```
 
-## Gerenciamento de Contatos
+## Contact Management
 
 ```http
-# Listar contatos
+# List contacts
 GET https://api.useplunk.com/v1/contacts
 Authorization: Bearer <PLUNK_SECRET_KEY>
 
-# Buscar contato por email
+# Get contact by email
 GET https://api.useplunk.com/v1/contacts/{email}
 Authorization: Bearer <PLUNK_SECRET_KEY>
 ```
 
-## Conceitos Principais
+## Key Concepts
 
-| Conceito | Descrição |
+| Concept | Description |
 |---|---|
-| **Transactional Emails** | Emails individuais disparados por API com suporte a templates e variáveis |
-| **Campaigns** | Broadcasts únicos enviados para uma lista de contatos com agendamento |
-| **Workflows** | Sequências automáticas de emails com lógica condicional |
-| **Contacts** | Gerenciamento de contatos com campos customizados e importação CSV |
-| **Segments** | Segmentação dinâmica de audiência por dados e comportamento |
-| **Templates** | Templates reutilizáveis para emails transacionais e de marketing |
-| **Events** | Rastreamento de eventos para disparar workflows e segmentar audiências |
+| **Transactional Emails** | Individual emails triggered via API with support for templates and variables |
+| **Campaigns** | One-off broadcasts sent to a list of contacts with scheduling |
+| **Workflows** | Automated email sequences with conditional logic |
+| **Contacts** | Contact management with custom fields and CSV import |
+| **Segments** | Dynamic audience segmentation by data and behavior |
+| **Templates** | Reusable templates for transactional and marketing emails |
+| **Events** | Event tracking to trigger workflows and segment audiences |
 
-## Boas Práticas
+## Best Practices
 
-- Armazene `PLUNK_SECRET_KEY` apenas em variáveis de ambiente server-side; nunca exponha no frontend.
-- Use `plunk.events.track()` para criar/atualizar contatos e disparar workflows ao invés de gerenciá-los manualmente.
-- Utilize `{{variavel}}` nos campos `subject` e `body` com o objeto `data` para personalização dinâmica.
-- Verifique o domínio remetente nas configurações do Plunk para melhorar a entregabilidade.
-- Use a `PLUNK_PUBLIC_KEY` para operações client-side (ex: formulários de inscrição no browser).
+- Store `PLUNK_SECRET_KEY` only in server-side environment variables; never expose it on the frontend.
+- Use `plunk.events.track()` to create/update contacts and trigger workflows instead of managing them manually.
+- Use `{{variable}}` in the `subject` and `body` fields together with the `data` object for dynamic personalization.
+- Verify the sender domain in the Plunk settings to improve deliverability.
+- Use the `PLUNK_PUBLIC_KEY` for client-side operations (e.g., signup forms in the browser).
 
 ## References
 

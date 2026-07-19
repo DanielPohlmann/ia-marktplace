@@ -1,8 +1,7 @@
 {
   "name": "ia-marketplace",
   "owner": {
-    "name": "Daniel Heler Pohlmann",
-    "email": "daniel.heler@way2.com.br"
+    "name": "Daniel Heler Pohlmann"
   },
   "metadata": {
     "description": "Claude Code skills marketplace — engineering, stack, security, legal and workflow skills, organized one plugin per domain",
@@ -35,14 +34,24 @@
       "description": "Cross-cutting developer tools (3 skills): Docker (Dockerfiles, multi-stage builds, Compose, image optimization, registries) and Git (branching, merge vs rebase, conflict resolution, hooks, worktrees, bisect, conventional commits)."
     },
     {
-      "name": "playwright-cli",
-      "source": "./playwright-cli",
-      "description": "Browser automation and E2E testing with playwright-cli: navigation, form submission, network interception, screenshots, a11y/perf/SEO audits, console/network error capture, and spec-driven testing."
+      "name": "QA",
+      "source": "./QA",
+      "description": "Browser automation, E2E testing, and BDD: playwright-cli (navigation, form submission, network interception, screenshots, a11y/perf/SEO audits, console/network error capture), bdd-gherkin (authoring domain-driven Gherkin/Cucumber .feature files and acceptance criteria), and e2e-functional-testing (xUnit + Playwright .NET + Aspire.Hosting.Testing functional tests that boot the whole distributed app and simulate a real user)."
     },
     {
-      "name": "run-plan",
-      "source": "./run-plan",
+      "name": "workflows",
+      "source": "./workflows",
       "description": "Plan execution orchestrator: execute a single plan file end-to-end — branch setup, phased execution, commit/push/PR, and the completion signal."
+    },
+    {
+      "name": "specs",
+      "source": "./specs",
+      "description": "Specifications & architecture documentation (21 skills): diagramming (C4, Mermaid, UML, PlantUML, D2, ERD, TOGAF, ArchiMate, functional), specification documents (PRD, TRD, BRD, ADR, RFC, Gherkin, Gauge, user guide), and knowledge-base building (LLM Wiki)."
+    },
+    {
+      "name": "custom-agent",
+      "source": "./custom-agent",
+      "description": "Multi-agent orchestration (2 skills): tamandua-agents (drive Tamandua, a local CLI/workflow orchestrator on top of pi — workflow runs, step lifecycle, worktrees, dashboard/control-plane services, logs, pause/resume, AutoResearch experiment loops, and the STATUS output contract) and graphify (turn any input — code, docs, papers, images, videos — into a persistent knowledge graph with god nodes, community detection, and query/path/explain tools)."
     }
   ]
 }

@@ -1,6 +1,6 @@
 ---
 name: tools-docker
-description: Docker and Podman container tooling — general-purpose container knowledge. Use when managing the LinkDaily docker-compose local infrastructure (RabbitMQ, PostgreSQL, Redis, Seq) or authoring non-.NET Dockerfiles. USE FOR: Dockerfile instructions, Docker Compose service definitions, multi-stage builds, container networking, volumes, image optimization, rootless containers, BuildKit, container registries, Docker security hardening. DO NOT USE FOR: Kubernetes orchestration or cloud container services (use platform-specific skills), container runtime security scanning (use security-security-testing), .NET-specific multi-stage Dockerfile patterns for ASP.NET Core or Worker services (use stack-docker), Git workflows (use tools-git).
+description: Docker and Podman container tooling — general-purpose container knowledge. Use when managing the LinkDaily docker-compose local infrastructure (RabbitMQ, PostgreSQL, Redis, Seq) or authoring non-.NET Dockerfiles. USE FOR: Dockerfile instructions, Docker Compose service definitions, multi-stage builds, container networking, volumes, image optimization, rootless containers, BuildKit, container registries, Docker security hardening. DO NOT USE FOR: Kubernetes orchestration or cloud container services (use your platform's orchestration tooling), container runtime security scanning (use security-security-testing), .NET-specific multi-stage Dockerfile patterns for ASP.NET Core or Worker services (use stack-docker), Git workflows (use tools-git).
 ---
 
 # Docker & Containers
