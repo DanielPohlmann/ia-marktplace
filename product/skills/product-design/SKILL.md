@@ -22,6 +22,8 @@ Each screen targets exactly one **surface** declared in the design system.
 
 ## Process
 
+Skills named in parentheses are used when installed; otherwise apply the practice directly.
+
 1. **Artifact** from `references/design-template.md`, `inputs: [01-ideation.md]`.
 2. **Figma (optional).** If the brief links a Figma file and a Figma MCP is available, read it as reference. The deliverable is still HTML.
 3. **Journeys** per persona and job: trigger → steps → outcome, low point marked (`customer-journey-map:customer-journey-map`).
@@ -30,8 +32,8 @@ Each screen targets exactly one **surface** declared in the design system.
 6. **States** per screen: empty, loading, error, success, no-permission, edge cases (long text, zero, many).
 7. **Copy**: every user-facing string is a localization key with default text (`design:ux-copy`). No string in a prototype without a key.
 8. **Quality**: back-office surfaces follow `interface-design`; public surfaces follow `frontend-design:frontend-design`. Run `design:design-critique` on your proposal before showing it.
-9. **Prototype**: one self-contained HTML file per key screen in `docs/product/<slug>/prototype/`, using the design system's real tokens as CSS variables, light and dark if the surface supports both (`playground:playground` when installed).
-10. **Review**: dispatch `product:product-design-reviewer` with prototype paths, the design-system path and the screen inventory. Fix every blocking finding; list the rest under Open questions.
+9. **Prototype**: one self-contained HTML file per key screen in `docs/product/<slug>/prototype/`, using the design system's real tokens as CSS variables, light and dark if the surface supports both (`playground:playground`).
+10. **Review**: dispatch `product:product-design-reviewer` with prototype paths, the design-system path and the screen inventory. Fix every blocking finding. Record all findings, blocking (as resolved) and non-blocking, in the `## Review findings` table with a Resolution.
 11. **Accessibility**: fill the WCAG 2.2 AA checklist (`legal:legal-accessibility`, `design:accessibility-review`).
 12. **Handoff**: data each screen reads and writes, state-changing actions, real-time needs, permissions (`design:design-handoff`).
 13. **Approval**: `status: in-review`, list the prototype paths, ask: "Approve the design so we can move to architecture?"
