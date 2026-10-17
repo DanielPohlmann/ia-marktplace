@@ -31,6 +31,9 @@ NON_LINKS = {"platform-specific"}
 DESC_SOFT_LIMIT = 600
 BODY_SOFT_WORDS = 1500
 COUNT_RE = re.compile(r"\((\d+) skills?\)")
+AGENT_ALLOWED_KEYS = {"name", "description", "tools", "model", "color"}
+AGENT_MODELS = {"sonnet", "opus", "haiku", "inherit"}
+BLOCK_SCALARS = ("", "|", ">", "|-", ">-", "|+", ">+")
 
 
 def split_frontmatter(text):
@@ -66,6 +69,40 @@ def doc_count_claims(text, plugin):
         m = tree_re.search(line)
         if m:
             yield int(m.group(1)), line.strip()
+
+
+def check_agent(path, plugin):
+    """Validate one <plugin>/agents/<name>.md subagent definition."""
+    errors, warnings = [], []
+    tag = f"{plugin}/agents/{path.name}"
+    fm = split_frontmatter(path.read_text(encoding="utf-8"))
+    if fm is None:
+        return [f"{tag}: missing/invalid frontmatter"], warnings
+
+    name = (scalar(fm, "name") or "").strip().strip('"').strip("'")
+    if not name:
+        errors.append(f"{tag}: no name")
+    elif name != path.stem:
+        errors.append(f"{tag}: name '{name}' != file name '{path.stem}'")
+    elif not NAME_RE.match(name):
+        errors.append(f"{tag}: name '{name}' not ^[a-z0-9-]+$")
+    elif not name.startswith(f"{plugin.lower()}-"):
+        errors.append(f"{tag}: name '{name}' lacks plugin prefix '{plugin.lower()}-'")
+
+    desc = scalar(fm, "description")
+    if desc is None or desc.strip() in BLOCK_SCALARS:
+        errors.append(f"{tag}: description missing or multi-line")
+    elif len(desc) > DESC_SOFT_LIMIT:
+        warnings.append(f"{tag}: description {len(desc)} chars (>{DESC_SOFT_LIMIT})")
+
+    model = scalar(fm, "model")
+    if model is not None and model.strip() not in AGENT_MODELS:
+        errors.append(f"{tag}: model '{model.strip()}' not in {sorted(AGENT_MODELS)}")
+
+    for k in top_level_keys(fm):
+        if k not in AGENT_ALLOWED_KEYS:
+            errors.append(f"{tag}: unexpected frontmatter key '{k}'")
+    return errors, warnings
 
 
 def main():
@@ -151,7 +188,7 @@ def main():
                 errors.append(f"{tag}: no description")
             else:
                 dstrip = desc.strip()
-                if dstrip in ("", "|", ">", "|-", ">-", "|+", ">+"):
+                if dstrip in BLOCK_SCALARS:
                     errors.append(f"{tag}: multi-line/block description")
                 elif len(desc) > 1024:
                     errors.append(f"{tag}: description > 1024 chars ({len(desc)})")
@@ -179,6 +216,13 @@ def main():
             nwords = len(body.split("---", 2)[-1].split())
             if nwords > BODY_SOFT_WORDS:
                 warnings.append(f"{tag}: SKILL.md body {nwords} words (>{BODY_SOFT_WORDS}); move detail to references/")
+
+        agents_dir = src / "agents"
+        if agents_dir.is_dir():
+            for agent_md in sorted(agents_dir.glob("*.md")):
+                agent_errors, agent_warnings = check_agent(agent_md, pname)
+                errors.extend(agent_errors)
+                warnings.extend(agent_warnings)
 
     for n, tags in names.items():
         if len(tags) > 1:
