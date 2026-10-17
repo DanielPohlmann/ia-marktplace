@@ -3,8 +3,7 @@
   "description": "Security practices and OWASP: threat modeling, authentication, cryptography, data protection, input validation, API security, logging & monitoring, supply chain, penetration testing, red teaming, secure SDLC, and AI security.",
   "version": "1.0.0",
   "author": {
-    "name": "Daniel Heler Pohlmann",
-    "email": "daniel.heler@way2.com.br"
+    "name": "Daniel Heler Pohlmann"
   },
   "license": "MIT"
 }

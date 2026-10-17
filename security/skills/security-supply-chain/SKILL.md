@@ -1,6 +1,6 @@
 ---
 name: security-supply-chain
-description: Use when securing the software supply chain — NuGet/npm dependencies, build pipelines, and artifact integrity. Covers SBOMs, dependency scanning, SLSA framework, artifact signing, and reproducible builds. USE FOR: SBOM, software bill of materials, dependency scanning, SLSA framework, artifact signing, reproducible builds, SCA, Dependabot, Snyk, Trivy, Grype, CycloneDX, SPDX. DO NOT USE FOR: runtime SAST/DAST/container scanning tooling (use security-security-testing), secrets-in-code detection (use security-security-testing), threat modeling during system design (use security-threat-modeling), security hygiene and secrets management practices (use security-hygiene).
+description: Use when securing dependencies, build pipelines, and artifact integrity. USE FOR: SBOM (CycloneDX, SPDX), SLSA, artifact signing, reproducible builds, NuGet/npm dependency risk, Dependabot, Grype. DO NOT USE FOR: SAST/DAST/secrets scanning (use security-security-testing), threat modeling (use security-threat-modeling), secrets hygiene (use security-hygiene).
 ---
 
 # Supply Chain Security

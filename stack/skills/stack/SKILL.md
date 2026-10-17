@@ -1,13 +1,13 @@
 ---
 name: stack
-description: Router skill — use when you need to select the right .NET library for a task in LinkDaily and are unsure which specific stack-* skill to invoke. USE FOR: library selection guidance, choosing between NuGet packages, routing to the correct sub-skill (stack-masstransit, stack-mediatr, stack-dapper, stack-redis, stack-polly, stack-serilog, stack-automapper, stack-aspnet-identity, stack-openapi, stack-observability, stack-i18n, stack-docker, stack-hygiene, stack-validot, stack-ncrontab, stack-topshelf, stack-plunk-email). DO NOT USE FOR: general architecture decisions (use dev-architecture), security patterns (use security), cross-cutting backend design (use dev-backend) — once the right library is identified, use the specific stack-* child skill instead of this parent.
+description: Use only when unsure which .NET library skill fits a task. USE FOR: library selection, comparing NuGet packages, routing to a stack-* skill. DO NOT USE FOR: a known library (use the matching stack-* skill, e.g. stack-masstransit, stack-mediatr, stack-dapper), architecture (use dev-architecture), security (use security).
 ---
 
 # Stack & Libraries
 
 ## Overview
 
-This skill tree covers the specific third-party libraries and packages used in the LinkDaily .NET stack. Each sub-skill provides opinionated guidance on how to use the library correctly within this codebase, including configuration, patterns, and common pitfalls.
+This skill tree covers the specific third-party libraries and packages commonly used in a .NET stack. Each sub-skill provides opinionated guidance on how to use the library correctly within this codebase, including configuration, patterns, and common pitfalls.
 
 ## Library Map
 

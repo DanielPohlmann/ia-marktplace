@@ -1,6 +1,6 @@
 ---
 name: dev-frontend
-description: Use when selecting or comparing frontend architecture approaches for LinkDaily's Vue 3 admin SPA and Nuxt public site — MPA, SPA, SSR, SSG, Islands, Micro-Frontends. USE FOR: frontend architecture selection, comparing SPA vs SSR vs micro-frontends, framework choice trade-offs, client-side concerns overview (routing, state, data fetching, code splitting, hydration) DO NOT USE FOR: SPA implementation patterns (use dev-frontend-spa), SSR/Nuxt rendering (use dev-frontend-ssr), PWA/service workers (use dev-frontend-pwa), micro-frontend composition details (use dev-frontend-micro-frontends), backend architecture (use dev-backend)
+description: Use when comparing frontend architecture approaches before going specific. USE FOR: MPA vs SPA vs SSR vs SSG vs islands vs micro-frontends, framework trade-offs, hydration and client-side concerns overview. DO NOT USE FOR: one approach in depth (use dev-frontend-spa, dev-frontend-ssr, dev-frontend-pwa, dev-frontend-micro-frontends), backend (use dev-backend).
 ---
 
 # Frontend Architecture

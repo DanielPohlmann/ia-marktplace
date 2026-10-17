@@ -1,6 +1,6 @@
 ---
 name: stack-hygiene
-description: .NET project-level hygiene for clean, maintainable codebases. USE FOR: Directory.Build.props, centralizing package versions (CPM), enabling nullable reference types, treating warnings as errors, editorconfig and analyzers, removing dead code, enforcing consistent build properties across all LinkDaily projects (Api, Worker, ServiceDefaults, AppHost). DO NOT USE FOR: secrets management and dependency scanning (use security-hygiene), input sanitization and XSS prevention (use security-input-validation), authentication flows (use stack-aspnet-identity), encryption or certificate management (use security-cryptography).
+description: Use when writing defensive .NET web code against XSS, injection, CSRF, and path traversal. USE FOR: HtmlEncoder/UrlEncoder/JavaScriptEncoder, parameterized queries (Dapper, EF Core, ADO.NET), antiforgery, safe deserialization, CSP/HSTS headers. DO NOT USE FOR: OWASP catalogs (use security-owasp), validator libraries (use stack-validot), crypto (use security-cryptography), cross-boundary trust model (use security-hygiene).
 ---
 
 # Security Hygiene & Sanitization

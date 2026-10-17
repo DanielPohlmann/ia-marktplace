@@ -1,6 +1,6 @@
 ---
 name: security
-description: Use when navigating the security landscape to pick the specialized area, or for cross-cutting concerns spanning multiple security domains (OWASP, threat modeling, authentication, cryptography, supply chain, AI security). USE FOR: application security strategy, security architecture, choosing between security controls, OWASP compliance overview, security tool selection, secure development lifecycle. DO NOT USE FOR: specific domains — use the targeted skill: security-authentication, security-api-security, security-cryptography, security-ai-security, security-owasp, security-threat-modeling, security-input-validation, security-data-protection, security-supply-chain, security-logging-monitoring, security-secure-sdlc, security-security-testing, security-penetration-testing, security-red-teaming, security-hygiene
+description: Use only when unsure which security area applies, or for strategy spanning several. USE FOR: AppSec strategy, security architecture, choosing between controls, routing to a security sub-skill. DO NOT USE FOR: any concrete domain (use the matching security-* skill, e.g. security-owasp, security-authentication, security-threat-modeling).
 ---
 
 # Security

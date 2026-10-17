@@ -1,13 +1,13 @@
 ---
 name: tools
-description: Router skill for core cross-cutting developer tools — Docker/containers and Git version control. Use only when unsure which sub-skill applies; prefer tools-docker or tools-git directly for any concrete task. USE FOR: deciding between tools-docker and tools-git, general container or version-control orientation questions. DO NOT USE FOR: any concrete Docker task (use tools-docker), any concrete Git task (use tools-git), Kubernetes orchestration, cloud container services, GitHub/GitLab platform features, CI/CD pipeline configuration, .NET-specific Dockerfile patterns (use stack-docker).
+description: Use only when unsure whether a task is about Docker or Git. USE FOR: choosing between tools-docker and tools-git, orientation questions. DO NOT USE FOR: any concrete Docker task (use tools-docker), any concrete Git task (use tools-git), .NET Dockerfiles (use stack-docker).
 ---
 
 # Development Tools
 
 ## Overview
 
-This skill tree covers the cross-cutting developer tools used throughout the LinkDaily project: **Docker** for containerization and local environment orchestration, and **Git** for version control and collaborative workflows.
+This skill tree covers the cross-cutting developer tools used throughout a project: **Docker** for containerization and local environment orchestration, and **Git** for version control and collaborative workflows.
 
 ## Sub-Skills
 

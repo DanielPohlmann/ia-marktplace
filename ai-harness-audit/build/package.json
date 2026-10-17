@@ -1,0 +1,16 @@
+{
+  "name": "ai-harness-audit-build",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Markdown -> styled HTML -> PDF pipeline for AI Harness Audit reports",
+  "scripts": {
+    "build": "node build-pdf.mjs"
+  },
+  "dependencies": {
+    "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.2.0",
+    "markdown-it-attrs": "^4.3.1",
+    "puppeteer-core": "^23.0.0"
+  }
+}

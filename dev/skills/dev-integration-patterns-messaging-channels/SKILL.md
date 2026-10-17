@@ -1,6 +1,6 @@
 ---
 name: dev-integration-patterns-messaging-channels
-description: Use when designing how messages travel between applications — channel types, delivery guarantees, and bridging strategies from Enterprise Integration Patterns (Hohpe & Woolf). In LinkDaily this maps to how RabbitMQ exchanges and queues are structured for cross-context integration events between bounded contexts. USE FOR: choosing channel types, point-to-point vs pub-sub, guaranteed delivery, dead letter handling, channel adapters, message bus topology, datatype channels DO NOT USE FOR: message format and intent design (use dev-integration-patterns-message-construction), routing logic (use dev-integration-patterns-message-routing), message transformation (use dev-integration-patterns-message-transformation), consumer patterns (use dev-integration-patterns-messaging-endpoints), concrete MassTransit/RabbitMQ topology configuration (use stack-masstransit)
+description: Use when designing how messages travel between applications (Enterprise Integration Patterns). USE FOR: point-to-point vs pub-sub, guaranteed delivery, dead-letter channels, channel adapters, message bus, exchange/queue topology. DO NOT USE FOR: message design (use dev-integration-patterns-message-construction), consumers (use dev-integration-patterns-messaging-endpoints), MassTransit topology (use stack-masstransit).
 ---
 
 # Messaging Channels

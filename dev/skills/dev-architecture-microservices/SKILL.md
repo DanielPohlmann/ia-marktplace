@@ -1,6 +1,6 @@
 ---
 name: dev-architecture-microservices
-description: Microservice architecture patterns and practices based on Sam Newman's "Building Microservices" -- covering service decomposition, inter-service communication, data management, and operational patterns. USE FOR: evaluating microservice decomposition trade-offs, inter-service communication strategies, service mesh, API gateway, saga pattern, service discovery, distributed data management -- note LinkDaily is a modular monolith, not microservices DO NOT USE FOR: modular monolith design (use dev-architecture-monoliths), event sourcing details (use dev-architecture-event-driven), domain modeling (use dev-architecture-domain-driven-design)
+description: Use when evaluating or designing microservices. USE FOR: service decomposition trade-offs, inter-service communication, API gateway, service mesh, service discovery, sagas, distributed data. DO NOT USE FOR: modular monoliths (use dev-architecture-monoliths), event sourcing (use dev-architecture-event-driven), domain modeling (use dev-architecture-domain-driven-design).
 ---
 
 # Microservices Architecture

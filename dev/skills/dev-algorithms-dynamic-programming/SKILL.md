@@ -1,6 +1,6 @@
 ---
 name: dev-algorithms-dynamic-programming
-description: Use when solving optimization problems with overlapping subproblems and optimal substructure. Covers memoization (top-down) vs tabulation (bottom-up), classic DP problems (Knapsack, LCS, LIS, Edit Distance, Coin Change, Matrix Chain, Rod Cutting), and the DP framework. Based on Knuth's TAOCP. USE FOR: optimization problems with overlapping subproblems, memoization strategies, tabulation approaches, recognizing DP problem patterns, state definition and recurrence formulation DO NOT USE FOR: graph shortest paths and traversal (use dev-algorithms-graph-algorithms), sorting and searching algorithm selection (use dev-algorithms-sorting-searching), enumeration and backtracking (use dev-algorithms-combinatorial)
+description: Use when an optimization problem has overlapping subproblems and optimal substructure. USE FOR: memoization vs tabulation, state and recurrence design, Knapsack, LCS, LIS, edit distance, coin change. DO NOT USE FOR: shortest paths (use dev-algorithms-graph-algorithms), enumeration/backtracking (use dev-algorithms-combinatorial).
 ---
 
 # Dynamic Programming

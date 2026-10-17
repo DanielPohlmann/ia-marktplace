@@ -1,6 +1,6 @@
 ---
 name: dev-design-patterns
-description: Use when selecting or comparing Gang of Four (GoF) design patterns across all three categories. Router skill — directs to the right sub-skill. USE FOR: GoF pattern overview, deciding between Creational vs Structural vs Behavioral, composition over inheritance, pattern family selection, object-oriented design vocabulary DO NOT USE FOR: specific Behavioral patterns (use dev-design-patterns-behavioral), specific Creational patterns (use dev-design-patterns-creational), specific Structural patterns (use dev-design-patterns-structural), enterprise messaging patterns (use dev-integration-patterns), architecture styles (use dev-architecture), algorithm selection (use dev-algorithms)
+description: Use when choosing which GoF pattern family fits before implementing. USE FOR: creational vs structural vs behavioral, composition over inheritance, OO design vocabulary. DO NOT USE FOR: a specific pattern (use dev-design-patterns-behavioral, dev-design-patterns-creational, dev-design-patterns-structural), messaging patterns (use dev-integration-patterns), architecture (use dev-architecture).
 ---
 
 # Design Patterns (Gang of Four)

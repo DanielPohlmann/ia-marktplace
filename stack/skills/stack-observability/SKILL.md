@@ -1,13 +1,13 @@
 ---
 name: stack-observability
-description: Observability entry point for LinkDaily services — routes to the right sub-skill for OpenTelemetry/OTLP tracing, metrics, and structured logging across LinkDaily.Api and LinkDaily.Worker. USE FOR: deciding which observability approach to use, understanding how OTLP and Serilog fit together in the LinkDaily stack, shared Resource configuration, log-trace correlation strategy. DO NOT USE FOR: OTLP exporter wiring, Activity API spans, custom Meters, or OTel collector config (use stack-observability-otlp-logging); Serilog sinks, enrichers, and output templates (use stack-serilog); infrastructure-level monitoring dashboards or alerting rule management.
+description: Use when deciding how OTLP and Serilog fit together for .NET observability before wiring anything. USE FOR: approach selection, shared Resource config, log-trace correlation strategy, routing to the right sub-skill. DO NOT USE FOR: OTel exporter, spans, meters (use stack-observability-otlp-logging), Serilog config (use stack-serilog), dashboards and alert rules.
 ---
 
 # Observability
 
 ## Overview
 
-Observability in the LinkDaily stack is built on two complementary layers: **OpenTelemetry (OTLP)** for distributed traces and metrics, and **Serilog** for structured log output. Together they provide the three pillars of observability — logs, traces, and metrics — with correlation between them via trace and span IDs injected into log entries.
+Observability in this .NET stack is built on two complementary layers: **OpenTelemetry (OTLP)** for distributed traces and metrics, and **Serilog** for structured log output. Together they provide the three pillars of observability — logs, traces, and metrics — with correlation between them via trace and span IDs injected into log entries.
 
 ## Sub-Skills
 

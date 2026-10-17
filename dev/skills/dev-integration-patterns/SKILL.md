@@ -1,6 +1,6 @@
 ---
 name: dev-integration-patterns
-description: Use when designing or evaluating enterprise integration architectures based on Hohpe & Woolf's Enterprise Integration Patterns — the conceptual vocabulary behind LinkDaily's RabbitMQ cross-context messaging. USE FOR: Enterprise Integration Patterns overview, messaging architecture, choosing between integration pattern families, pipes-and-filters, message-oriented middleware design DO NOT USE FOR: specific EIP pattern categories (use dev-integration-patterns-messaging-channels, dev-integration-patterns-message-construction, dev-integration-patterns-message-routing, dev-integration-patterns-message-transformation, dev-integration-patterns-messaging-endpoints, dev-integration-patterns-system-management), API design (use dev-backend-api-design), event sourcing (use dev-architecture-event-driven), concrete .NET/RabbitMQ/MassTransit implementation (use stack-masstransit)
+description: Use when choosing among Enterprise Integration Pattern families before going specific. USE FOR: EIP overview, messaging architecture, pipes-and-filters, message-oriented middleware. DO NOT USE FOR: one pattern family (use the matching dev-integration-patterns-* skill), API design (use dev-backend-api-design), event sourcing (use dev-architecture-event-driven), MassTransit code (use stack-masstransit).
 ---
 
 # Enterprise Integration Patterns
@@ -73,6 +73,7 @@ Each **filter** performs a single processing step (validate, enrich, transform, 
 | How do I reshape data between systems? | Message Transformation | Content Enricher, Normalizer, Canonical Data Model |
 | How do I reduce message size? | Message Transformation | Claim Check, Content Filter |
 | How do I consume messages reliably? | Messaging Endpoints | Competing Consumers, Idempotent Receiver |
+| How do I update my DB and publish without losing events? | Transactional Outbox (`dev-integration-patterns-transactional-outbox`) | Outbox, Polling Publisher, Log Tailing, Inbox |
 | How do I monitor and debug? | System Management | Wire Tap, Message Store, Control Bus |
 
 ## Reference Implementations

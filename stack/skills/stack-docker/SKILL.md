@@ -1,6 +1,6 @@
 ---
 name: stack-docker
-description: Use when authoring or optimizing Dockerfiles and Docker Compose configuration for LinkDaily .NET services (LinkDaily.Api, LinkDaily.Worker) and their local infrastructure (PostgreSQL, RabbitMQ, Redis). USE FOR: multi-stage .NET Dockerfiles, layer caching, image size optimization, docker-compose.yml service definitions, environment variable wiring, health checks, local service orchestration. DO NOT USE FOR: general Docker/Compose concepts without a .NET or LinkDaily context (use tools-docker), Kubernetes or Helm deployment, cloud provisioning, or CI/CD pipeline authoring.
+description: Use when authoring Dockerfiles or Compose files for a .NET (or Node/Python) app and its local infrastructure. USE FOR: multi-stage .NET Dockerfiles, layer caching, image size, compose services for PostgreSQL/RabbitMQ/Redis, env wiring, health checks. DO NOT USE FOR: general container concepts and CLI (use tools-docker), Kubernetes/Helm, CI/CD authoring.
 ---
 
 # Docker

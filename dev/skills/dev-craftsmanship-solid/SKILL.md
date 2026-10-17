@@ -1,6 +1,6 @@
 ---
 name: dev-craftsmanship-solid
-description: Use when applying or evaluating SOLID object-oriented design principles — SRP, OCP, LSP, ISP, and DIP — at the class and interface level. USE FOR: class responsibility audits, interface segregation decisions, dependency inversion wiring, evaluating OO design quality, reducing coupling, improving testability — including reviewing LinkDaily's Application layer handlers, domain services, and aggregate designs for SOLID violations. DO NOT USE FOR: architectural layer and boundary decisions (use dev-craftsmanship-clean-architecture), design pattern selection (use dev-design-patterns), systematic code smell and refactoring mechanics (use dev-craftsmanship-refactoring).
+description: Use when applying or auditing SOLID at class and interface level. USE FOR: SRP audits, OCP extension points, LSP violations, interface segregation, dependency inversion, coupling and testability. DO NOT USE FOR: layer boundaries (use dev-craftsmanship-clean-architecture), pattern selection (use dev-design-patterns), refactoring mechanics (use dev-craftsmanship-refactoring).
 ---
 
 # SOLID Principles
@@ -356,43 +356,6 @@ The high-level policy (`OrderService`) and the low-level detail (`PostgresOrderR
 
 ---
 
-## How SOLID Relates to Other Concepts
-
-### SOLID and Clean Architecture
-Clean Architecture is the architectural expression of SOLID at the system level:
-
-| SOLID Principle | Clean Architecture Manifestation |
-|----------------|----------------------------------|
-| SRP | Each layer has a single reason to change (UI, business rules, data). |
-| OCP | New features are added by creating new Use Cases, not modifying existing ones. |
-| LSP | Interface Adapters can be swapped (PostgreSQL for MySQL) without breaking Use Cases. |
-| ISP | Ports (interfaces) are defined per use case, not as monolithic repository interfaces. |
-| DIP | The Dependency Rule — inner layers define interfaces, outer layers implement them. |
-
-### SOLID and Design Patterns
-Many GoF design patterns exist specifically to satisfy SOLID:
-
-| Pattern | Primary SOLID Principle |
-|---------|------------------------|
-| Strategy | OCP, DIP |
-| Observer | OCP, DIP |
-| Decorator | OCP, SRP |
-| Factory Method / Abstract Factory | DIP |
-| Adapter | ISP, DIP |
-| Command | SRP, OCP |
-| Template Method | OCP, LSP |
-
-### SOLID and Testability
-Each SOLID principle directly improves testability:
-
-| Principle | Testing Benefit |
-|-----------|----------------|
-| SRP | Smaller classes with fewer dependencies = simpler test setup. |
-| OCP | New behavior tested in isolation via new classes, existing tests remain green. |
-| LSP | Test doubles (mocks, stubs) can replace real implementations safely. |
-| ISP | Narrow interfaces require fewer mock methods. |
-| DIP | Dependencies are injected, making them trivially replaceable with test doubles. |
-
 ## Common Pitfalls
 
 | Pitfall | Description |
@@ -410,6 +373,14 @@ Each SOLID principle directly improves testability:
 - Write tests first (TDD) — SOLID violations surface quickly when code is hard to test.
 - Balance SOLID with YAGNI: do not add abstractions speculatively. Introduce them when the second variation appears.
 - Review class names regularly — if a class name contains "And" or "Manager" or "Service" doing too many things, SRP is likely violated.
+
+## Detailed reference
+
+Load only the file that matches the task — each is self-contained.
+
+| File | Contents |
+|---|---|
+| [references/how-solid-relates-to-other-concepts.md](references/how-solid-relates-to-other-concepts.md) | How SOLID Relates to Other Concepts — SOLID and Clean Architecture, SOLID and Design Patterns, SOLID and Testability |
 
 ## References
 

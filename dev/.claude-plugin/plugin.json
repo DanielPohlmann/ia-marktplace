@@ -3,8 +3,7 @@
   "description": "Software engineering fundamentals: GoF design patterns, algorithms & data structures, architectural styles (DDD, hexagonal, microservices, event-driven, monoliths), backend/frontend architecture, craftsmanship (SOLID, clean code, refactoring, twelve-factor), and enterprise integration patterns.",
   "version": "1.0.0",
   "author": {
-    "name": "Daniel Heler Pohlmann",
-    "email": "daniel.heler@way2.com.br"
+    "name": "Daniel Heler Pohlmann"
   },
   "license": "MIT"
 }

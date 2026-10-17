@@ -1,6 +1,6 @@
 ---
 name: dev-backend
-description: Use when making backend architecture decisions — choosing API styles, database types, caching strategies, authentication mechanisms, and server-side design patterns for scalable, maintainable systems. USE FOR: backend architecture decisions, choosing API styles, choosing database types (LinkDaily uses PostgreSQL + Redis), server-side design patterns, backend system design DO NOT USE FOR: specific pattern details — use dedicated skills: dev-backend-data-modeling, dev-backend-api-design, dev-backend-caching, dev-backend-authentication; frontend architecture (use dev-frontend); infrastructure provisioning
+description: Use when making a backend architecture decision that spans API style, storage, caching, and auth. USE FOR: backend system design, choosing API styles and database types, server-side patterns, routing to a backend sub-skill. DO NOT USE FOR: one specific concern (use dev-backend-data-modeling, dev-backend-api-design, dev-backend-caching, dev-backend-authentication), frontend (use dev-frontend).
 ---
 
 # Backend Architecture

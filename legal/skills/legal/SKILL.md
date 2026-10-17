@@ -1,6 +1,6 @@
 ---
 name: legal
-description: Use when identifying which legal and compliance domain applies to a software product question — routes you to the right specialist skill. USE FOR: legal risk identification, regulatory overview, jurisdiction mapping, legal topic discovery, understanding which compliance domain applies DO NOT USE FOR: specific topics that have a dedicated skill — use legal-privacy-data-protection (GDPR/LGPD), legal-billing-taxation (VAT/NF-e/tax), legal-financial-regulation (PCI-DSS/payments), legal-accessibility (WCAG/ADA), legal-ai-regulation (EU AI Act), legal-open-source-licensing (license selection), legal-intellectual-property (IP/copyright), legal-contracts (SaaS/MSA/DPA), legal-cybersecurity-compliance (SOC 2/ISO 27001), legal-consumer-protection (ToS/dark patterns), legal-content-moderation (DMCA/Section 230), legal-attribution (NOTICE files/OSS credits), legal-employment-labor (contractor/IP assignment), legal-export-controls (ITAR/EAR), legal-healthcare (HIPAA)
+description: Use only when unsure which legal or compliance area applies to a software product question. USE FOR: legal risk discovery, jurisdiction mapping, regulatory overview, routing to a legal sub-skill. DO NOT USE FOR: any topic with a dedicated skill (use the matching legal-* skill, e.g. legal-privacy-data-protection, legal-billing-taxation, legal-open-source-licensing).
 ---
 
 # Legal & Compliance

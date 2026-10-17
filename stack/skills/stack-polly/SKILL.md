@@ -1,6 +1,6 @@
 ---
 name: stack-polly
-description: Polly v8 resilience library for .NET. Use when LinkDaily.Api or LinkDaily.Worker makes calls to external systems (RabbitMQ, Redis, Plunk, payment gateways) and needs protection against transient faults. USE FOR: ResiliencePipeline / ResiliencePipelineBuilder, retry with exponential back-off and jitter, circuit breaker, timeout, hedging, rate limiter, fallback strategies, Microsoft.Extensions.Resilience DI registration, HttpClient resilience via Microsoft.Extensions.Http.Resilience. DO NOT USE FOR: application-level input validation errors that must not be retried (use stack-validot), infrastructure load balancing or service mesh (handled outside .NET), permanent failures where retry is incorrect by design.
+description: Use when protecting .NET calls to external systems against transient faults with Polly v8. USE FOR: ResiliencePipelineBuilder, retry with backoff and jitter, circuit breaker, timeout, hedging, rate limiter, fallback, Microsoft.Extensions.Http.Resilience. DO NOT USE FOR: validation errors that must not retry (use stack-validot), service mesh or load balancing.
 ---
 
 # Polly

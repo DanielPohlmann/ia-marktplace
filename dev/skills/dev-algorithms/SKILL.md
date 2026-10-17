@@ -1,6 +1,6 @@
 ---
 name: dev-algorithms
-description: Use when selecting algorithms, analyzing complexity, or reasoning about data structure choices. Covers Big-O notation, space vs time tradeoffs, amortized analysis, and algorithmic problem-solving strategy based on Knuth's "The Art of Computer Programming." USE FOR: algorithm selection, Big-O analysis, complexity comparison, choosing data structures, algorithmic problem-solving strategy DO NOT USE FOR: specific algorithm implementations (use dev-algorithms-combinatorial, dev-algorithms-data-structures, dev-algorithms-dynamic-programming, dev-algorithms-graph-algorithms, dev-algorithms-sorting-searching), system architecture (use dev-architecture), design patterns (use dev-design-patterns)
+description: Use when picking an algorithm family or reasoning about complexity before going specific. USE FOR: Big-O, time/space tradeoffs, amortized analysis, problem-solving strategy, routing to an algorithm sub-skill. DO NOT USE FOR: a concrete algorithm family (use the matching dev-algorithms-* skill), architecture (use dev-architecture), design patterns (use dev-design-patterns).
 ---
 
 # Algorithms & Data Structures
@@ -74,16 +74,16 @@ Amortized analysis averages the cost of operations over a sequence, even when in
 
 | Problem Type | Recommended Approach | Sub-Skill |
 |--------------|---------------------|-----------|
-| Ordering elements | Comparison sort (Quicksort, Mergesort) or linear sort (Radix) | sorting-searching |
-| Finding elements | Binary search, hash-based lookup | sorting-searching |
-| Storing/retrieving structured data | Choose appropriate data structure by access pattern | data-structures |
-| Shortest path / connectivity | Graph algorithms (BFS, DFS, Dijkstra) | graph-algorithms |
-| Optimization with overlapping subproblems | Dynamic programming | dynamic-programming |
-| Enumerating configurations / constraint solving | Backtracking, branch and bound | combinatorial |
-| String matching | KMP, Rabin-Karp, suffix structures | sorting-searching |
-| Scheduling / ordering dependencies | Topological sort | graph-algorithms |
-| Minimum spanning tree | Prim's, Kruskal's | graph-algorithms |
-| Subset/permutation generation | Combinatorial generation | combinatorial |
+| Ordering elements | Comparison sort (Quicksort, Mergesort) or linear sort (Radix) | dev-algorithms-sorting-searching |
+| Finding elements | Binary search, hash-based lookup | dev-algorithms-sorting-searching |
+| Storing/retrieving structured data | Choose appropriate data structure by access pattern | dev-algorithms-data-structures |
+| Shortest path / connectivity | Graph algorithms (BFS, DFS, Dijkstra) | dev-algorithms-graph-algorithms |
+| Optimization with overlapping subproblems | Dynamic programming | dev-algorithms-dynamic-programming |
+| Enumerating configurations / constraint solving | Backtracking, branch and bound | dev-algorithms-combinatorial |
+| String matching | KMP, Rabin-Karp, suffix structures | dev-algorithms-sorting-searching |
+| Scheduling / ordering dependencies | Topological sort | dev-algorithms-graph-algorithms |
+| Minimum spanning tree | Prim's, Kruskal's | dev-algorithms-graph-algorithms |
+| Subset/permutation generation | Combinatorial generation | dev-algorithms-combinatorial |
 
 ## Algorithm Analysis Checklist
 

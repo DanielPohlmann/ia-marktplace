@@ -1,6 +1,6 @@
 ---
 name: stack-redis
-description: StackExchange.Redis client for .NET. Use when LinkDaily needs distributed caching (professional profiles, availability slots, slug lookups), rate limiting, distributed locks, or pub/sub channels across LinkDaily.Api and LinkDaily.Worker. USE FOR: ConnectionMultiplexer singleton setup, IDatabase string/hash/set/sorted-set/list operations, distributed locks with SETNX/Lua scripts, pub/sub, key expiration, cache-aside pattern, Redis connection string configuration. DO NOT USE FOR: primary relational data storage or complex joins (use PostgreSQL/EF Core), large binary blob storage over 512 MB, scenarios requiring strict ACID durability over performance, generic caching strategy decisions (use dev-backend-caching for that).
+description: Use when using StackExchange.Redis in .NET. USE FOR: ConnectionMultiplexer setup, strings/hashes/sets/sorted sets/lists, cache-aside, distributed locks (SET NX, Lua), pub/sub, expiration, rate limiting. DO NOT USE FOR: caching strategy decisions (use dev-backend-caching), relational data (use stack-dapper), blobs over 512 MB.
 ---
 
 # Redis (StackExchange.Redis)
