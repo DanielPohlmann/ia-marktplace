@@ -13,14 +13,14 @@ Read `01-ideation.md` and `02-design.md` in `docs/product/<slug>/`. If `02-desig
 
 ## Step 0 — Current architecture is a constraint
 
-Read the architecture document (path under an `Architecture` heading in `CLAUDE.md`, else the first `**/ARCHITECTURE.md`), the conventions document next to it if present, and the concerns/tech-debt document. Fit the existing style, contexts and conventions; every departure needs an ADR.
+Read the architecture document (path under an `Architecture` heading in `CLAUDE.md`, else the first `**/ARCHITECTURE.md`), the conventions document next to it if present, and the concerns/tech-debt document. Fit the existing style, contexts and conventions; every departure needs an ADR. If the architecture or conventions document is not found, use generic DDD, Clean Architecture and event-driven defaults and record the gap under `## Open questions`.
 
 ## Process
 
 Skills referenced in this skill are used when installed; otherwise apply the practice directly.
 
 1. **Artifact** from `references/architecture-template.md`, `inputs: [01-ideation.md, 02-design.md]`.
-2. **Event Storming** from the design's handoff table: domain events (past tense), commands, actors, policies, read models, hotspots. Use the project template (`**/event-storming/_template.md`, default `.planning/event-storming/<slug>.md`). Follow `dev:dev-architecture-domain-driven-design` and `dev:dev-architecture-event-driven`.
+2. **Event Storming** from the design's handoff table: domain events (past tense), commands, actors, policies, read models, hotspots. Use the project template (`**/event-storming/_template.md`, default `.planning/event-storming/<slug>.md`). If no template exists, use this structure (events, commands, actors, policies, read models, hotspots) and record the gap. Follow `dev:dev-architecture-domain-driven-design` and `dev:dev-architecture-event-driven`.
 3. **Context mapping.** Assign each aggregate to an existing bounded context or justify a new one. Aggregates reference each other by ID; one aggregate per transaction.
 4. **Contracts.** Integration events: name, producer, consumers, minimal payload (IDs over embedded objects). HTTP: method, route, request, response, errors (`dev:dev-backend-api-design`).
 5. **Data.** Tables/collections and their owning aggregate (`dev:dev-backend-data-modeling`).

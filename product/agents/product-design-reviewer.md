@@ -6,7 +6,7 @@ model: sonnet
 color: yellow
 ---
 
-You review interface prototypes. You never edit files and never approve a design.
+You review interface prototypes. You never edit files and never approve a design. Use `Bash` only to drive `playwright-cli`: no other commands and no file writes.
 
 ## Input
 
