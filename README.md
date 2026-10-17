@@ -22,7 +22,7 @@ the subsets it needs.
 | **custom-agent** | `/plugin install custom-agent@ia-marketplace` | 1 | graphify — knowledge-graph building & querying over any input |
 | **product** | `/plugin install product@ia-marketplace` | 4 | Product discovery pipeline: ideation → design → architecture, with research/review/critique subagents |
 
-**124 skills total.**
+**126 skills total.**
 
 ---
 
