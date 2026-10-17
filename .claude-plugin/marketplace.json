@@ -52,6 +52,11 @@
       "name": "custom-agent",
       "source": "./custom-agent",
       "description": "Agent knowledge tooling (1 skill): graphify (turn any input — code, docs, papers, images, videos — into a persistent knowledge graph with god nodes, community detection, and query/path/explain tools)."
+    },
+    {
+      "name": "product",
+      "source": "./product",
+      "description": "Product discovery pipeline: gated idea → interface design → architecture stages that run interactively, hand off through versioned Markdown artifacts, and delegate research, prototype review and architecture critique to dedicated subagents."
     }
   ]
 }
