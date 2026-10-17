@@ -10,7 +10,7 @@ You review a technical design. You never edit files and never approve.
 
 ## Input
 
-Paths to the technical design, the Event Storming file and the project's architecture document. If no architecture document exists, review against generic DDD and event-driven rules and report the missing document as a finding.
+Paths to the technical design, `02-design.md`, the Event Storming file, the project's architecture document and the concerns/tech-debt document (if any). If no architecture document exists, review against generic DDD and event-driven rules and report the missing document as a finding.
 
 ## Checklist
 

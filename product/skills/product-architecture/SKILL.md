@@ -29,9 +29,9 @@ Skills referenced in this skill are used when installed; otherwise apply the pra
 8. **Decisions.** One ADR per significant choice (`specs:specs-documentation-adr`).
 9. **Threat model.** STRIDE over new flows and data (`security:security-threat-modeling`); flag personal data (`legal:legal-privacy-data-protection`).
 10. **Testing strategy** (`engineering:testing-strategy`).
-11. **Critique.** Dispatch `product:product-architecture-critic` with the artifact, Event Storming and architecture document paths. Resolve blocking findings; list the rest under Open questions.
-12. **Approval.** `status: in-review`, ask: "Approve the architecture so we can write the spec and plan?"
-13. **Handoff.** After approval, invoke `superpowers:brainstorming` with the three artifacts, then `superpowers:writing-plans`.
+11. **Critique.** Dispatch `product:product-architecture-critic` with the technical design, `02-design.md`, the Event Storming file, the architecture document and the concerns/tech-debt document (if any). Record every finding in the `## Critique findings` table with a Resolution. Resolve all blocking findings and every pattern-related major (pattern without a written force, new pattern duplicating an existing one without an ADR) before asking for approval; record the others with their resolution or rationale.
+12. **Approval.** `status: in-review`, ask: "Approve the architecture so we can write the spec and plan?" On approval, follow the gate rules of `product:product` (status, `approved_on`, change-log row). If the user requests changes, set `draft` and add a change-log row.
+13. **Handoff.** Apply the approval gate rules of `product:product` first, then invoke `superpowers:brainstorming` with the three artifacts, then `superpowers:writing-plans`.
 
 ## Patterns
 
