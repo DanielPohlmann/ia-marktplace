@@ -1,6 +1,6 @@
 ---
 name: dev-architecture-event-driven
-description: Use when designing event-driven systems, event sourcing, or CQRS. USE FOR: domain vs integration events, projections, eventual consistency, compensating transactions, choreography vs orchestration, sagas. DO NOT USE FOR: channel topology (use dev-integration-patterns-messaging-channels), routing rules (use dev-integration-patterns-message-routing), MassTransit wiring (use stack-masstransit).
+description: Use when designing event-driven systems, event sourcing, or CQRS. USE FOR: domain vs integration events, projections, eventual consistency, compensating transactions, choreography vs orchestration, sagas. DO NOT USE FOR: channel topology (use dev-integration-patterns-messaging-channels), routing rules (use dev-integration-patterns-message-routing), reliable DB + publish (use dev-integration-patterns-transactional-outbox), MassTransit wiring (use stack-masstransit).
 ---
 
 # Event-Driven Architecture, Event Sourcing & CQRS

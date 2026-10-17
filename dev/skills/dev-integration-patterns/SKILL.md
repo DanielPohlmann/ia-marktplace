@@ -73,6 +73,7 @@ Each **filter** performs a single processing step (validate, enrich, transform, 
 | How do I reshape data between systems? | Message Transformation | Content Enricher, Normalizer, Canonical Data Model |
 | How do I reduce message size? | Message Transformation | Claim Check, Content Filter |
 | How do I consume messages reliably? | Messaging Endpoints | Competing Consumers, Idempotent Receiver |
+| How do I update my DB and publish without losing events? | Transactional Outbox (`dev-integration-patterns-transactional-outbox`) | Outbox, Polling Publisher, Log Tailing, Inbox |
 | How do I monitor and debug? | System Management | Wire Tap, Message Store, Control Bus |
 
 ## Reference Implementations

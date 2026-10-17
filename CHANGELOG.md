@@ -10,6 +10,11 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ### Added
 
+- New skill `dev-integration-patterns-transactional-outbox` (`dev` plugin, now
+  42 skills): the dual-write problem and its strategies — transactional outbox
+  with polling publisher or CDC/log tailing, inbox/idempotent consumers,
+  listen-to-yourself, event sourcing, reconciliation, and why not 2PC. Sibling
+  descriptions cross-link to it.
 - New plugin `specs` (19 skills): specifications & architecture documentation.
   Flattened from the `agent-skills` authoring repo's nested `specs` tree into the
   standard flat layout — diagramming (C4, Mermaid, UML, PlantUML, D2, ERD, TOGAF,

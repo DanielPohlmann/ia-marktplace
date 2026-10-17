@@ -1,6 +1,6 @@
 ---
 name: dev-integration-patterns-messaging-endpoints
-description: Use when designing how applications consume messages (Enterprise Integration Patterns). USE FOR: polling vs event-driven consumers, competing consumers, idempotent receivers, transactional clients, durable subscribers, service activators. DO NOT USE FOR: channels (use dev-integration-patterns-messaging-channels), routing (use dev-integration-patterns-message-routing), MassTransit consumers (use stack-masstransit).
+description: Use when designing how applications consume messages (Enterprise Integration Patterns). USE FOR: polling vs event-driven consumers, competing consumers, idempotent receivers, transactional clients, durable subscribers, service activators. DO NOT USE FOR: channels (use dev-integration-patterns-messaging-channels), routing (use dev-integration-patterns-message-routing), outbox and dual writes (use dev-integration-patterns-transactional-outbox), MassTransit consumers (use stack-masstransit).
 ---
 
 # Messaging Endpoints
@@ -158,7 +158,7 @@ Coordinates message consumption with local data changes in a single transaction,
 
 **When to use:** When message processing must be atomic with database changes. Common in financial systems, inventory management, and any system where partial processing is unacceptable.
 
-**Trade-offs:** Distributed transactions (2PC) are expensive. Prefer the Outbox Pattern (store outgoing messages in the local DB, publish asynchronously) when cross-resource transactions are unavailable.
+**Trade-offs:** Distributed transactions (2PC) are expensive. Prefer the Outbox Pattern (store outgoing messages in the local DB, publish asynchronously) when cross-resource transactions are unavailable — see dev-integration-patterns-transactional-outbox.
 
 ### Service Activator
 Connects a service to the messaging system, invoking the service when a message arrives and optionally sending a reply.

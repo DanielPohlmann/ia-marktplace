@@ -1,6 +1,6 @@
 ---
 name: stack-masstransit
-description: Use when configuring MassTransit over RabbitMQ for cross-module or cross-service integration events in .NET. USE FOR: publishing after commit, consumers, sagas, EF Core transactional outbox, exchange/queue topology, retries and faults, competing consumers. DO NOT USE FOR: in-process dispatch (use stack-mediatr), abstract channel design (use dev-integration-patterns-messaging-channels), observability (use stack-observability).
+description: Use when configuring MassTransit over RabbitMQ for cross-module or cross-service integration events in .NET. USE FOR: publishing after commit, consumers, sagas, EF Core transactional outbox, exchange/queue topology, retries and faults, competing consumers. DO NOT USE FOR: in-process dispatch (use stack-mediatr), abstract channel design (use dev-integration-patterns-messaging-channels), choosing a dual-write strategy (use dev-integration-patterns-transactional-outbox), observability (use stack-observability).
 ---
 
 # MassTransit

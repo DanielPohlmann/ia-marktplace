@@ -10,7 +10,7 @@ as installable plugins, organized **one plugin per domain**.
 ia-marktplace/
 ├── .claude-plugin/
 │   └── marketplace.json          ← declares the 9 plugins
-├── dev/                          ← plugin: dev (41 skills)
+├── dev/                          ← plugin: dev (42 skills)
 │   ├── .claude-plugin/plugin.json
 │   └── skills/<skill>/SKILL.md
 ├── stack/                        ← plugin: stack (19 skills)
@@ -78,7 +78,7 @@ produce a PDF report. It is deliberately excluded from the marketplace (no `plug
 
 | Plugin | Skills | Domain |
 |---|---|---|
-| `dev` | 41 | Design patterns, algorithms, architectural styles, backend/frontend, craftsmanship, integration patterns |
+| `dev` | 42 | Design patterns, algorithms, architectural styles, backend/frontend, craftsmanship, integration patterns |
 | `stack` | 19 | .NET library selection & usage (MassTransit, MediatR, Dapper, Serilog, Polly, Redis, …) |
 | `security` | 16 | OWASP, threat modeling, auth, crypto, input validation, supply chain, pen testing |
 | `legal` | 16 | Privacy/GDPR/LGPD, licensing, billing/taxation, accessibility, compliance |
