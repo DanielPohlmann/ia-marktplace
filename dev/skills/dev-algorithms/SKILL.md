@@ -1,6 +1,6 @@
 ---
 name: dev-algorithms
-description: Use when selecting algorithms, analyzing complexity, or reasoning about data structure choices. Covers Big-O notation, space vs time tradeoffs, amortized analysis, and algorithmic problem-solving strategy based on Knuth's "The Art of Computer Programming." USE FOR: algorithm selection, Big-O analysis, complexity comparison, choosing data structures, algorithmic problem-solving strategy DO NOT USE FOR: specific algorithm implementations (use dev-algorithms-combinatorial, dev-algorithms-data-structures, dev-algorithms-dynamic-programming, dev-algorithms-graph-algorithms, dev-algorithms-sorting-searching), system architecture (use dev-architecture), design patterns (use dev-design-patterns)
+description: Use when picking an algorithm family or reasoning about complexity before going specific. USE FOR: Big-O, time/space tradeoffs, amortized analysis, problem-solving strategy, routing to an algorithm sub-skill. DO NOT USE FOR: a concrete algorithm family (use the matching dev-algorithms-* skill), architecture (use dev-architecture), design patterns (use dev-design-patterns).
 ---
 
 # Algorithms & Data Structures

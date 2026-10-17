@@ -1,6 +1,6 @@
 ---
 name: specs-documentation
-description: Use when writing or structuring software specifications, requirements documents, and architecture decision records. Covers PRDs, TRDs, BRDs, ADRs, RFCs, and executable spec formats. USE FOR: choosing requirements document types, documentation strategy, specification templates, combining written specs with executable tests, architecture decision documentation DO NOT USE FOR: specific document formats (use specs-documentation-prd, specs-documentation-trd, specs-documentation-brd, specs-documentation-adr, specs-documentation-rfc, specs-documentation-gherkin, specs-documentation-gauge sub-skills), specs-diagramming (use specs-diagramming sub-skills)
+description: Use only when choosing which specification document type fits. USE FOR: PRD vs TRD vs BRD vs ADR vs RFC, documentation strategy, combining written and executable specs. DO NOT USE FOR: writing a specific document (use the matching specs-documentation-* skill, e.g. specs-documentation-prd, specs-documentation-adr), diagrams (use specs-diagramming).
 ---
 
 # Documentation & Requirements

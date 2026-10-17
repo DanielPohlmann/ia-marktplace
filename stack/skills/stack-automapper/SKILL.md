@@ -1,6 +1,6 @@
 ---
 name: stack-automapper
-description: Use when configuring or extending AutoMapper for DTO mapping in LinkDaily — including domain-to-DTO, command-to-aggregate, and Dapper result-to-response projections across bounded contexts. USE FOR: Profile-based mapping configuration, ForMember customization, flattening/unflattening, ReverseMap, value resolvers, type converters, ProjectTo with IQueryable. DO NOT USE FOR: compile-time source-generated mapping (consider the Mapperly library instead), mapping that encodes domain business logic (keep that in domain methods), or performance-critical hot paths where reflection overhead is unacceptable.
+description: Use when configuring AutoMapper for DTO mapping in .NET. USE FOR: Profiles, ForMember, flattening, ReverseMap, value resolvers, type converters, ProjectTo. DO NOT USE FOR: source-generated mapping (consider Mapperly), domain business logic in mappings, reflection-sensitive hot paths.
 ---
 
 # AutoMapper

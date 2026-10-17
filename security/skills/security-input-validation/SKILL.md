@@ -1,6 +1,6 @@
 ---
 name: security-input-validation
-description: Use when implementing input validation and output encoding rules to prevent injection attacks in LinkDaily.Api endpoints or any application layer. Covers allowlist validation, context-specific output encoding, parameterized queries, and defense-in-depth strategies across all data types. USE FOR: input validation, allowlist rules, XSS prevention, SQL/command injection prevention, parameterized queries, output encoding, file upload validation, Content Security Policy, sanitization strategies DO NOT USE FOR: general trust-boundary hygiene across internal components (use security-hygiene), authentication and credential validation (use security-authentication), API rate limiting and security headers (use security-api-security), cryptographic validation (use security-cryptography), OWASP vulnerability classification reference (use security-owasp)
+description: Use when implementing input validation and output encoding to prevent injection. USE FOR: allowlists, XSS, SQL/command injection, parameterized queries, context-specific encoding, file uploads, sanitization. DO NOT USE FOR: internal trust boundaries (use security-hygiene), auth (use security-authentication), headers and rate limits (use security-api-security), classification (use security-owasp).
 ---
 
 # Input Validation & Output Encoding

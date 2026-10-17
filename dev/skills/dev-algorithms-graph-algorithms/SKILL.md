@@ -1,6 +1,6 @@
 ---
 name: dev-algorithms-graph-algorithms
-description: Use when working with graph problems including traversal, shortest paths, minimum spanning trees, topological sorting, and connectivity analysis. Covers BFS, DFS, Dijkstra, Bellman-Ford, Floyd-Warshall, Prim, Kruskal, Tarjan, Kosaraju, A*, and Union-Find. Based on Knuth's TAOCP. USE FOR: graph traversal, shortest path computation, minimum spanning tree construction, topological sorting, strongly connected components, pathfinding, union-find operations DO NOT USE FOR: fundamental data structure selection (use dev-algorithms-data-structures), optimization problems with overlapping subproblems (use dev-algorithms-dynamic-programming), combinatorial enumeration and backtracking (use dev-algorithms-combinatorial)
+description: Use when solving graph problems. USE FOR: BFS/DFS, Dijkstra, Bellman-Ford, Floyd-Warshall, A*, Prim/Kruskal MST, topological sort, Tarjan/Kosaraju SCC, union-find. DO NOT USE FOR: data structure selection (use dev-algorithms-data-structures), DP problems (use dev-algorithms-dynamic-programming), backtracking (use dev-algorithms-combinatorial).
 ---
 
 # Graph Algorithms

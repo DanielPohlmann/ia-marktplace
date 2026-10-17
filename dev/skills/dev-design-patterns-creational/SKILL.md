@@ -1,6 +1,6 @@
 ---
 name: dev-design-patterns-creational
-description: Use when implementing any of the 5 GoF Creational patterns (Factory Method, Abstract Factory, Builder, Prototype, Singleton). USE FOR: decoupling instantiation from usage, factory hierarchies, fluent builders for complex objects, prototype cloning, controlled singleton instances DO NOT USE FOR: composing or adapting existing objects (use dev-design-patterns-structural), inter-object communication and algorithm encapsulation (use dev-design-patterns-behavioral), pattern family selection (use dev-design-patterns)
+description: Use when implementing a GoF creational pattern: Factory Method, Abstract Factory, Builder, Prototype, Singleton. USE FOR: decoupling instantiation, fluent builders, cloning, controlled single instances. DO NOT USE FOR: composing/adapting objects (use dev-design-patterns-structural), communication and algorithms (use dev-design-patterns-behavioral), picking a family (use dev-design-patterns).
 ---
 
 # Creational Design Patterns

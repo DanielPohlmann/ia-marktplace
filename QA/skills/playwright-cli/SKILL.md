@@ -1,6 +1,6 @@
 ---
 name: playwright-cli
-description: Use when automating browser interactions or running Playwright-based E2E tests for LinkDaily (Vue 3 admin SPA, Nuxt public frontend). Drives a persistent browser session via CLI commands — navigate, click, fill, screenshot, snapshot, evaluate JavaScript. USE FOR: LinkDaily E2E test automation, Playwright test authoring and debugging, form submission flows, navigation, network interception, accessibility and performance audits, capturing console/network errors during test runs DO NOT USE FOR: unit or integration tests for .NET backend (use dotnet-test:code-testing-generator), Vue component tests with Vitest/Vue Test Utils (use vue-testing-best-practices), API-level testing without a browser
+description: Use when automating a browser from the CLI or debugging Playwright E2E tests — navigate, click, fill, screenshot, snapshot, evaluate JS. USE FOR: browser automation, form flows, network interception, console/network error capture, accessibility and performance audits. DO NOT USE FOR: .NET Aspire E2E suites (use e2e-functional-testing), .NET unit tests (use dotnet-test:code-testing-generator), Vue component tests (use vue-testing-best-practices).
 ---
 
 # Browser Automation with playwright-cli

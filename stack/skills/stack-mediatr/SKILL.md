@@ -1,6 +1,6 @@
 ---
 name: stack-mediatr
-description: MediatR for in-process CQRS and domain-event dispatch inside LinkDaily's modular monolith. USE FOR: IRequest/IRequestHandler command and query handlers, INotification domain-event fan-out (same transaction), IPipelineBehavior cross-cutting pipelines (validation with stack-validot, logging, caching), keeping LinkDaily.Api controllers thin and delegating to application-layer use cases. DO NOT USE FOR: cross-bounded-context messaging over RabbitMQ (use stack-masstransit), abstract CQRS or event-driven architecture decisions (use dev-architecture-event-driven), distributed saga orchestration (use stack-masstransit).
+description: Use when implementing in-process CQRS or domain-event dispatch with MediatR in .NET. USE FOR: IRequest/IRequestHandler, INotification fan-out, IPipelineBehavior (validation, logging, caching), thin controllers delegating to use cases. DO NOT USE FOR: cross-service messaging and sagas (use stack-masstransit), CQRS architecture decisions (use dev-architecture-event-driven).
 ---
 
 # MediatR

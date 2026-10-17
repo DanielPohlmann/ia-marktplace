@@ -1,6 +1,6 @@
 ---
 name: stack-masstransit
-description: MassTransit configuration for RabbitMQ-backed integration events in LinkDaily — the transport layer for all cross-bounded-context messaging between LinkDaily.Api and LinkDaily.Worker. USE FOR: publishing integration events to RabbitMQ after transaction commit, configuring consumers in LinkDaily.Worker, saga state machines, transactional outbox (EF Core), exchange/queue topology, retry and fault policies, competing-consumer setup. DO NOT USE FOR: in-process command/query dispatch within a bounded context (use stack-mediatr), abstract messaging patterns and channel design (use dev-integration-patterns-messaging-channels or dev-integration-patterns-messaging-endpoints), Serilog or OTLP observability wiring (use stack-observability).
+description: Use when configuring MassTransit over RabbitMQ for cross-module or cross-service integration events in .NET. USE FOR: publishing after commit, consumers, sagas, EF Core transactional outbox, exchange/queue topology, retries and faults, competing consumers. DO NOT USE FOR: in-process dispatch (use stack-mediatr), abstract channel design (use dev-integration-patterns-messaging-channels), observability (use stack-observability).
 ---
 
 # MassTransit

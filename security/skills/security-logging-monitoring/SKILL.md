@@ -1,6 +1,6 @@
 ---
 name: security-logging-monitoring
-description: Use when designing security logging, audit trails, and incident detection — including wiring security events into LinkDaily's OTLP/Serilog pipeline for authentication failures, authorization denials, PII access, and anomaly detection. Covers SIEM architecture, audit trail requirements (who/what/when/where/outcome), tamper protection, and compliance logging for GDPR, PCI DSS, HIPAA, and SOX. USE FOR: SIEM design, security event logging, audit trails, intrusion detection, security event correlation, compliance logging, log tamper protection, anomaly alerting DO NOT USE FOR: application performance monitoring and distributed tracing (use stack-observability), .NET logging framework setup — Serilog sinks, enrichers, OTLP exporter (use stack-serilog or stack-observability-otlp-logging), CI/CD security gates in the SDLC (use security-secure-sdlc)
+description: Use when designing security logging, audit trails, or incident detection. USE FOR: SIEM, security events (auth failures, authz denials, PII access), who/what/when/where/outcome audit records, tamper protection, anomaly alerts, GDPR/PCI/HIPAA/SOX logging. DO NOT USE FOR: APM and tracing (use stack-observability), Serilog setup (use stack-serilog), CI security gates (use security-secure-sdlc).
 ---
 
 # Security Logging & Monitoring

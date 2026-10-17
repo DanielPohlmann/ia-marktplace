@@ -1,6 +1,6 @@
 ---
 name: security-secure-sdlc
-description: Use when integrating security into the software development lifecycle — wiring SAST, DAST, and SCA gates into CI/CD pipelines (including LinkDaily's lefthook-enforced push pipeline), establishing security review checkpoints, and building a DevSecOps culture. Covers shift-left security, security gates, DevSecOps practices, security champions programs, and security review processes across all SDLC phases. USE FOR: secure SDLC, DevSecOps, shift-left security, SAST/DAST/SCA pipeline gates, security champions, SDL, security requirements gathering, security architecture review, CI/CD security integration DO NOT USE FOR: specific security testing tool configuration and scan rules (use security-security-testing), threat modeling methodology (use security-threat-modeling), data protection compliance frameworks (use security-data-protection), incident detection and SIEM design (use security-logging-monitoring)
+description: Use when building security into the development lifecycle. USE FOR: DevSecOps, shift-left, SAST/DAST/SCA gates in CI/CD and git hooks, security requirements, design reviews, security champions. DO NOT USE FOR: tool rules and config (use security-security-testing), threat modeling (use security-threat-modeling), SIEM (use security-logging-monitoring).
 ---
 
 # Secure SDLC

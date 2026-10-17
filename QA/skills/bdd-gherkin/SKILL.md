@@ -1,6 +1,6 @@
 ---
 name: bdd-gherkin
-description: Use when authoring Gherkin/Cucumber .feature files or BDD acceptance criteria for LinkDaily — translating business requirements and user stories into domain-driven Given/When/Then specifications. USE FOR: writing feature files, BDD scenarios, executable acceptance criteria, expressing a business rule as single-focused Given/When/Then scenarios in the ubiquitous language (professional, client, appointment, take-rate, review), data tables, backgrounds, scenario outlines. DO NOT USE FOR: running or executing tests or writing step-definition/automation glue code (use playwright-cli), .NET unit/integration test generation (use dotnet-test:code-testing-generator), Vue component tests (use vue-testing-best-practices).
+description: Use when authoring Gherkin/Cucumber .feature files or BDD acceptance criteria from business requirements and user stories. USE FOR: domain-language Given/When/Then scenarios, one business rule per scenario, data tables, Background, Scenario Outline. DO NOT USE FOR: step-definition or automation code (use playwright-cli), .NET unit tests (use dotnet-test:code-testing-generator), Vue component tests (use vue-testing-best-practices).
 ---
 
 # BDD with Gherkin
@@ -17,7 +17,7 @@ This skill **authors the specification**. Executing it is a different job:
 .NET tests. Keep the `.feature` free of any automation mechanics.
 
 **Core principle:** one behavior per scenario, expressed declaratively (WHAT
-happens, never HOW the UI or API does it), in LinkDaily's language.
+happens, never HOW the UI or API does it), in the domain's language.
 
 ## When to use
 
@@ -46,7 +46,7 @@ unless the user explicitly requests a journey / end-to-end flow.
 
 ### Domain-driven language
 
-Use LinkDaily's ubiquitous language. Prioritize business actions, outcomes, and
+Use the project's ubiquitous language. Prioritize business actions, outcomes, and
 rules; allow a minimal technical term only when it genuinely adds clarity.
 
 **Good — business-focused:**
@@ -114,44 +114,6 @@ click-by-click path ("clicks #book, waits for spinner, clicks Confirm").
   Never `foo`, `bar`, `test`, `lorem` — except when deliberately testing
   invalid input.
 
-## Data tables and doc strings
-
-Use a data table when a step carries 2+ fields or would otherwise run long.
-
-**Multiple records — horizontal headers:**
-```gherkin
-Given the following services are in the professional's catalog:
-  | Service        | Duration | Price |
-  | Haircut        | 45       | 80    |
-  | Beard trim     | 20       | 40    |
-  | Full grooming  | 75       | 150   |
-```
-
-**One entity, many fields — vertical key/value:**
-```gherkin
-Given a client books an appointment with the following details:
-  | Service   | Haircut            |
-  | Date      | 2026-07-15         |
-  | Time      | 14:30              |
-  | Address   | 120 Oak Street     |
-```
-
-**Don't** cram it inline:
-```gherkin
-Given a client books a Haircut on 2026-07-15 at 14:30 at 120 Oak Street with notes "please be on time"
-```
-
-Use a doc string for larger free text:
-```gherkin
-Given a client leaves this review for a completed appointment:
-  """
-  Arrived right on time and did a fantastic job.
-  Booking through the profile link was effortless.
-  """
-When the review is submitted
-Then the review is published on the professional's public profile
-```
-
 ## Scenario Outlines
 
 Prefer regular `Scenario`. Reach for an outline **only** when the identical
@@ -200,37 +162,6 @@ Feature: [Business capability]
     Given [specific context]
     When [action that triggers the rule]
     Then [expected business behavior]
-```
-
-## Worked example (Scheduling)
-
-```gherkin
-Feature: Appointment booking within plan limits
-  As a client
-  I want to book an appointment with a professional
-  So that I reserve a confirmed time slot
-
-  Background:
-    Given the professional accepts online bookings
-
-  Scenario: Client books an available slot
-    Given the professional has a free slot on 2026-07-15 at 14:30
-    When a client books that slot
-    Then the appointment is confirmed
-    And the professional is notified of the booking
-
-  Scenario: Booking is rejected when the monthly plan limit is reached
-    Given the professional is on the Free plan
-    And 5 appointments are already booked this month
-    When a client books another appointment
-    Then the booking is rejected
-    And the client is told the professional is fully booked this month
-
-  Scenario: Overlapping slot cannot be double-booked
-    Given the professional has a confirmed appointment on 2026-07-15 at 14:30
-    When another client books the 14:30 slot on 2026-07-15
-    Then the booking is rejected
-    And the slot is shown as unavailable
 ```
 
 ## Anti-patterns
@@ -301,6 +232,14 @@ Before finalizing, verify every box:
 - [ ] `*.feature`, kebab-case, one `Feature`/file, 2-space indent, <120 chars.
 - [ ] Tags minimal; `Background` used only for shared setup.
 - [ ] Readable by a non-technical stakeholder.
+
+## Detailed reference
+
+Load only the file that matches the task — each is self-contained.
+
+| File | Contents |
+|---|---|
+| [references/details.md](references/details.md) | Data tables and doc strings; Worked example (Scheduling) |
 
 ## References
 

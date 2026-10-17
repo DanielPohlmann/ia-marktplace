@@ -1,6 +1,6 @@
 ---
 name: dev-backend-data-modeling
-description: Use when designing database schemas or choosing data storage architecture across relational, document, graph, key-value, and time-series paradigms. USE FOR: normalization/denormalization trade-offs, aggregate-per-table vs document embedding decisions, schema migration strategies, database-per-bounded-context decisions, indexing strategy, polyglot persistence choices — including modeling LinkDaily's PostgreSQL schemas for bounded contexts (Identity, Scheduling, Payments, etc.) and Redis key structures. DO NOT USE FOR: caching strategy and cache pattern selection (use dev-backend-caching), API response shape design (use dev-backend-api-design), concrete EF Core query optimization (use dotnet-data:optimizing-ef-core-queries).
+description: Use when designing database schemas or picking storage paradigms (relational, document, graph, key-value, time-series). USE FOR: normalization trade-offs, embedding vs referencing, database-per-context, indexing, migrations, polyglot persistence, key design. DO NOT USE FOR: caching strategy (use dev-backend-caching), response shapes (use dev-backend-api-design), EF Core tuning (use dotnet-data:optimizing-ef-core-queries).
 ---
 
 # Data Modeling & Database Architecture

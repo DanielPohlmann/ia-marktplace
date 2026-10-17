@@ -1,6 +1,6 @@
 ---
 name: specs
-description: Use when working with software specifications, architecture documentation, and diagramming. Covers the full spectrum of spec-driven development — from architectural diagrams to requirements documents to specification tooling. USE FOR: specification-driven development, architecture documentation strategy, choosing diagram types, choosing requirements formats, spec-to-implementation workflows DO NOT USE FOR: specific diagram syntax (use specs-diagramming sub-skills), specific document templates (use specs-documentation sub-skills)
+description: Use only when unsure whether a task needs diagrams or specification documents. USE FOR: spec-driven development, architecture documentation strategy, routing between diagramming and documentation skills. DO NOT USE FOR: diagram syntax (use specs-diagramming), document templates (use specs-documentation).
 ---
 
 # Specifications & Architecture Documentation

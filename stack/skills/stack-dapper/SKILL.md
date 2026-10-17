@@ -1,6 +1,6 @@
 ---
 name: stack-dapper
-description: Use when writing Dapper-based data access in LinkDaily — including read-side query handlers (CQRS), repository implementations against PostgreSQL, and latency-critical projections across bounded contexts. USE FOR: parameterized SQL queries, multi-mapping joins, QueryAsync/ExecuteAsync, stored procedure invocation, bulk operations, typed POCO mapping, and full SQL control over PostgreSQL. DO NOT USE FOR: schema migrations (use FluentMigrator or raw SQL migration scripts), complex object-graph change tracking (use EF Core), or lazy-loading ORM features; also not for general SQL schema design (use dev-backend-data-modeling).
+description: Use when writing Dapper data access in .NET. USE FOR: parameterized SQL, QueryAsync/ExecuteAsync, multi-mapping joins, CQRS read handlers, repositories, stored procedures, bulk operations, PostgreSQL. DO NOT USE FOR: migrations (use FluentMigrator or SQL scripts), change tracking (use EF Core), schema design (use dev-backend-data-modeling).
 ---
 
 # Dapper

@@ -28,6 +28,8 @@ EXTERNAL_BARE_XLINKS = {
     "interface-design",
 }
 NON_LINKS = {"platform-specific"}
+DESC_SOFT_LIMIT = 600
+BODY_SOFT_WORDS = 1500
 COUNT_RE = re.compile(r"\((\d+) skills?\)")
 
 
@@ -154,6 +156,9 @@ def main():
                 elif len(desc) > 1024:
                     errors.append(f"{tag}: description > 1024 chars ({len(desc)})")
                 else:
+                    # descriptions of every enabled skill sit in context each session
+                    if len(desc) > DESC_SOFT_LIMIT:
+                        warnings.append(f"{tag}: description {len(desc)} chars (>{DESC_SOFT_LIMIT})")
                     if "USE FOR" not in desc:
                         warnings.append(f"{tag}: description has no 'USE FOR' cue")
                     if "DO NOT USE FOR" not in desc:
@@ -171,6 +176,9 @@ def main():
             nlines = body.count("\n") + 1
             if nlines > 500:
                 warnings.append(f"{tag}: SKILL.md {nlines} lines (>500)")
+            nwords = len(body.split("---", 2)[-1].split())
+            if nwords > BODY_SOFT_WORDS:
+                warnings.append(f"{tag}: SKILL.md body {nwords} words (>{BODY_SOFT_WORDS}); move detail to references/")
 
     for n, tags in names.items():
         if len(tags) > 1:

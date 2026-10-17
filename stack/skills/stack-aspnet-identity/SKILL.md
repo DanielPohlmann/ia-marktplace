@@ -1,6 +1,6 @@
 ---
 name: stack-aspnet-identity
-description: Use when implementing ASP.NET Core Identity for the LinkDaily Identity bounded context — professional registration, login/logout, password management, account confirmation, role-based authorization, and .NET 8 Identity API endpoints. USE FOR: IdentityUser, UserManager, SignInManager, AddIdentityCore, MapIdentityApi, IdentityRole, two-factor authentication, external login providers, token generation, password hashing configuration. DO NOT USE FOR: OAuth2/OIDC server implementation (consider the Duende IdentityServer library), authentication protocol design concepts (use security-authentication or dev-backend-authentication), fine-grained policy-based authorization beyond roles, or cryptographic operations unrelated to identity.
+description: Use when implementing ASP.NET Core Identity in .NET. USE FOR: IdentityUser, UserManager, SignInManager, AddIdentityCore, MapIdentityApi, roles, 2FA, external logins, tokens, password hashing options, account confirmation. DO NOT USE FOR: OAuth2/OIDC servers (consider Duende IdentityServer), auth design concepts (use security-authentication or dev-backend-authentication).
 ---
 
 # ASP.NET Core Identity

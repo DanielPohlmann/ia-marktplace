@@ -1,6 +1,6 @@
 ---
 name: specs-documentation-userguide
-description: Use when generating, updating, or auditing client-facing feature documentation as markdown — user guides, help-center articles, "what you can do" pages written for the end customer, not the engineer. Discovers features from the codebase (API endpoints, module handlers, frontend routes/pages) plus existing PRDs, then writes plain-language `.md` a customer can read (generate / update / audit + stale-reference detection). USE FOR: user guides, help-center content, feature catalogs for customers, release-note prose, onboarding docs for end users, syncing published docs after code changes, flagging docs that describe removed features DO NOT USE FOR: internal product requirements (use specs-documentation-prd), technical/API design docs (use specs-documentation-trd), business justification (use specs-documentation-brd), architecture decisions (use specs-documentation-adr), executable acceptance criteria (use specs-documentation-gherkin), an internal research knowledge base (use specs-llm-wiki)
+description: Use when generating, updating, or auditing customer-facing feature docs in markdown derived from the codebase. USE FOR: user guides, help-center articles, feature catalogs, release-note prose, end-user onboarding, syncing docs after code changes, flagging docs for removed features. DO NOT USE FOR: internal requirements (use specs-documentation-prd), technical docs (use specs-documentation-trd), research knowledge bases (use specs-llm-wiki).
 ---
 
 # User Guide & Feature Documentation
@@ -29,95 +29,6 @@ The code is your **source of truth** for *what exists*. It is never your *vocabu
 Strip module names, class names, endpoints, event names, table names, and stack detail
 from the output. Keep verbs the customer performs and outcomes they observe.
 
-## Three Operations
-
-Invoke by intent — the user says "generate the user guide", "update the docs", or
-"audit the docs".
-
-### 1. Generate
-
-Produce customer-facing docs from scratch (or for a feature area that has none).
-
-① **Discover features from the codebase.** Map code artifacts to user-visible
-capabilities (see *Feature Discovery* below). Group by what the customer perceives as
-a feature area, NOT by module or service boundary.
-
-② **Cross-check against existing specs.** Read any PRDs (`specs-documentation-prd`
-output), READMEs, and `docs/` already present — they carry the intended user value and
-naming. Prefer product names the team already uses.
-
-③ **Decide the page set.** One page per feature area a customer would look up. Don't
-mirror the code structure — a single customer feature ("Online booking page") may span
-several modules.
-
-④ **Write each page** using the template below, in the customer's language. Every
-sentence describes something the user does, sees, or receives.
-
-⑤ **Build navigation.** Write/refresh `docs/user-guide/index.md` (or `README.md` in the
-docs root) with a table of contents grouped by theme, and a one-line summary per page.
-
-⑥ **Report** every file created, and list features you found in code but intentionally
-did NOT document (internal-only, admin-only, not yet shipped) so the user can confirm.
-
-### 2. Update
-
-Sync already-published docs after the product changed.
-
-① **Read the existing docs** and the recent diff / changed areas.
-② **Detect drift** — new capabilities not yet documented, changed behavior, renamed or
-removed features.
-③ **Patch minimally** — edit the affected pages, preserve the existing voice and
-structure, bump any "last updated" line. Don't rewrite pages wholesale.
-④ **Report** each page changed and why, in one line each.
-
-### 3. Audit
-
-Health-check the docs against the code — the doc-it "stale reference" pass, adapted.
-
-① **Removed features:** doc pages describing capabilities no longer present in the code
-(endpoint gone, route deleted, module removed) → flag as **stale**.
-② **Undocumented features:** shipped, customer-visible capabilities with no page → flag
-as **gap**.
-③ **Voice leaks:** pages that mention internal names (module/class/endpoint/event/table),
-stack detail, or engineer jargon → flag as **voice**.
-④ **Broken cross-links** between doc pages and missing images/assets.
-⑤ **Staleness:** pages whose behavior no longer matches current code paths.
-⑥ **Report** grouped by severity: stale (describes something gone) > gap (missing) >
-voice > broken links > minor staleness. Give the file path and the concrete fix for
-each. Don't auto-edit during an audit unless asked — report first.
-
-## Feature Discovery — mapping code to customer capabilities
-
-The customer never sees your architecture. Translate these signals into features:
-
-| Code signal | What to read | Yields |
-|---|---|---|
-| **E2E tests** | End-to-end/browser test files, scenario/test names, the flows they drive | Verified user journeys — the strongest signal for "what a customer actually does" |
-| **BDD `.feature` files** | Gherkin scenarios (Given/When/Then), if present | Behavior already phrased in near-customer language — reuse the wording |
-| **API endpoints** | Controllers / minimal-API routes, their HTTP verbs and route names | Actions the customer can trigger |
-| **Module handlers** | Command/query handlers per module (the business operations) | The verbs behind each capability |
-| **Frontend routes/pages** | SPA routes, Nuxt pages, page titles and forms | The screens the customer actually navigates |
-| **Public UI copy / i18n** | Translation files, labels, button text | The product's own vocabulary — reuse it |
-| **PRDs & READMEs** | `specs/` PRDs, project README | Intended value, feature names, personas |
-| **Config/feature flags** | Flags, plans/tiers | Which capabilities are gated / plan-specific |
-
-**Prefer the frontend and UI copy as your naming source** — it's the closest thing to
-what the customer sees. Fall back to endpoints/handlers to confirm a capability exists
-and to find ones the UI doesn't obviously expose.
-
-**E2E tests and `.feature` files are the highest-value discovery signal.** They encode
-complete, *verified* user journeys — a test named `Booking_WhenSlotSelected_SendsConfirmation`
-maps almost one-to-one to a "How to use it" section. The page/route each test drives
-confirms the flow is customer-facing and actually works. Read the scenario/test names
-first, then the steps. But keep the audience rule: a test asserts on selectors and
-status codes — translate the *journey* it proves, never its assertions. If the repo has
-a QA/browser-automation skill (e.g. `playwright-cli`, `bdd-gherkin`), those tests are
-where its scenarios live.
-
-**Group by customer mental model.** "Booking", "Payments & invoices", "Your clients",
-"Notifications & reminders", "Team & permissions", "Your account" — these are feature
-areas a customer recognizes, and each may be assembled from several modules.
-
 ## Output Location & Structure
 
 Default to a dedicated, publishable tree separate from internal specs:
@@ -133,39 +44,6 @@ docs/user-guide/
 Keep it under `docs/` so it lives with the code and can be published as-is to a docs
 site (Docusaurus, Starlight, Mintlify, GitBook) or a help center later. Ask the user if
 they want a different root.
-
-## Page Template
-
-```markdown
-# <Feature name, in the customer's words>
-
-> One-sentence promise: what this lets you do and why it matters.
-
-## What it does
-
-[Plain-language description of the capability. No jargon. Focus on the outcome
-the customer gets.]
-
-## How to use it
-
-1. [Step the customer takes — start from the screen/button they see]
-2. [Next step]
-3. [What they see / receive when it works]
-
-## What to expect
-
-- [Observable behavior: emails sent, confirmations, timing, limits]
-- [Edge behavior the customer would notice, in their terms]
-
-## Good to know
-
-- [Plan/tier gating, if any — "Available on the Pro plan"]
-- [Common questions or gotchas, in the customer's language]
-
-_Last updated: YYYY-MM-DD_
-```
-
-Not every page needs every section. Cut sections that carry no signal for that feature.
 
 ## Voice & Style Rules
 
@@ -189,11 +67,20 @@ Not every page needs every section. Cut sections that carry no signal for that f
 
 ## Project Context
 
-This skill was built with the **LinkDaily** project in mind — a scheduling SaaS for
-independent professionals, structured as a .NET modular monolith (Identity, Scheduling,
-Payments, Notifications, Logistics modules) with an admin SPA and a public Nuxt site.
-See `references/linkdaily-context.md` for the concrete module→feature mapping, where to
-look for each signal, and worked before/after examples in that codebase.
+`references/example-project-context.md` is a worked example for one codebase — a
+scheduling SaaS built as a .NET modular monolith with an admin SPA and a public Nuxt
+site: module→feature mapping, where to look for each signal, before/after examples.
+Adapt its paths to the target repository.
+
+## Detailed reference
+
+Load only the file that matches the task — each is self-contained.
+
+| File | Contents |
+|---|---|
+| [references/three-operations.md](references/three-operations.md) | Three Operations — 1. Generate, 2. Update, 3. Audit |
+| [references/feature-discovery-mapping-code-to-customer-capab.md](references/feature-discovery-mapping-code-to-customer-capab.md) | Feature Discovery — mapping code to customer capabilities |
+| [references/details.md](references/details.md) | Page Template |
 
 ## References
 

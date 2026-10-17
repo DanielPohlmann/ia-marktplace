@@ -1,6 +1,6 @@
 ---
 name: stack-openapi
-description: OpenAPI/Scalar documentation for LinkDaily.Api endpoints — covers Swashbuckle, NSwag, and ASP.NET Core 9 built-in OpenAPI. USE FOR: Scalar UI setup (the project-standard interactive docs UI), Swashbuckle/NSwag configuration, operation filters, XML comment documentation, JWT bearer security schemes in OpenAPI, minimal API endpoint documentation, NSwag C# client generation. DO NOT USE FOR: REST API design principles and HTTP semantics (use dev-backend-api-design), API gateway or reverse-proxy configuration, GraphQL schema documentation, observability or tracing of API calls (use stack-observability-otlp-logging).
+description: Use when documenting ASP.NET Core APIs with OpenAPI and Scalar. USE FOR: Scalar UI, built-in ASP.NET Core 9 OpenAPI, Swashbuckle, NSwag, operation filters, XML comments, JWT security schemes, minimal API docs, NSwag client generation. DO NOT USE FOR: API design principles (use dev-backend-api-design), gateways, tracing (use stack-observability-otlp-logging).
 ---
 
 # OpenAPI (Swagger)

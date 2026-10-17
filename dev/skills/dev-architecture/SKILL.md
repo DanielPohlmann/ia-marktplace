@@ -1,6 +1,6 @@
 ---
 name: dev-architecture
-description: Use when selecting architecture styles, evaluating system decomposition strategies, or analyzing architecture characteristics (quality attributes). In LinkDaily this anchors decisions about the modular-monolith + distributed deployment, EDA/DDD/CQRS choices, and Api vs Worker service split. USE FOR: architecture style selection, comparing monolith vs microservices, architecture characteristics analysis, system decomposition strategy DO NOT USE FOR: specific style deep-dives (use dev-architecture-microservices, dev-architecture-monoliths, dev-architecture-event-driven, dev-architecture-domain-driven-design, dev-architecture-hexagonal, dev-architecture-well-architected), code-level patterns (use dev-design-patterns), integration messaging (use dev-integration-patterns)
+description: Use when selecting an architecture style or analyzing quality attributes before going specific. USE FOR: style selection, monolith vs microservices, architecture characteristics, decomposition strategy, service split. DO NOT USE FOR: a style deep-dive (use the matching dev-architecture-* skill), code-level patterns (use dev-design-patterns), messaging (use dev-integration-patterns).
 ---
 
 # Software Architecture

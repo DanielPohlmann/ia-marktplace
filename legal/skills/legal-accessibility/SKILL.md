@@ -1,6 +1,6 @@
 ---
 name: legal-accessibility
-description: Use when identifying digital accessibility laws and standards that apply to software products. Covers ADA, Section 508, European Accessibility Act, WCAG standards, and emerging accessibility regulations globally with compliance requirements and litigation risks. USE FOR: ADA compliance, Section 508, European Accessibility Act, WCAG, EN 301 549, digital accessibility law, accessibility lawsuits, accessibility statements, VPAT, ACR DO NOT USE FOR: WCAG implementation techniques or accessibility testing tools (use playwright-cli for automated a11y audits), UI component design patterns (use interface-design), general legal topic routing (use legal)
+description: Use when identifying which accessibility laws and standards apply to a software product. USE FOR: ADA, Section 508, European Accessibility Act, EN 301 549, WCAG conformance obligations, VPAT/ACR, accessibility statements, litigation risk. DO NOT USE FOR: automated a11y audits (use playwright-cli), UI design (use interface-design), routing (use legal).
 ---
 
 # Accessibility

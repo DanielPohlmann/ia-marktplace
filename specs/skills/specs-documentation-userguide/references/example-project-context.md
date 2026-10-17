@@ -1,24 +1,24 @@
-# LinkDaily — Feature Discovery Context
+# Example Project Context — Feature Discovery
 
-Concrete mapping for generating **customer-facing** docs from the LinkDaily codebase.
-LinkDaily is a scheduling SaaS for independent professionals: a .NET modular monolith
+Concrete mapping for generating **customer-facing** docs from an example codebase (`MyApp`).
+It is a scheduling SaaS for independent professionals: a .NET modular monolith
 with a distributed deployment.
 
 ## Where to look
 
 | Layer | Path | What it tells you |
 |---|---|---|
-| **E2E tests** | `tests/E2E/LinkDaily.E2E.Tests` | **Verified user journeys** — start here; the strongest signal for what customers actually do |
-| API surface | `src/Services/LinkDaily.Api` | HTTP endpoints → actions a customer can trigger |
-| Business operations | `src/Modules/LinkDaily.<Module>` | Command/query handlers → the verbs behind each capability |
-| Background behavior | `src/Services/LinkDaily.Worker` | What happens *after* an action (emails, reminders, async processing) |
+| **E2E tests** | `tests/E2E/MyApp.E2E.Tests` | **Verified user journeys** — start here; the strongest signal for what customers actually do |
+| API surface | `src/Services/MyApp.Api` | HTTP endpoints → actions a customer can trigger |
+| Business operations | `src/Modules/MyApp.<Module>` | Command/query handlers → the verbs behind each capability |
+| Background behavior | `src/Services/MyApp.Worker` | What happens *after* an action (emails, reminders, async processing) |
 | Admin UI | `frontend/admin-spa` | The professional's dashboard — most customer-facing screens live here |
 | Public site | `frontend/public-nuxt` | The end-client booking experience (the professional's *clients*) |
 | Product intent | `specs/` PRDs, root `README.md`, `CLAUDE.md` | Feature names, personas, intended value |
 
 ### E2E tests — read these first
 
-LinkDaily's E2E suite is a **.NET xUnit + Playwright** project that drives the Aspire
+The example's E2E suite is a **.NET xUnit + Playwright** project that drives the Aspire
 AppHost and the real frontends (it navigates `public-nuxt` and `admin-spa` via
 `AppHostFixture.GetEndpointUrl(...)`). This is the closest thing to a verified,
 executable list of customer journeys.
@@ -78,7 +78,7 @@ partial or admin-only.
 
 ## Before / after (voice)
 
-**Endpoint found:** `POST /appointments` in `LinkDaily.Api`, handled by a
+**Endpoint found:** `POST /appointments` in `MyApp.Api`, handled by a
 `CreateAppointmentHandler` in `Scheduling`, which publishes an event consumed by
 `Notifications`.
 

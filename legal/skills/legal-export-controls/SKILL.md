@@ -1,6 +1,6 @@
 ---
 name: legal-export-controls
-description: Use when identifying export control and sanctions laws that affect software distribution and encryption. Covers US EAR and ITAR, EU Dual-Use Regulation, Wassenaar Arrangement, OFAC sanctions, and encryption export rules that apply to software products distributed internationally. USE FOR: export controls, EAR, ITAR, OFAC sanctions, Wassenaar Arrangement, encryption export, ECCN, dual-use technology, embargoed countries, deemed exports, open-source encryption exemptions DO NOT USE FOR: implementing encryption algorithms (use security-cryptography), trade secret and IP ownership strategy (use legal-intellectual-property), open-source license obligations (use legal-open-source-licensing), general international business law (consult trade counsel)
+description: Use when software distribution or encryption may trigger export controls or sanctions. USE FOR: EAR, ITAR, ECCN, Wassenaar, EU dual-use, OFAC sanctions, embargoed countries, deemed exports, open-source encryption exemptions. DO NOT USE FOR: implementing crypto (use security-cryptography), IP strategy (use legal-intellectual-property), OSS licenses (use legal-open-source-licensing).
 ---
 
 # Export Controls

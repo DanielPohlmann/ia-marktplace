@@ -1,6 +1,6 @@
 ---
 name: security-penetration-testing
-description: Use when planning or conducting authorized penetration tests against web applications, APIs, networks, or mobile apps. Covers pen testing methodologies (OWASP Testing Guide, PTES, OSSTMM), scoping, rules of engagement, tool selection, findings reporting, and remediation verification. USE FOR: penetration testing, pen test methodology, PTES, OSSTMM, OWASP Testing Guide, web app pen testing, API pen testing, network pen testing, mobile pen testing, vulnerability assessment, bug bounty, responsible disclosure, rules of engagement DO NOT USE FOR: automated security scanning gates in CI/CD pipelines (use security-secure-sdlc or security-security-testing), threat modeling during design (use security-threat-modeling), full adversarial kill-chain simulation and detection testing (use security-red-teaming), AI/LLM-specific adversarial testing (use security-ai-security)
+description: Use when planning or running an authorized penetration test of web apps, APIs, networks, or mobile apps. USE FOR: OWASP Testing Guide, PTES, OSSTMM, scoping, rules of engagement, tools, severity, reporting, retest, bug bounty, disclosure. DO NOT USE FOR: CI scanning (use security-security-testing), design-time threats (use security-threat-modeling), kill-chain simulation (use security-red-teaming).
 ---
 
 # Penetration Testing
@@ -21,28 +21,6 @@ Penetration testing is the authorized practice of simulating attacks against a s
 | *OWASP Testing Guide v4.2* | OWASP Foundation | Comprehensive web application testing methodology |
 | *PTES (Penetration Testing Execution Standard)* | PTES.org | Industry-standard pen testing framework |
 
-## Methodologies
-
-| Methodology | Scope | Phases | Best For |
-|-------------|-------|--------|----------|
-| **OWASP Testing Guide** | Web applications | Information gathering, configuration testing, identity management, authentication, authorization, session management, input validation, error handling, cryptography, business logic, client-side | Web app and API pen tests |
-| **PTES** | General | Pre-engagement, intelligence gathering, threat modeling, vulnerability analysis, exploitation, post-exploitation, reporting | Full-scope engagements |
-| **OSSTMM** | Networks and systems | Scope, channel, index, vectors, verification, resolution | Network and infrastructure testing |
-| **NIST SP 800-115** | Technical security | Planning, discovery, attack, reporting | Government and regulatory compliance |
-| **CREST** | General (UK-focused) | Certified methodology for regulated industries | UK/EU regulated environments |
-
-## Pen Test Types
-
-| Type | Target | Techniques | Common Findings |
-|------|--------|------------|-----------------|
-| **Web Application** | HTTP endpoints, UI, business logic | Authentication bypass, injection, XSS, IDOR, privilege escalation, SSRF | OWASP Top 10 vulnerabilities |
-| **API** | REST/GraphQL/gRPC endpoints | BOLA, broken auth, excessive data exposure, mass assignment, rate limit bypass | OWASP API Top 10 vulnerabilities |
-| **Network / Infrastructure** | Hosts, services, protocols | Port scanning, service enumeration, exploit known CVEs, lateral movement, privilege escalation | Unpatched services, weak configs, default credentials |
-| **Mobile** | iOS/Android apps | Binary analysis, certificate pinning bypass, local storage review, API interception, reverse engineering | Insecure storage, hardcoded secrets, weak transport |
-| **Cloud** | AWS/Azure/GCP resources | Misconfiguration audits, IAM review, storage bucket enumeration, metadata service abuse | Over-permissioned roles, public resources, SSRF to metadata |
-| **Wireless** | Wi-Fi, Bluetooth | Rogue AP, WPA cracking, evil twin, Bluetooth sniffing | Weak encryption, rogue access points |
-| **Social Engineering** | People and processes | Phishing campaigns, pretexting, physical access testing | Credential harvesting, policy violations |
-
 ## Testing Approaches
 
 | Approach | Knowledge Given | Simulates | Best For |
@@ -50,67 +28,6 @@ Penetration testing is the authorized practice of simulating attacks against a s
 | **Black Box** | No internal knowledge | External attacker | Realistic external threat assessment |
 | **Gray Box** | Partial knowledge (credentials, architecture docs) | Authenticated attacker or insider threat | Most common; best efficiency-to-realism ratio |
 | **White Box** | Full source code, architecture, credentials | Comprehensive audit | Maximum coverage; code-assisted testing |
-
-## Pen Testing Tools
-
-### Reconnaissance and Enumeration
-
-| Tool | Purpose | Type |
-|------|---------|------|
-| **Nmap** | Port scanning, service detection, OS fingerprinting | Open source |
-| **Amass** | Subdomain enumeration, DNS mapping | Open source (OWASP) |
-| **Shodan** | Internet-connected device search | Commercial (free tier) |
-| **Recon-ng** | OSINT framework for reconnaissance | Open source |
-| **theHarvester** | Email, subdomain, and IP harvesting | Open source |
-
-### Web Application Testing
-
-| Tool | Purpose | Type |
-|------|---------|------|
-| **Burp Suite Professional** | Intercepting proxy, scanner, manual testing | Commercial |
-| **OWASP ZAP** | Intercepting proxy, automated scanning | Open source |
-| **SQLMap** | Automated SQL injection detection and exploitation | Open source |
-| **Nikto** | Web server vulnerability scanner | Open source |
-| **ffuf / Gobuster** | Directory and parameter fuzzing | Open source |
-| **Nuclei** | Template-based vulnerability scanning | Open source |
-
-### Network and Infrastructure
-
-| Tool | Purpose | Type |
-|------|---------|------|
-| **Metasploit Framework** | Exploitation framework with modules for known CVEs | Open source (+ Pro) |
-| **Nessus** | Vulnerability scanning and assessment | Commercial |
-| **OpenVAS** | Vulnerability scanning | Open source |
-| **CrackMapExec / NetExec** | Active Directory and SMB exploitation | Open source |
-| **Impacket** | Network protocol attack toolkit | Open source |
-| **Responder** | LLMNR/NBT-NS/mDNS poisoning | Open source |
-
-### Post-Exploitation
-
-| Tool | Purpose | Type |
-|------|---------|------|
-| **BloodHound** | Active Directory attack path mapping | Open source |
-| **Mimikatz** | Credential extraction from Windows | Open source |
-| **Chisel / Ligolo-ng** | Tunneling and pivoting | Open source |
-| **LinPEAS / WinPEAS** | Privilege escalation enumeration | Open source |
-
-### Mobile
-
-| Tool | Purpose | Type |
-|------|---------|------|
-| **Frida** | Dynamic instrumentation and hooking | Open source |
-| **objection** | Runtime mobile exploration (built on Frida) | Open source |
-| **MobSF** | Automated mobile static/dynamic analysis | Open source |
-| **Jadx** | Android APK decompilation | Open source |
-
-### Cloud
-
-| Tool | Purpose | Type |
-|------|---------|------|
-| **ScoutSuite** | Multi-cloud security auditing | Open source |
-| **Prowler** | AWS/Azure/GCP security assessment | Open source |
-| **Pacu** | AWS exploitation framework | Open source |
-| **CloudSploit** | Cloud misconfiguration detection | Open source |
 
 ## Scoping and Rules of Engagement
 
@@ -127,16 +44,6 @@ Every pen test must begin with a formal scoping and rules of engagement agreemen
 | **Rules** | No denial of service, no data destruction, no social engineering (unless scoped), notification on critical findings |
 | **Deliverables** | Report format, debrief meeting, retest timeline |
 
-## Severity Rating
-
-| Severity | CVSS Range | Description | Example |
-|----------|-----------|-------------|---------|
-| **Critical** | 9.0 - 10.0 | Immediate exploitation possible with severe impact | Unauthenticated RCE, SQL injection to database dump |
-| **High** | 7.0 - 8.9 | Exploitation likely with significant impact | Authentication bypass, privilege escalation to admin |
-| **Medium** | 4.0 - 6.9 | Exploitation possible with moderate impact | Stored XSS, IDOR with limited data exposure |
-| **Low** | 0.1 - 3.9 | Exploitation difficult or limited impact | Information disclosure, verbose error messages |
-| **Informational** | 0.0 | No direct security impact but worth noting | Missing security headers, outdated software versions |
-
 ## Reporting
 
 A pen test report should include:
@@ -147,23 +54,6 @@ A pen test report should include:
 4. **Risk Summary** — findings grouped by severity with counts
 5. **Remediation Roadmap** — prioritized list of fixes with effort estimates
 6. **Appendices** — tool output, raw scan results, methodology details
-
-## Bug Bounty and Responsible Disclosure
-
-| Program Type | Description | Reward | Best For |
-|-------------|-------------|--------|----------|
-| **Bug Bounty (managed)** | Ongoing program via HackerOne/Bugcrowd/Intigriti | Monetary bounties | Continuous external testing at scale |
-| **Bug Bounty (self-hosted)** | Company-run program with security@ email | Monetary or swag | Companies wanting control over process |
-| **VDP (Vulnerability Disclosure Policy)** | Published policy inviting responsible reports | Recognition (no monetary) | Minimum baseline for any company |
-
-### Responsible Disclosure Process
-
-1. Researcher discovers vulnerability
-2. Researcher reports via designated channel
-3. Company acknowledges receipt (target: 1 business day)
-4. Company triages and validates (target: 5 business days)
-5. Company remediates (target: 90 days for standard, 7 days for actively exploited)
-6. Coordinated public disclosure after fix
 
 ## Best Practices
 
@@ -177,6 +67,15 @@ A pen test report should include:
 - **Conduct pen tests at least annually** and after major releases or architecture changes.
 - **Treat pen test reports as confidential** — they contain detailed exploitation instructions for your systems.
 - **Rotate pen testing firms** periodically to get fresh perspectives and avoid blind spots from familiarity.
+
+## Detailed reference
+
+Load only the file that matches the task — each is self-contained.
+
+| File | Contents |
+|---|---|
+| [references/pen-testing-tools.md](references/pen-testing-tools.md) | Pen Testing Tools — Reconnaissance and Enumeration, Web Application Testing, Network and Infrastructure, Post-Exploitation, Mobile, Cloud |
+| [references/details.md](references/details.md) | Methodologies; Pen Test Types; Severity Rating; Bug Bounty and Responsible Disclosure |
 
 ## References
 

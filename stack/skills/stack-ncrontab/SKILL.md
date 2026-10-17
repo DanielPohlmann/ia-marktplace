@@ -1,6 +1,6 @@
 ---
 name: stack-ncrontab
-description: NCrontab cron expression parsing used by LinkDaily.Worker to drive scheduled background jobs. USE FOR: parsing and validating five- and six-field cron expressions, computing next/previous occurrence times, building custom IHostedService schedulers that loop on cron cadence inside LinkDaily.Worker, generating occurrence lists for admin display. DO NOT USE FOR: full distributed job scheduling with persistence and UI (use Quartz.NET or Hangfire), async message consumer configuration in Worker (use stack-masstransit), real-time event processing, Windows Task Scheduler or OS-level scheduling.
+description: Use when parsing cron expressions or scheduling recurring work with NCrontab in .NET. USE FOR: 5/6-field cron parsing and validation, next/previous occurrences, IHostedService cron loops, occurrence lists. DO NOT USE FOR: persistent distributed jobs (use Quartz.NET or Hangfire), message consumers (use stack-masstransit).
 ---
 
 # NCrontab

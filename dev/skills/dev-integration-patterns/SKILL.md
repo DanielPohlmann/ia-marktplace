@@ -1,6 +1,6 @@
 ---
 name: dev-integration-patterns
-description: Use when designing or evaluating enterprise integration architectures based on Hohpe & Woolf's Enterprise Integration Patterns — the conceptual vocabulary behind LinkDaily's RabbitMQ cross-context messaging. USE FOR: Enterprise Integration Patterns overview, messaging architecture, choosing between integration pattern families, pipes-and-filters, message-oriented middleware design DO NOT USE FOR: specific EIP pattern categories (use dev-integration-patterns-messaging-channels, dev-integration-patterns-message-construction, dev-integration-patterns-message-routing, dev-integration-patterns-message-transformation, dev-integration-patterns-messaging-endpoints, dev-integration-patterns-system-management), API design (use dev-backend-api-design), event sourcing (use dev-architecture-event-driven), concrete .NET/RabbitMQ/MassTransit implementation (use stack-masstransit)
+description: Use when choosing among Enterprise Integration Pattern families before going specific. USE FOR: EIP overview, messaging architecture, pipes-and-filters, message-oriented middleware. DO NOT USE FOR: one pattern family (use the matching dev-integration-patterns-* skill), API design (use dev-backend-api-design), event sourcing (use dev-architecture-event-driven), MassTransit code (use stack-masstransit).
 ---
 
 # Enterprise Integration Patterns

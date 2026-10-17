@@ -1,6 +1,6 @@
 ---
 name: dev-integration-patterns-messaging-endpoints
-description: Use when designing how applications connect to and consume messages from a messaging system based on Enterprise Integration Patterns (Hohpe & Woolf). In LinkDaily this informs how LinkDaily.Worker consumers subscribe to and process RabbitMQ integration events from other bounded contexts. USE FOR: consumer patterns, polling vs event-driven consumers, competing consumers, idempotent receivers, transactional messaging, durable subscribers, service activators DO NOT USE FOR: channel type selection (use dev-integration-patterns-messaging-channels), routing logic (use dev-integration-patterns-message-routing), message construction (use dev-integration-patterns-message-construction), concrete MassTransit consumer/saga implementation (use stack-masstransit)
+description: Use when designing how applications consume messages (Enterprise Integration Patterns). USE FOR: polling vs event-driven consumers, competing consumers, idempotent receivers, transactional clients, durable subscribers, service activators. DO NOT USE FOR: channels (use dev-integration-patterns-messaging-channels), routing (use dev-integration-patterns-message-routing), MassTransit consumers (use stack-masstransit).
 ---
 
 # Messaging Endpoints

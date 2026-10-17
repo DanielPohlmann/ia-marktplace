@@ -1,6 +1,6 @@
 ---
 name: stack-validot
-description: Validot high-performance validation library for .NET. Use when defining command or request validation rules in LinkDaily — Validot is the project-standard validator for MediatR command handlers and API input contracts. USE FOR: Specification&lt;T&gt; fluent builder, Validator&lt;T&gt; singleton registration, allocation-free validation passes, nested object and collection validation, custom rules, error message templating, translation, DI wiring with AddValidot. DO NOT USE FOR: async validation requiring database lookups (Validot is synchronous — perform DB checks in the handler after Validot passes), ASP.NET Core automatic model-binding validation (Validot is invoked explicitly, not via model-state), guard-clause-style argument null checks (use ArgumentNullException / CommunityToolkit.Diagnostics.Guard), FluentValidation patterns (not used in this project).
+description: Use when defining command or request validation with Validot in .NET. USE FOR: Specification<T> builder, singleton Validator<T>, nested and collection rules, custom rules, message templates, translations, AddValidot DI, MediatR pipeline validation. DO NOT USE FOR: async DB checks (do them in the handler), model-binding validation, guard clauses, FluentValidation.
 ---
 
 # Validot

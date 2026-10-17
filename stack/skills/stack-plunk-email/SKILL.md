@@ -1,6 +1,6 @@
 ---
 name: stack-plunk-email
-description: Plunk transactional and marketing email integration for .NET. Use when the Notifications bounded context needs to send transactional emails (booking confirmations, reminders, receipts) via the Plunk REST API or Node SDK. USE FOR: Plunk API email send, contact creation, event tracking, automated workflows, audience segmentation, HTML template variables, PLUNK_SECRET_KEY / PLUNK_PUBLIC_KEY configuration. DO NOT USE FOR: bulk email without personalisation (use an ESP like SendGrid), push notifications (use FCM/APNs), SMS/WhatsApp (use stack-masstransit + Twilio consumer), generic .NET email abstractions (use stack-serilog for log delivery, not email).
+description: Use when sending transactional or marketing email through Plunk from .NET. USE FOR: Plunk REST send, contacts, events, workflows, segments, template variables, PLUNK_SECRET_KEY/PLUNK_PUBLIC_KEY config. DO NOT USE FOR: push notifications (use FCM/APNs), SMS/WhatsApp (use stack-masstransit with a provider consumer), log delivery (use stack-serilog).
 ---
 
 # Plunk Email

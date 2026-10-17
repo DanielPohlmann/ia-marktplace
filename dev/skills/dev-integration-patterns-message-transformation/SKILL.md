@@ -1,6 +1,6 @@
 ---
 name: dev-integration-patterns-message-transformation
-description: Use when designing how messages are reshaped, enriched, filtered, or normalised as they flow between systems based on Enterprise Integration Patterns (Hohpe & Woolf). In LinkDaily this applies to shaping integration event payloads between RabbitMQ producers and consumers across bounded contexts. USE FOR: message transformation, envelope wrapping, content enrichment, content filtering, claim check, normalisation, canonical data models DO NOT USE FOR: routing messages between consumers (use dev-integration-patterns-message-routing), message structure and intent design (use dev-integration-patterns-message-construction), channel type selection (use dev-integration-patterns-messaging-channels), concrete MassTransit/RabbitMQ implementation (use stack-masstransit)
+description: Use when reshaping messages between producers and consumers (Enterprise Integration Patterns). USE FOR: translators, envelope wrapper, content enricher, content filter, claim check, normalizer, canonical data model. DO NOT USE FOR: routing (use dev-integration-patterns-message-routing), message design (use dev-integration-patterns-message-construction), MassTransit code (use stack-masstransit).
 ---
 
 # Message Transformation

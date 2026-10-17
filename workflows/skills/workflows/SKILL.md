@@ -1,6 +1,6 @@
 ---
 name: workflows
-description: Use when given a plan path from docs/superpowers/plans/ to execute end-to-end. This skill is the agent-side half of a two-part automation system — the orchestrator half is ./scripts/planlist-runner.js, which spawns Claude Code, injects `/workflows <plan_path>` via stdin, and monitors stdout for the [PLANO_CONCLUIDO] signal emitted by this skill. Together they form a fully automated plan queue: planlist-runner.js owns the CSV state (planlist.csv) and rate-limit handling; this skill owns branch isolation, plan execution, commit/push/PR, and signal emission. USE FOR: executing any plan file end-to-end (branch setup → implement → commit → push → PR → signal), automated plan queue runs, "run/execute/process a plan" requests DO NOT USE FOR: authoring or drafting plans (use superpowers:writing-plans), brainstorming implementation approaches (use superpowers:brainstorming), interactive step-by-step execution with human checkpoints (use superpowers:executing-plans)
+description: Use when given a plan path from docs/superpowers/plans/ to execute end-to-end, typically injected by planlist-runner.js as /workflows <plan_path>. USE FOR: branch setup, implement, commit, push, PR, and emitting the [PLANO_CONCLUIDO] signal; automated plan-queue runs. DO NOT USE FOR: writing plans (use superpowers:writing-plans), brainstorming (use superpowers:brainstorming), interactive execution with checkpoints (use superpowers:executing-plans).
 ---
 
 # workflows — Plan Execution Orchestrator

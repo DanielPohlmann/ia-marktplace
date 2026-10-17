@@ -1,6 +1,6 @@
 ---
 name: dev-integration-patterns-message-construction
-description: Use when designing message structure, intent, and metadata for enterprise messaging systems based on Enterprise Integration Patterns (Hohpe & Woolf). USE FOR: message types (command/event/document), request-reply correlation, message sequencing, expiration, format indicators, correlation ID design for cross-context integration events DO NOT USE FOR: channel type selection (use dev-integration-patterns-messaging-channels), routing rules (use dev-integration-patterns-message-routing), message transformation (use dev-integration-patterns-message-transformation), concrete MassTransit/RabbitMQ implementation (use stack-masstransit)
+description: Use when designing message structure, intent, and metadata (Enterprise Integration Patterns). USE FOR: command vs event vs document messages, request-reply, correlation IDs, sequencing, expiration, format indicators. DO NOT USE FOR: channels (use dev-integration-patterns-messaging-channels), routing (use dev-integration-patterns-message-routing), MassTransit code (use stack-masstransit).
 ---
 
 # Message Construction

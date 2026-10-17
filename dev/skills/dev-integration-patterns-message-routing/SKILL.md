@@ -1,6 +1,6 @@
 ---
 name: dev-integration-patterns-message-routing
-description: Use when designing how messages are directed, split, aggregated, and orchestrated across enterprise systems based on Enterprise Integration Patterns (Hohpe & Woolf). In LinkDaily this applies to how RabbitMQ integration events are dispatched and fanned out across bounded contexts. USE FOR: content-based routing, message filtering, splitter/aggregator, scatter-gather, routing slip, process manager, dynamic routing, recipient lists DO NOT USE FOR: message format and intent (use dev-integration-patterns-message-construction), message transformation and enrichment (use dev-integration-patterns-message-transformation), channel type selection (use dev-integration-patterns-messaging-channels), concrete MassTransit/RabbitMQ routing configuration (use stack-masstransit)
+description: Use when designing how messages are directed between consumers (Enterprise Integration Patterns). USE FOR: content-based router, filter, splitter, aggregator, scatter-gather, routing slip, process manager, recipient list. DO NOT USE FOR: message shape (use dev-integration-patterns-message-construction), transformation (use dev-integration-patterns-message-transformation), MassTransit config (use stack-masstransit).
 ---
 
 # Message Routing

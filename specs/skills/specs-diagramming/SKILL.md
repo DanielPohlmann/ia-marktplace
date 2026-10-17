@@ -1,6 +1,6 @@
 ---
 name: specs-diagramming
-description: Use when creating software architecture diagrams, system visualizations, or technical drawings. Covers text-based and visual diagramming approaches for architecture communication. USE FOR: choosing diagram types, comparing diagramming tools, architecture visualization strategy, diagrams-as-code workflows, embedding diagrams in documentation DO NOT USE FOR: specific diagram syntax (use specs-diagramming-c4-diagrams, specs-diagramming-mermaidjs, specs-diagramming-uml, specs-diagramming-d2, specs-diagramming-plantuml, etc.), requirements documents (use specs-documentation sub-skills)
+description: Use only when choosing a diagram type or tool before drawing. USE FOR: diagram type selection, tool comparison, diagrams-as-code workflow, embedding diagrams in docs. DO NOT USE FOR: specific syntax (use the matching specs-diagramming-* skill, e.g. specs-diagramming-mermaidjs, specs-diagramming-c4-diagrams), requirements documents (use specs-documentation).
 ---
 
 # Diagramming

@@ -1,6 +1,6 @@
 ---
 name: dev-integration-patterns-system-management
-description: Use when designing observability, testing, debugging, and operational control for messaging systems based on Enterprise Integration Patterns (Hohpe & Woolf) — including LinkDaily's RabbitMQ topology (wire tap on integration events, control bus for consumer lifecycle). USE FOR: messaging observability, wire tap, control bus, message history, message store, monitoring messaging systems, testing message flows, debugging async systems, purging channels, runtime routing control DO NOT USE FOR: message routing decisions (use dev-integration-patterns-message-routing), consumer endpoint patterns (use dev-integration-patterns-messaging-endpoints), channel type selection (use dev-integration-patterns-messaging-channels), message format design (use dev-integration-patterns-message-construction)
+description: Use when observing, testing, or operating a messaging system (Enterprise Integration Patterns). USE FOR: wire tap, control bus, message history, message store, monitoring, testing async flows, purging channels. DO NOT USE FOR: routing (use dev-integration-patterns-message-routing), consumers (use dev-integration-patterns-messaging-endpoints), channels (use dev-integration-patterns-messaging-channels).
 ---
 
 # System Management

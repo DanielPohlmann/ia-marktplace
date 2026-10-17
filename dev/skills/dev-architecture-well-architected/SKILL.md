@@ -1,6 +1,6 @@
 ---
 name: dev-architecture-well-architected
-description: Cloud well-architected frameworks from AWS, Azure, and GCP -- covering pillars, design principles, review processes, and cross-cloud comparison for building reliable, secure, cost-effective cloud workloads. USE FOR: well-architected reviews, cloud architecture evaluation, reliability/security/cost/performance/operational-excellence pillar analysis, cross-cloud architecture comparison DO NOT USE FOR: cloud infrastructure provisioning, microservice patterns (use dev-architecture-microservices), security threat modeling (use security-threat-modeling), API design (use dev-backend-api-design)
+description: Use when reviewing a cloud workload against AWS, Azure, or GCP well-architected frameworks. USE FOR: reliability, security, cost, performance, operational-excellence pillars, review process, cross-cloud comparison. DO NOT USE FOR: microservice patterns (use dev-architecture-microservices), threat modeling (use security-threat-modeling), API design (use dev-backend-api-design).
 ---
 
 # Cloud Well-Architected Frameworks
@@ -26,223 +26,6 @@ This skill covers all three frameworks in a unified view, enabling cross-cloud c
 
 ---
 
-## AWS Well-Architected Framework (6 Pillars)
-
-### 1. Operational Excellence
-Design, run, and monitor systems to deliver business value and continually improve processes and procedures.
-
-**Key principles:**
-- Perform operations as code (Infrastructure as Code)
-- Make frequent, small, reversible changes
-- Refine operations procedures frequently
-- Anticipate failure; learn from all operational events
-- Use managed services to reduce operational burden
-
-### 2. Security
-Protect data, systems, and assets through risk assessments, security controls, and automated security best practices.
-
-**Key principles:**
-- Implement a strong identity foundation (least privilege, IAM)
-- Enable traceability (logging, auditing, monitoring)
-- Apply security at all layers (edge, VPC, subnet, instance, OS, application)
-- Automate security best practices
-- Protect data in transit and at rest
-- Keep people away from data (reduce direct access)
-- Prepare for security events (incident response runbooks)
-
-### 3. Reliability
-Ensure a workload can recover from failures and meet demand through proper planning and design.
-
-**Key principles:**
-- Automatically recover from failure
-- Test recovery procedures
-- Scale horizontally to increase aggregate availability
-- Stop guessing capacity (use auto-scaling)
-- Manage change through automation
-
-### 4. Performance Efficiency
-Use computing resources efficiently and maintain that efficiency as demand changes and technologies evolve.
-
-**Key principles:**
-- Democratize advanced technologies (use managed services)
-- Go global in minutes (multi-region)
-- Use serverless architectures where possible
-- Experiment more often
-- Consider mechanical sympathy (understand how services are consumed)
-
-### 5. Cost Optimization
-Avoid unnecessary costs and understand where money is being spent.
-
-**Key principles:**
-- Implement cloud financial management
-- Adopt a consumption model (pay for what you use)
-- Measure overall efficiency
-- Stop spending money on undifferentiated heavy lifting
-- Analyze and attribute expenditure
-
-### 6. Sustainability
-Minimize environmental impact of cloud workloads.
-
-**Key principles:**
-- Understand your impact
-- Establish sustainability goals
-- Maximize utilization
-- Anticipate and adopt new, more efficient offerings
-- Use managed services (shared infrastructure is more efficient)
-- Reduce downstream impact of your cloud workloads
-
----
-
-## Azure Well-Architected Framework (5 Pillars)
-
-### 1. Reliability
-Ensure the application meets its availability commitments through resiliency and recovery design.
-
-**Key principles:**
-- Design for business requirements (define SLA/SLO/SLI)
-- Design for failure (assume everything can fail)
-- Observe application health (monitoring, alerting)
-- Drive automation (minimize human error)
-- Design for self-healing
-- Design for scale-out
-
-### 2. Security
-Protect the confidentiality, integrity, and availability of the application and its data.
-
-**Key principles:**
-- Plan resources and how to harden them
-- Automate and use least privilege
-- Classify and encrypt data
-- Guard with identity management (Zero Trust)
-- Monitor security for the entire system
-- Secure the supply chain
-
-### 3. Cost Optimization
-Balance business goals with budget to create a cost-effective workload while avoiding waste.
-
-**Key principles:**
-- Develop cost-management discipline
-- Design with a cost-efficiency mindset
-- Design for usage optimization (right-size, auto-scale)
-- Continuously monitor and optimize
-
-### 4. Operational Excellence
-Reduce issues in production by building holistic observability and automated processes.
-
-**Key principles:**
-- Embrace DevOps culture
-- Establish development standards (IaC, CI/CD)
-- Evolve operations with observability
-- Deploy with confidence (progressive rollout, rollback)
-- Automate for efficiency
-- Adopt safe deployment practices
-
-### 5. Performance Efficiency
-Efficiently scale your workload to meet demand without over-provisioning or under-provisioning.
-
-**Key principles:**
-- Negotiate realistic performance targets (SLAs/SLOs)
-- Design to meet capacity requirements
-- Achieve and sustain performance
-- Improve efficiency through optimization
-- Monitor and collect data to measure performance
-
----
-
-## GCP Architecture Framework (6 Pillars)
-
-### 1. System Design
-Design systems that meet functional and non-functional requirements using cloud-native patterns.
-
-**Key principles:**
-- Design for change (loosely coupled components)
-- Design for automation
-- Design for managed services
-- Design for portability where appropriate
-- Design for observability
-
-### 2. Operational Excellence
-Deploy, operate, and monitor systems efficiently with minimal manual intervention.
-
-**Key principles:**
-- Automate deployments (CI/CD)
-- Practice infrastructure as code
-- Monitor and alert on SLIs
-- Conduct game days and chaos engineering
-- Implement progressive rollouts
-
-### 3. Security, Privacy & Compliance
-Protect data and systems, maintain privacy, and meet compliance requirements.
-
-**Key principles:**
-- Leverage shared responsibility model
-- Apply defense in depth
-- Automate security controls
-- Classify data by sensitivity
-- Implement identity federation and least privilege
-- Manage compliance as code
-
-### 4. Reliability
-Design and operate a resilient, highly available service that meets availability targets.
-
-**Key principles:**
-- Define and measure SLOs/SLIs
-- Build redundancy to handle failures
-- Design for graceful degradation
-- Implement health monitoring and automated remediation
-- Test for reliability (disaster recovery, chaos engineering)
-
-### 5. Cost Optimization
-Manage and optimize costs while maintaining performance and reliability.
-
-**Key principles:**
-- Identify cost drivers
-- Right-size and auto-scale resources
-- Use committed use discounts and sustained use discounts
-- Monitor and forecast costs
-- Build a cost-aware culture
-
-### 6. Performance Optimization
-Design, validate, and tune resources for optimal performance.
-
-**Key principles:**
-- Define performance requirements early
-- Benchmark and load-test
-- Optimize at the application and infrastructure layers
-- Use caching and CDNs
-- Monitor performance continuously
-
----
-
-## Well-Architected Review Process
-
-A Well-Architected Review (WAR) is a structured assessment of a workload against the framework's pillars. All three clouds provide review tooling:
-
-| Cloud | Tool | How It Works |
-|-------|------|-------------|
-| **AWS** | AWS Well-Architected Tool | Answer questions per pillar; generates findings and improvement plan |
-| **Azure** | Azure Well-Architected Review (online assessment) | Self-service questionnaire; generates recommendations |
-| **GCP** | Architecture Framework checklists + Cloud Architecture Center | Checklist-driven review; reference architectures |
-
-### Review Steps
-
-1. **Scope the workload** -- Define the boundary of what is being reviewed (a single application, a platform, a service).
-2. **Assemble the team** -- Include architects, developers, operations, security, and finance.
-3. **Walk through each pillar** -- Answer the framework's questions honestly. Identify gaps.
-4. **Prioritize findings** -- Rank by business impact and effort. Focus on high-risk, high-impact items first.
-5. **Create an improvement plan** -- Assign owners, set deadlines, track progress.
-6. **Schedule regular reviews** -- Architecture is not a one-time activity. Review quarterly or after major changes.
-
-### Review Frequency
-
-| Trigger | Action |
-|---------|--------|
-| New workload launch | Full review before production |
-| Major architecture change | Review affected pillars |
-| Quarterly cadence | Lightweight review of all pillars |
-| Incident or outage | Review Reliability and Operational Excellence pillars |
-| Cost spike | Review Cost Optimization pillar |
-
 ## Pillar Tensions and Tradeoffs
 
 The pillars are inherently in tension. Optimizing one often increases costs or complexity in another:
@@ -265,6 +48,17 @@ The pillars are inherently in tension. Optimizing one often increases costs or c
 - Document all tradeoff decisions in Architecture Decision Records.
 - Remember that well-architected is aspirational -- no workload scores perfectly on every pillar. The goal is continuous improvement.
 - When working across clouds (multi-cloud or migration), use this cross-cloud comparison to map equivalent concerns and avoid gaps.
+
+## Detailed reference
+
+Load only the file that matches the task — each is self-contained.
+
+| File | Contents |
+|---|---|
+| [references/aws-well-architected-framework-6-pillars.md](references/aws-well-architected-framework-6-pillars.md) | AWS Well-Architected Framework (6 Pillars) — 1. Operational Excellence, 2. Security, 3. Reliability, 4. Performance Efficiency, 5. Cost Optimization, 6. Sustainability |
+| [references/azure-well-architected-framework-5-pillars.md](references/azure-well-architected-framework-5-pillars.md) | Azure Well-Architected Framework (5 Pillars) — 1. Reliability, 2. Security, 3. Cost Optimization, 4. Operational Excellence, 5. Performance Efficiency |
+| [references/gcp-architecture-framework-6-pillars.md](references/gcp-architecture-framework-6-pillars.md) | GCP Architecture Framework (6 Pillars) — 1. System Design, 2. Operational Excellence, 3. Security, Privacy & Compliance, 4. Reliability, 5. Cost Optimization, 6. Performance Optimization |
+| [references/details.md](references/details.md) | Well-Architected Review Process |
 
 ## References
 

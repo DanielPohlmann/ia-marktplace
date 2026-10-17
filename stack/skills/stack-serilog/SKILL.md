@@ -1,6 +1,6 @@
 ---
 name: stack-serilog
-description: Serilog structured logging library for .NET. Use when configuring or extending structured logging in LinkDaily.Api or LinkDaily.Worker — both services use Serilog as the logging backbone. USE FOR: Serilog bootstrap / two-stage init, sink configuration (Console, File, Seq, Elasticsearch, Application Insights), log enrichers (FromLogContext, machine name, correlation ID), ASP.NET Core request logging via UseSerilogRequestLogging, Serilog expression filters, appsettings.json ReadFrom.Configuration. DO NOT USE FOR: OpenTelemetry log export pipeline (use stack-observability or stack-observability-otlp-logging), NLog configuration (not used in this project), Microsoft.Extensions.Logging abstraction design questions, tracing/metrics (use stack-observability).
+description: Use when configuring Serilog structured logging in .NET. USE FOR: two-stage bootstrap, sinks (Console, File, Seq, Elasticsearch, App Insights), enrichers, UseSerilogRequestLogging, expression filters, ReadFrom.Configuration. DO NOT USE FOR: OTLP log export (use stack-observability-otlp-logging), tracing and metrics (use stack-observability).
 ---
 
 # Serilog

@@ -22,7 +22,7 @@ ia-marktplace/
 ├── QA/                           ← plugin: QA (3 skills)
 ├── workflows/                    ← plugin: workflows (1 skill)
 ├── specs/                        ← plugin: specs (21 skills)
-├── custom-agent/                 ← plugin: custom-agent (2 skills)
+├── custom-agent/                 ← plugin: custom-agent (1 skill)
 ├── CLAUDE.md
 ├── README.md
 ├── AGENTS.md
@@ -61,6 +61,19 @@ produce a PDF report. It is deliberately excluded from the marketplace (no `plug
   skill needs it). No `license`, `compatibility`, or `references` keys — dropped
   reference URLs live in a `## References` body section.
 
+## Token budget (keep skills cheap for Claude)
+
+- Every enabled skill's `description` is in context **every session**. Keep it
+  ≤ ~500 chars: one `Use when …` trigger sentence, `USE FOR:` as keywords only,
+  `DO NOT USE FOR:` limited to the 2–4 closest siblings. No "Covers …" sentence
+  restating `USE FOR`, and no consumer-project names (keep skills generic).
+- The `SKILL.md` body loads only when the skill is invoked. Keep it ≤ ~1500 words:
+  overview, decision guidance, checklists, best practices, pitfalls. Put catalogs,
+  templates, long examples, and per-item deep dives in `references/<topic>.md`
+  and list them in a `## Detailed reference` table (file → contents) so Claude
+  loads only the file the task needs.
+- The verifier warns above 600 description chars or 1500 body words.
+
 ## The 9 plugins
 
 | Plugin | Skills | Domain |
@@ -73,7 +86,7 @@ produce a PDF report. It is deliberately excluded from the marketplace (no `plug
 | `QA` | 3 | Browser automation, E2E/functional testing & BDD/Gherkin authoring |
 | `workflows` | 1 | Plan execution orchestrator |
 | `specs` | 21 | Diagramming (C4, Mermaid, UML, PlantUML, D2, ERD, TOGAF, ArchiMate, functional), specification documents (PRD, TRD, BRD, ADR, RFC, Gherkin, Gauge, user guide) & knowledge-base building (LLM Wiki) |
-| `custom-agent` | 2 | Multi-agent orchestration: driving Tamandua (workflow runs, step lifecycle, worktrees, services, AutoResearch loops) & graphify (knowledge-graph building & querying over any input) |
+| `custom-agent` | 1 | graphify (knowledge-graph building & querying over any input) |
 
 ## Adding a skill
 

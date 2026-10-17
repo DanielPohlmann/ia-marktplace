@@ -1,6 +1,6 @@
 ---
 name: legal-privacy-data-protection
-description: Use when identifying data privacy and protection laws that apply to any software product handling PII. Covers GDPR, CCPA/CPRA, LGPD, PIPL, PIPA, DPDPA, PIPEDA, and other global regulations with jurisdiction mapping, key obligations, and compliance triggers. USE FOR: LGPD/GDPR/CCPA compliance, data subject rights, consent management, cross-border data transfers, DPO requirements, breach notification, privacy impact assessments, records of processing DO NOT USE FOR: encryption and key management implementation (use security-cryptography), data masking and PII storage patterns (use security-data-protection), specific DPA contract drafting (consult legal counsel), cybersecurity framework compliance (use legal-cybersecurity-compliance)
+description: Use when identifying data-privacy laws for a product handling personal data. USE FOR: LGPD, GDPR, CCPA/CPRA, PIPL, PIPEDA, data-subject rights, consent, cross-border transfers, DPO, breach notification, DPIA, records of processing. DO NOT USE FOR: encryption (use security-cryptography), masking and PII storage (use security-data-protection), security frameworks (use legal-cybersecurity-compliance).
 ---
 
 # Privacy & Data Protection

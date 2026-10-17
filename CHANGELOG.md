@@ -19,6 +19,20 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ### Changed
 
+- Removed skill `tamandua-agents` from the `custom-agent` plugin (now 1 skill:
+  `graphify`); marketplace now ships 121 skills.
+- Token-efficiency pass over all skills:
+  - Rewrote every `description` to a short trigger + keyword format (total
+    87k → 46k chars, median 718 → 375), cutting the always-loaded skill
+    listing roughly in half. Cross-links preserved.
+  - Progressive disclosure for the 64 skills over 1500 words: catalogs,
+    templates, and deep dives moved to `references/` behind a
+    `## Detailed reference` table (median body 1551 → ~845 words).
+  - Removed consumer-project (LinkDaily) specifics so skills are generic;
+    `specs-documentation-userguide/references/linkdaily-context.md` →
+    `example-project-context.md`.
+  - `verify_marketplace.py` now warns on descriptions > 600 chars and
+    bodies > 1500 words.
 - Renamed plugin `playwright-cli` → `QA` (directory, `marketplace.json` entry, and
   `plugin.json` manifest). The skill inside remains `playwright-cli`, so it is now
   invoked as `QA:playwright-cli`.

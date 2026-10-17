@@ -1,6 +1,6 @@
 ---
 name: dev-architecture-monoliths
-description: Monolithic architecture patterns including modular monolith design, monolith-first strategy, and migration paths to microservices via the Strangler Fig pattern. USE FOR: modular monolith design and bounded-context module boundaries (LinkDaily compiles all contexts into one binary deployed as LinkDaily.Api + LinkDaily.Worker), monolith-first strategy, Strangler Fig migration, avoiding Big Ball of Mud, enforcing module isolation within a monolith DO NOT USE FOR: microservice decomposition (use dev-architecture-microservices), event-driven architecture (use dev-architecture-event-driven), clean architecture layers (use dev-craftsmanship-clean-architecture)
+description: Use when designing a modular monolith or migrating out of one. USE FOR: module boundaries per bounded context, module isolation, monolith-first, Strangler Fig, avoiding Big Ball of Mud. DO NOT USE FOR: microservice decomposition (use dev-architecture-microservices), event-driven design (use dev-architecture-event-driven), layer rules (use dev-craftsmanship-clean-architecture).
 ---
 
 # Monolithic Architecture

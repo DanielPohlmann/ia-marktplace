@@ -1,6 +1,6 @@
 ---
 name: specs-documentation-adr
-description: Use when writing Architecture Decision Records to capture significant technical decisions with their context, rationale, and consequences. Covers the Nygard format, MADR format, ADR numbering, linking, lifecycle management, and adr-tools CLI. USE FOR: recording architecture decisions, documenting technical trade-offs, decision rationale capture, technology selection justification, ADR lifecycle management, lightweight decision documentation, Nygard format ADRs, MADR format DO NOT USE FOR: full technical design (use specs-documentation-trd), requirements gathering (use specs-documentation-prd or specs-documentation-brd), design proposals seeking feedback (use specs-documentation-rfc)
+description: Use when recording an architecture decision with its context, rationale, and consequences. USE FOR: Nygard and MADR templates, numbering, status lifecycle, superseding and linking, storage location, adr-tools. DO NOT USE FOR: full technical design (use specs-documentation-trd), proposals seeking feedback (use specs-documentation-rfc), requirements (use specs-documentation-prd).
 ---
 
 # Architecture Decision Records (ADR)
@@ -9,96 +9,6 @@ description: Use when writing Architecture Decision Records to capture significa
 An Architecture Decision Record (ADR) is a short document that captures a single significant architecture decision along with its context and consequences. ADRs answer the question future developers always ask: *"Why did we do it this way?"*
 
 ADRs are lightweight, version-controlled, and stored alongside the code they describe. They form a decision log that accumulates over the life of a project, creating an invaluable history of the reasoning behind the system's architecture.
-
-## The Nygard Format (Original ADR)
-
-Michael Nygard defined the original ADR format in his blog post "Documenting Architecture Decisions" (2011). It has five sections:
-
-### Structure
-
-```markdown
-# [ADR-NNNN] [Short Title of Decision]
-
-## Status
-
-[Proposed | Accepted | Deprecated | Superseded by ADR-XXXX]
-
-## Context
-
-[What is the issue that we are seeing that is motivating this decision
-or change? Describe the forces at play -- technical, political,
-social, project-specific. This section is factual, not opinionated.]
-
-## Decision
-
-[What is the change that we are proposing and/or doing?
-State the decision in active voice: "We will..."]
-
-## Consequences
-
-[What becomes easier or more difficult to do because of this change?
-Include both positive and negative consequences. Be honest about
-trade-offs.]
-```
-
-### Complete Example (Nygard Format)
-
-```markdown
-# ADR-0007: Use PostgreSQL as the Primary Database
-
-## Status
-
-Accepted
-
-## Context
-
-The Order Service requires a persistent data store for order and
-payment data. We need ACID transactions for financial operations,
-strong consistency guarantees, and the ability to handle complex
-queries involving joins across orders, items, and payments.
-
-The team has evaluated three options:
-1. **PostgreSQL** -- relational, ACID-compliant, mature ecosystem
-2. **MongoDB** -- document store, flexible schema, eventual consistency
-3. **CockroachDB** -- distributed SQL, strong consistency, higher cost
-
-Key constraints:
-- The operations team has production experience with PostgreSQL
-- Our cloud provider offers managed PostgreSQL (RDS/Cloud SQL)
-- Financial data requires ACID transactions (not eventual consistency)
-- Budget does not support CockroachDB licensing for this phase
-
-## Decision
-
-We will use PostgreSQL as the primary database for the Order Service.
-
-We will use the managed PostgreSQL offering from our cloud provider
-(AWS RDS) to reduce operational burden. Schema migrations will be
-managed with Entity Framework Core Migrations in the application
-repository.
-
-## Consequences
-
-**Positive:**
-- ACID transactions guarantee financial data integrity
-- Rich query capabilities for reporting and analytics
-- Team familiarity reduces onboarding and debugging time
-- Managed service reduces operational burden
-- Large ecosystem of tools, extensions, and community support
-
-**Negative:**
-- Vertical scaling limits compared to distributed databases
-- Schema changes require migration management
-- Horizontal scaling (read replicas, sharding) adds complexity
-  if we outgrow a single instance
-- Document-style data (order metadata) requires JSONB columns
-  rather than native document storage
-
-**Neutral:**
-- We will revisit this decision if order volume exceeds 10,000
-  transactions per second, which would require a distributed
-  database strategy (see future ADR)
-```
 
 ## MADR Format (Markdown Any Decision Records)
 
@@ -285,43 +195,6 @@ docs/decisions/
 
 File naming convention: `NNNN-short-kebab-case-title.md`
 
-## ADR Lifecycle
-
-```
-Proposed  -->  Accepted  -->  Deprecated
-                  |                |
-                  |                v
-                  +--------->  Superseded by ADR-NNNN
-```
-
-| Status | Meaning |
-|--------|---------|
-| **Proposed** | Decision is under discussion, not yet finalized |
-| **Accepted** | Decision has been agreed upon and is in effect |
-| **Deprecated** | Decision is no longer relevant (system decommissioned, context changed) |
-| **Superseded** | A newer ADR replaces this one. Link to the superseding ADR |
-
-### Superseding an ADR
-
-When a decision is replaced, update both the old and new ADRs:
-
-**Old ADR (updated):**
-```markdown
-## Status
-Superseded by [ADR-0015](0015-switch-to-kafka-for-messaging.md)
-```
-
-**New ADR:**
-```markdown
-## Status
-Accepted. Supersedes [ADR-0004](0004-use-rabbitmq-for-async-messaging.md)
-
-## Context
-Since ADR-0004 was accepted, our message volume has grown from 1,000/min
-to 50,000/min. RabbitMQ's single-node architecture cannot sustain this
-throughput without significant operational complexity...
-```
-
 ## ADR Linking
 
 ADRs often reference each other and external documents:
@@ -367,77 +240,6 @@ repo/
         0001-use-cqrs-pattern.md
 ```
 
-## adr-tools CLI
-
-[adr-tools](https://github.com/npryce/adr-tools) is a command-line tool for managing ADRs.
-
-### Installation
-
-```bash
-# macOS
-brew install adr-tools
-
-# npm (cross-platform)
-npm install -g adr-tools
-
-# Manual
-git clone https://github.com/npryce/adr-tools.git
-cd adr-tools && sudo make install
-```
-
-### Usage
-
-```bash
-# Initialize ADR directory
-adr init docs/decisions
-
-# Create a new ADR
-adr new "Use PostgreSQL as Primary Database"
-# Creates: docs/decisions/0003-use-postgresql-as-primary-database.md
-
-# Create a new ADR that supersedes an existing one
-adr new -s 4 "Switch to Kafka for Async Messaging"
-# Creates new ADR and updates ADR-0004 status to "Superseded"
-
-# List all ADRs
-adr list
-
-# Generate a table of contents
-adr generate toc
-
-# Generate a dependency graph
-adr generate graph | dot -Tpng -o adr-graph.png
-
-# Link two ADRs
-adr link 5 "Complements" 3 "Is complemented by"
-```
-
-### adr-tools Template
-
-When you run `adr new`, it generates a file with this template:
-
-```markdown
-# [NUMBER]. [TITLE]
-
-Date: YYYY-MM-DD
-
-## Status
-
-Proposed
-
-## Context
-
-[Describe the context here]
-
-## Decision
-
-[Describe the decision here]
-
-## Consequences
-
-[Describe the consequences here]
-```
-
 ## When to Write an ADR
 
 Write an ADR when you make a decision that:
@@ -481,6 +283,15 @@ A common workflow: write an RFC to propose a significant change, gather feedback
 - **Include decision drivers** -- explicitly listing what mattered (cost, team skill, performance, time-to-market) makes the rationale transparent.
 - **Revisit ADRs periodically** -- during architecture reviews, check if accepted ADRs still hold. If the context has changed, write a new ADR.
 - **Use a consistent template** -- adopt either Nygard or MADR and stick with it across the project for uniformity.
+
+## Detailed reference
+
+Load only the file that matches the task — each is self-contained.
+
+| File | Contents |
+|---|---|
+| [references/the-nygard-format-original-adr.md](references/the-nygard-format-original-adr.md) | The Nygard Format (Original ADR) — Structure, Complete Example (Nygard Format) |
+| [references/details.md](references/details.md) | ADR Lifecycle; adr-tools CLI |
 
 ## References
 

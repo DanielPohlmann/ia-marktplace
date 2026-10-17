@@ -1,6 +1,6 @@
 ---
 name: stack-i18n
-description: Localization architecture for .NET ASP.NET Core using IStringLocalizer — the mandatory pattern for all user-facing text in LinkDaily. USE FOR: IStringLocalizer<T> and IHtmlLocalizer<T> setup, .resx resource files, RequestLocalizationMiddleware, data annotation localization, eliminating hardcoded strings from API responses, validation messages, and error payloads in LinkDaily.Api and LinkDaily.Worker. DO NOT USE FOR: culture-aware date/number formatting (use standard .NET globalization APIs), ICU plural/gender patterns, frontend Vue/Nuxt i18n configuration (use vue-best-practices).
+description: Use when localizing user-facing text in ASP.NET Core with IStringLocalizer. USE FOR: IStringLocalizer<T>/IHtmlLocalizer<T>, .resx files, RequestLocalizationMiddleware, data-annotation and validation messages, removing hardcoded strings from API responses. DO NOT USE FOR: date/number formatting (use .NET globalization APIs), ICU plurals, Vue/Nuxt i18n (use vue-best-practices).
 ---
 
 # Internationalization (i18n)

@@ -1,6 +1,6 @@
 ---
 name: stack-hygiene
-description: Defensive coding hygiene and input/output sanitization for .NET web apps. USE FOR: output encoding to prevent XSS (HtmlEncoder, UrlEncoder, JavaScriptEncoder from System.Text.Encodings.Web), SQL injection prevention with parameterized queries (Dapper, EF Core, ADO.NET), CSRF protection with antiforgery tokens, path traversal prevention, safe deserialization, HTTP security headers (CSP, X-Content-Type-Options, HSTS) as defense-in-depth. DO NOT USE FOR: broad OWASP methodology and vulnerability catalogs (use security-owasp), request validation rules and validator libraries (use security-input-validation or stack-validot), encryption, hashing or certificate management (use security-cryptography), secrets management and dependency scanning (use security-hygiene).
+description: Use when writing defensive .NET web code against XSS, injection, CSRF, and path traversal. USE FOR: HtmlEncoder/UrlEncoder/JavaScriptEncoder, parameterized queries (Dapper, EF Core, ADO.NET), antiforgery, safe deserialization, CSP/HSTS headers. DO NOT USE FOR: OWASP catalogs (use security-owasp), validator libraries (use stack-validot), crypto (use security-cryptography), cross-boundary trust model (use security-hygiene).
 ---
 
 # Security Hygiene & Sanitization

@@ -1,6 +1,6 @@
 ---
 name: stack-observability-otlp-logging
-description: OpenTelemetry/OTLP implementation for LinkDaily.Api and LinkDaily.Worker — the concrete wiring for all three observability signals. USE FOR: AddOpenTelemetry() setup with OTLP exporter, ActivitySource custom spans for business operations (appointment booking, payment capture), System.Diagnostics.Metrics custom Meters, ASP.NET Core and HttpClient instrumentation, log-trace correlation via trace/span ID injection, OTEL_* environment variable configuration for containerized deployment. DO NOT USE FOR: Serilog sinks, enrichers, and output templates (use stack-serilog), high-level observability strategy and sub-skill routing (use stack-observability), infrastructure monitoring dashboards or alerting rule management.
+description: Use when wiring OpenTelemetry/OTLP traces, metrics, and logs in .NET services. USE FOR: AddOpenTelemetry with OTLP exporter, ActivitySource spans, System.Diagnostics.Metrics meters, ASP.NET Core/HttpClient instrumentation, log-trace correlation, OTEL_* env vars. DO NOT USE FOR: Serilog sinks and enrichers (use stack-serilog), choosing an approach (use stack-observability).
 ---
 
 # OTLP Logging and Observability

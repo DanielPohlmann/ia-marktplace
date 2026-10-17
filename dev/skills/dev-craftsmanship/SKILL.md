@@ -1,6 +1,6 @@
 ---
 name: dev-craftsmanship
-description: Use when applying overarching software craftsmanship principles — Boy Scout Rule, DRY/KISS/YAGNI, Pragmatic Programmer practices, and choosing among quality improvement approaches. USE FOR: craftsmanship philosophy, code quality culture, principle selection (which quality skill to reach for), continuous improvement practices. DO NOT USE FOR: specific readability and naming rules (use dev-craftsmanship-clean-code), SOLID principle application (use dev-craftsmanship-solid), code smell identification and refactoring techniques (use dev-craftsmanship-refactoring), architectural layer decisions (use dev-architecture or dev-craftsmanship-clean-architecture).
+description: Use when choosing among code-quality approaches or applying general craftsmanship principles. USE FOR: Boy Scout Rule, DRY/KISS/YAGNI, Pragmatic Programmer practices, picking the right quality skill. DO NOT USE FOR: naming/readability (use dev-craftsmanship-clean-code), SOLID (use dev-craftsmanship-solid), refactoring (use dev-craftsmanship-refactoring), layers (use dev-craftsmanship-clean-architecture).
 ---
 
 # Software Craftsmanship

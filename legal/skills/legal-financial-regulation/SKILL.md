@@ -1,6 +1,6 @@
 ---
 name: legal-financial-regulation
-description: Use when identifying financial regulations that apply to software handling payments, banking, or financial data — including the LinkDaily Payments bounded context. Covers PCI DSS, PSD2/PSD3, SOX, AML/KYC, Dodd-Frank, MiFID II, open banking, and fintech licensing across jurisdictions. USE FOR: PCI DSS, PSD2, PSD3, SOX, AML, KYC, Dodd-Frank, MiFID II, open banking, fintech licensing, payment processing compliance, money transmission, crypto regulation DO NOT USE FOR: invoicing, VAT, or tax compliance (use legal-billing-taxation), encryption implementation (use security-cryptography), financial data modeling (use dev-backend-data-modeling), cybersecurity certification frameworks like SOC 2 (use legal-cybersecurity-compliance)
+description: Use when software handles payments, banking, or financial data. USE FOR: PCI DSS, PSD2/PSD3, SOX, AML/KYC, open banking, money transmission, fintech licensing, MiFID II, crypto rules. DO NOT USE FOR: tax and invoicing (use legal-billing-taxation), encryption (use security-cryptography), SOC 2 (use legal-cybersecurity-compliance).
 ---
 
 # Financial Regulation

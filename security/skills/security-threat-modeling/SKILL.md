@@ -1,6 +1,6 @@
 ---
 name: security-threat-modeling
-description: Use when identifying and prioritizing security threats during system design — including new bounded contexts, API surfaces, or integration event contracts in LinkDaily. Covers STRIDE and DREAD frameworks, threat modeling process, data flow diagrams, and embedding threat analysis into the SDLC. USE FOR: STRIDE, DREAD, threat modeling, data flow diagrams, attack surface analysis, security design review, trust boundary definition, threat prioritization. DO NOT USE FOR: runtime vulnerability scanning and CI security tooling (use security-security-testing), supply chain and dependency integrity (use security-supply-chain), OWASP Top 10 remediation (use security-owasp), incident response and log-based detection (use security-logging-monitoring).
+description: Use when identifying and prioritizing threats during design of a system, API, module, or event contract. USE FOR: STRIDE, DREAD, data flow diagrams, trust boundaries, attack surface, security design review. DO NOT USE FOR: runtime scanning (use security-security-testing), supply chain (use security-supply-chain), OWASP remediation (use security-owasp).
 ---
 
 # Threat Modeling
