@@ -21,18 +21,14 @@ After stage 3 is approved, hand off to `superpowers:brainstorming` (spec) and `s
 
 1. Get the idea slug (kebab-case, ≤ 40 chars). From a sentence, propose one and confirm it.
 2. List `docs/product/<slug>/`.
-3. Decide:
-   - no folder or no `01-ideation.md` → stage 1
-   - newest artifact `draft` or `in-review` → resume that stage
-   - newest artifact `approved` → next stage
-   - `03-architecture.md` approved → `superpowers:brainstorming`
+3. Walk the artifacts in order 01 → 02 → 03. The first one that is missing or not `approved` is the current stage: missing → start that stage; `draft` or `in-review` → resume it. If all three are `approved` → `superpowers:brainstorming`.
 4. Announce "Idea `<slug>` is at stage N (<name>), status <status>." and invoke the stage skill.
 
 ## Gate rules
 
 - A stage never starts unless the previous artifact has `status: approved`.
 - Only an explicit user statement in chat approves ("approved", "aprovado", "pode seguir"). Silence, a subagent verdict or "looks good so far" is not approval.
-- Approving sets `status: approved` and `approved_on: <today>` only.
+- Approving sets `status: approved` and `approved_on: <today>` only. Every status change (`in-review`, `approved`, back to `draft`) also adds a change-log row.
 - Reopening an approved stage sets it to `draft` and every later artifact to `draft`, each with a change-log row.
 - Stages write only inside `docs/product/<slug>/`, plus stage 3's Event Storming file. No source code, specs or plans.
 
