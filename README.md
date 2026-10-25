@@ -20,8 +20,27 @@ the subsets it needs.
 | **workflows** | `/plugin install workflows@ia-marketplace` | 1 | Plan execution orchestrator |
 | **specs** | `/plugin install specs@ia-marketplace` | 21 | Specifications & architecture documentation: diagramming (C4, Mermaid, UML, PlantUML, D2, ERD, TOGAF, ArchiMate, functional), specification documents (PRD, TRD, BRD, ADR, RFC, Gherkin, Gauge, user guide) and knowledge-base building (LLM Wiki) |
 | **custom-agent** | `/plugin install custom-agent@ia-marketplace` | 1 | graphify — knowledge-graph building & querying over any input |
+| **product** | `/plugin install product@ia-marketplace` | 4 | Product discovery pipeline: ideation → design → architecture, with research/review/critique subagents |
 
-**120 skills total.**
+**126 skills total.**
+
+---
+
+## Product pipeline
+
+The `product` plugin runs a gated discovery flow, handing off through
+`docs/product/<slug>/` artifacts:
+
+```
+Skill("product:product")               # router
+  → product:product-ideation           # idea → validated problem/opportunity
+  → product:product-design             # opportunity → product design
+  → product:product-architecture       # design → architecture (force-driven patterns)
+  → superpowers:brainstorming          # hand off to implementation planning
+```
+
+Subagents (`product:product-market-researcher`, `product:product-design-reviewer`,
+`product:product-architecture-critic`) are dispatched by the skills.
 
 ---
 
@@ -62,7 +81,8 @@ Add to the consuming project's `.claude/settings.json`:
     "QA@ia-marketplace": true,
     "workflows@ia-marketplace": true,
     "specs@ia-marketplace": true,
-    "custom-agent@ia-marketplace": true
+    "custom-agent@ia-marketplace": true,
+    "product@ia-marketplace": true
   }
 }
 ```
@@ -94,7 +114,7 @@ reach for. Prefer the most specific skill over its index.
 
 ```
 ia-marktplace/
-├── .claude-plugin/marketplace.json     ← 9 plugins
+├── .claude-plugin/marketplace.json     ← 10 plugins
 ├── dev/          .claude-plugin/plugin.json + skills/  (42)
 ├── stack/        .claude-plugin/plugin.json + skills/  (19)
 ├── security/     .claude-plugin/plugin.json + skills/  (16)
@@ -104,6 +124,7 @@ ia-marktplace/
 ├── workflows/    .claude-plugin/plugin.json + skills/  (1)
 ├── specs/        .claude-plugin/plugin.json + skills/  (21)
 ├── custom-agent/ .claude-plugin/plugin.json + skills/  (1)
+├── product/      .claude-plugin/plugin.json + skills/  (4) + agents/
 ├── CLAUDE.md · AGENTS.md · CHANGELOG.md · LICENSE
 ```
 

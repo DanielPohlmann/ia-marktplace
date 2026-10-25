@@ -10,6 +10,13 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ### Added
 
+- New plugin `product` (4 skills, 3 agents): gated product discovery pipeline —
+  `product` (router), `product-ideation`, `product-design`, `product-architecture`
+  (with force-driven pattern selection) — handing off through
+  `docs/product/<slug>/` artifacts, with subagents `product-market-researcher`,
+  `product-design-reviewer` and `product-architecture-critic`.
+- `verify_marketplace.py` validates `<plugin>/agents/*.md` (`check_agent()`),
+  covered by `scripts/test_verify_marketplace.py` in CI.
 - New skill `dev-integration-patterns-transactional-outbox` (`dev` plugin, now
   42 skills): the dual-write problem and its strategies — transactional outbox
   with polling publisher or CDC/log tailing, inbox/idempotent consumers,

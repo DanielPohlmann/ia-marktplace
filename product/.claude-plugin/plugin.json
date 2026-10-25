@@ -1,0 +1,9 @@
+{
+  "name": "product",
+  "description": "Product discovery pipeline: gated idea → interface design → architecture stages that run interactively, hand off through versioned Markdown artifacts, and delegate research, prototype review and architecture critique to dedicated subagents.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Daniel Heler Pohlmann"
+  },
+  "license": "MIT"
+}
