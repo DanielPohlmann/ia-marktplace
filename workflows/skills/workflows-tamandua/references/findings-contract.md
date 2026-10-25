@@ -46,8 +46,10 @@ Findings the engine synthesizes itself use `file: "."` (repository root):
   (Semgrep, gitleaks, Stryker) print a `FINDINGS_JSON:` line so each result is a
   separate finding with a real file.
 - `gate/read-only-violation`: a verification, analysis, testing or scanning agent
-  changed the worktree. The engine discarded the change (`git status --porcelain`
-  check after the step) and blocks the run.
+  changed the worktree. The engine quarantined the change under
+  `<git-common-dir>/tamandua-quarantine/<run>/<step-db-id>/` (never deleted; HEAD is
+  not reset), restored the baseline (`git status --porcelain` check after the step)
+  and blocks the run.
 - `gate/pre-push`: the pre-push hook failed during the `pr` step.
 
 When a bash gate fails, its verifier agent (if any) does not run; the run goes
@@ -75,16 +77,18 @@ finding, not a new one.
 | Status | Meaning |
 |---|---|
 | `open` | Raised and not yet resolved — goes to the next `fix` |
-| `resolved` | `fix` claimed it and the gate did not raise it again |
+| `resolved` | Marked when `fix` claims it (`RESOLVED`), and a passing gate resolves every `open`/`repeated` non-minor finding of that gate |
 | `disputed` | `fix` rejected it with a `disputeReason` |
-| `repeated` | Raised again in a later round after `fix` claimed it resolved — the fix did not work |
+| `repeated` | Raised again in a later round (whether `fix` claimed it or not) — never returns to `open`, and still goes to `fix` |
 
-A growing count of `repeated` findings means the developer agent is not
+**Unresolved** = `open` + `repeated` + `disputed`. A block is usually caused by `repeated` or `disputed` findings, so `--status open` misses them.
+
+A growing count of `repeated` blocking/major findings (minors are never fixed, so ignore them) means the developer agent is not
 converging; that is the signal to fix manually instead of raising `--max-rounds`.
 
 ## `fix` input and output
 
-`fix` receives only the open `blocking`/`major` findings of the gate that invoked
+`fix` receives only the `open` and `repeated` `blocking`/`major` findings (not `disputed`) of the gate that invoked
 it plus the plan paths. It replies:
 
 ```

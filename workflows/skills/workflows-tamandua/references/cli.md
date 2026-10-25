@@ -43,12 +43,12 @@ plan file or a spec file.
 | `--no-hurry-please-save-tokens-mode` | Lower polling frequency (15-minute floor). For low-priority background runs |
 | `--no-relaunch-upon-rugpull` | Only for merge workflows: do not auto-create a replacement run when the base moved |
 
-The command prints `Run: <id>`, `Workflow: <id>`, `Status: running`.
+The command prints `Run: <id>`, `Workflow: <id>`, `Task:`, `Harness CWD:` and `Status: running`.
 
 | Environment variable | Effect |
 |---|---|
 | `TAMANDUA_CLAUDE_BINARY` | Use a specific `claude` binary (also how test suites inject a scripted fake) |
-| `TAMANDUA_NOTIFY_URL` | Webhook for `run.blocked` and `run.pr_opened`. An `ntfy.sh` URL (or `TAMANDUA_NOTIFY_FORMAT=ntfy`) sends ntfy pushes with title, tags, priority and a click-through to the PR; other URLs get the JSON event payload |
+| `TAMANDUA_NOTIFY_URL` | Read in the `tamandua workflow run` process and stored per run at start (never updated); beats the workflow's `notifications.url`. An `ntfy.sh` URL (or `TAMANDUA_NOTIFY_FORMAT=ntfy`) sends ntfy pushes (`run.blocked`, `run.pr_opened`, `run.failed`, `run.completed`) with title, tags, priority and a PR click-through; other URLs get the JSON event payload, which also covers `run.started`, `step.failed`, `step.worker_lost` and `pipeline.advanced` |
 
 ## Inspect a run
 
@@ -57,7 +57,7 @@ The command prints `Run: <id>`, `Workflow: <id>`, `Status: running`.
 | `tamandua workflow runs` | Every run: status, workflow, tokens |
 | `tamandua workflow status <query>` | Run, workflow, task, status, tokens, workspace mode, and one line per step: `[done   ]`, `[running]`, `[failed ]`, `[pending]` + agent role |
 | `tamandua workflow status <query> --json` | `{ "id", "status", "currentStepId", "blockedStep", "blockedReason", "pausedUntil", "tokensSpent", "context": { "pr"? } }` — `status` ∈ `running`, `paused`, `blocked`, `completed`, `failed`, `canceled`; `blockedStep`/`blockedReason` are `null` unless blocked; `pausedUntil` is the usage-limit reset time of a rate-limit pause (the engine resumes by itself) and `null` for a human pause (needs `resume`); `context.pr` is the PR URL once the `pr` step ran |
-| `tamandua workflow findings <query> [--json] [--status <s>] [--gate <step-id>]` | Findings recorded for the run. `--status` ∈ `open`, `resolved`, `disputed`, `repeated`; `--gate` filters by gate step id. Text: one line per finding (`[status] severity gate rule file:line fingerprint evidence`). `--json`: array of finding objects (fields in `findings-contract.md`) |
+| `tamandua workflow findings <query> [--json] [--status <s>] [--gate <step-id>]` | Findings recorded for the run. `--status` ∈ `open`, `resolved`, `disputed`, `repeated`; `--gate` filters by gate step id. A block is usually caused by `repeated` or `disputed` findings, not `open`: omit `--status` when diagnosing. Text: one line per finding (`[status] severity gate rule file:line fingerprint evidence`). `--json`: array of finding objects (fields in `findings-contract.md`) |
 | `tamandua logs [<lines> \| <run> \| #<n>]` | Last 50 global events, or the run's events |
 | `tamandua logs-tail [<lines> \| <run> \| #<n>]` | Follow events live. Never exits by itself — run it in the background or stop it |
 | `tamandua worktree list` | Every managed worktree: run id, status, cleanup policy, path |
@@ -81,15 +81,15 @@ tamandua workflow resume <run> [--max-rounds <n>] [--max-fix-rounds <n>] [--max-
 
 | Run status | Effect |
 |---|---|
-| `blocked` | Re-queues `blockedStep` (a gate, `fix` or `pr`) on the current worktree HEAD, resets that step's fix-round counter, keeps the findings history, and applies any budget flags |
+| `blocked` | Re-queues `blockedStep` (a gate, `fix` or `pr`) on the current worktree HEAD, resets that step's fix-round counter to 0 (a bare resume therefore grants the gate a full new `max_rounds`, drawn from the run-wide fix budget), keeps the findings history, and applies any budget flags |
 | `paused` | Budget flags are stored first; then the daemon resumes agent polling on the same step (daemon must be up) |
-| `failed` | Budget flags are stored first; then the failed step is re-queued on the **same run id** |
+| `failed` | Budget flags are stored first; then the failed step **and all later steps** are re-queued on the **same run id**. Failed stories are not reset, so an exhausted `implement` plan loop fails again ("Loop has failed stories and no pending stories") — start a new run for the remaining plan |
 | `running` | Only stores the budget flags (`Updated budgets for run <id>.`) |
 | `completed`, `canceled` | Cannot be resumed |
 
 | Flag | Budget | Workflow default | On exhaustion |
 |---|---|---|---|
-| `--max-rounds <n>` | Fix rounds each gate may send | 3 (`on_fail.max_rounds`) | `blocked` |
+| `--max-rounds <n>` | Run-wide override (`runs.max_rounds_override`): caps the fix rounds of **every** gate, including `pr`, for the rest of the run | 3 (`on_fail.max_rounds`; `pr`: 2) | `blocked` |
 | `--max-fix-rounds <n>` | Fix rounds across all gates of the run | 8 (`budgets.max_fix_rounds`) | `blocked` |
 | `--max-tokens <n>` | Token budget for the run (compare with `tokensSpent`) | unset (`budgets.max_tokens`) | `blocked` before the next step |
 
