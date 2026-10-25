@@ -22,7 +22,7 @@ the subsets it needs.
 | **custom-agent** | `/plugin install custom-agent@ia-marketplace` | 1 | graphify — knowledge-graph building & querying over any input |
 | **product** | `/plugin install product@ia-marketplace` | 4 | Product discovery pipeline: ideation → design → architecture, with research/review/critique subagents |
 
-**126 skills total.**
+**127 skills total.**
 
 ---
 
@@ -102,6 +102,7 @@ Skills are auto-namespaced by their plugin once installed:
 | `security-owasp` | security | `Skill("security:security-owasp")` |
 | `tools-git` | tools | `Skill("tools:tools-git")` |
 | `workflows` | workflows | `Skill("workflows:workflows")` |
+| `workflows-tamandua` | workflows | `Skill("workflows:workflows-tamandua")` |
 | `graphify` | custom-agent | `Skill("custom-agent:graphify")` |
 
 Each domain keeps a **thin index skill** (`dev`, `stack`, `security`, `legal`,

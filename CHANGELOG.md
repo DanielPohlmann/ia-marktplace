@@ -10,6 +10,14 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ### Added
 
+- New skill `workflows-tamandua` (`workflows` plugin, now 2 skills): operator
+  guide for Tamandua delivery runs — start a run for a plan or spec, read
+  status and logs, explain open gate findings, tell paused (rate limit) from
+  blocked (budget, dispute, read-only violation, non-code failure) from failed,
+  and resume a blocked run after a human decision. References: CLI catalog,
+  findings contract (`FINDINGS_JSON` / `RESOLVED` / `DISPUTED_JSON`, severities,
+  fingerprints, dispute rule), troubleshooting. Invoked as
+  `workflows:workflows-tamandua`.
 - New plugin `product` (4 skills, 3 agents): gated product discovery pipeline —
   `product` (router), `product-ideation`, `product-design`, `product-architecture`
   (with force-driven pattern selection) — handing off through

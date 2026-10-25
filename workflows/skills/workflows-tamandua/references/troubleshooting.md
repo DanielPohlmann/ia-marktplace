@@ -15,7 +15,7 @@
 | `blocked` at `pr` with no findings | Push rejected, `gh` not authenticated, network | `gh auth status`; check remote access; resume. Never `--no-verify` |
 | `blocked` at `pr` with a `gate/pre-push` finding | The pre-push hook failed on a commit made after the last local-CI gate | Normal loop; if it blocked, the round budget ran out — fix manually or `resume --max-rounds <n>` |
 | E2E gate fails on port already in use | Another run, or a leftover app process, holds the ports | Make sure only one run is active (`tamandua workflow runs`); stop leftover processes; resume |
-| `failed` at `implement` | Plan retries exhausted (per plan) | Read the verify feedback in the logs; fix the plan or the code; `tamandua workflow resume <run>` (new run id) |
+| `failed` at `implement` | Plan retries exhausted (per plan) | Read the verify feedback in the logs; fix the plan or the code; `tamandua workflow resume <run>` (same run id) |
 | Worktree missing after a run | Cleanup policy removed it on completion | `tamandua worktree list`; the PR branch still has the commits |
 | Disk filling with worktrees | Old completed runs | `tamandua worktree prune --completed --older-than 7d` |
 | No push notification when a run blocks | `TAMANDUA_NOTIFY_URL` not set in the environment of the Tamandua services | Set it (e.g. an `ntfy.sh` topic URL) and restart the dashboard/control plane |
