@@ -20,7 +20,7 @@ ia-marktplace/
 ├── legal/                        ← plugin: legal (16 skills)
 ├── tools/                        ← plugin: tools (3 skills)
 ├── QA/                           ← plugin: QA (3 skills)
-├── workflows/                    ← plugin: workflows (1 skill)
+├── workflows/                    ← plugin: workflows (2 skills)
 ├── specs/                        ← plugin: specs (21 skills)
 ├── custom-agent/                 ← plugin: custom-agent (1 skill)
 ├── product/                      ← plugin: product (4 skills)
@@ -85,7 +85,7 @@ produce a PDF report. It is deliberately excluded from the marketplace (no `plug
 | `legal` | 16 | Privacy/GDPR/LGPD, licensing, billing/taxation, accessibility, compliance |
 | `tools` | 3 | Docker & Git |
 | `QA` | 3 | Browser automation, E2E/functional testing & BDD/Gherkin authoring |
-| `workflows` | 1 | Plan execution orchestrator |
+| `workflows` | 2 | Plan execution orchestrator & Tamandua pipeline run operation |
 | `specs` | 21 | Diagramming (C4, Mermaid, UML, PlantUML, D2, ERD, TOGAF, ArchiMate, functional), specification documents (PRD, TRD, BRD, ADR, RFC, Gherkin, Gauge, user guide) & knowledge-base building (LLM Wiki) |
 | `custom-agent` | 1 | graphify (knowledge-graph building & querying over any input) |
 | `product` | 4 | Product discovery pipeline: ideation → design → architecture, with research/review/critique subagents |

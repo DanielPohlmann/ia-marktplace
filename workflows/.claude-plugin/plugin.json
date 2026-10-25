@@ -1,6 +1,6 @@
 {
   "name": "workflows",
-  "description": "Plan execution orchestrator: execute a single plan file end-to-end — branch setup, phased execution, commit/push/PR, and the completion signal.",
+  "description": "Plan execution and pipeline operation (2 skills): workflows (execute a single plan file end-to-end — branch setup, phased execution, commit/push/PR, completion signal) and workflows-tamandua (operate Tamandua delivery runs — start, status, logs, findings, unblocking).",
   "version": "1.0.0",
   "author": {
     "name": "Daniel Heler Pohlmann"
