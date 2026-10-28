@@ -34,6 +34,14 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 - `dev-craftsmanship-refactoring`: "deadline is imminent" now has a decision
   criterion, and a new `references/design-rot.md` covers rigidity, fragility,
   immobility and viscosity with review signals.
+- `dev-craftsmanship-solid`: restructured around review guardrails — each
+  principle now lists detectable signals, the correction and when not to apply
+  it. SRP is framed by actors (technical-step splits are called out as
+  separation of concerns), OCP states where the variant selection lives, LSP
+  lists concrete client- and override-side signals, and DIP gains a two-step
+  rule (own the dependency, then invert only for tests, a second
+  implementation or a module boundary). Code examples moved to
+  `references/examples.md`; body is back under the 1500-word budget.
 - Removed skill `tamandua-agents` from the `custom-agent` plugin (now 1 skill:
   `graphify`); marketplace now ships 121 skills.
 - Token-efficiency pass over all skills:
