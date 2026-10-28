@@ -95,6 +95,17 @@ function getEmployees(): Employee[] {
 }
 ```
 
+Throwing fits when absence is unexpected. When "not found" is a normal outcome of a lookup, make the absence explicit in the signature instead of hiding it behind an exception:
+
+| Option | Fits when | Example |
+|---|---|---|
+| Try-pattern | The caller usually branches on found / not found | C#: `bool TryGetEmployee(string id, out Employee employee)` |
+| Nullable return tracked by the compiler | The type system flags unchecked access | C# 8+ with nullable reference types (`Employee?`), TypeScript `strict` |
+| Optional / Maybe | The language has no nullability tracking | Java `Optional<Employee>` |
+| Empty collection | The result is a list | Return `[]`, never `null` |
+
+On older runtimes without nullability tracking (e.g. C# before 8), prefer the Try-pattern over a bare `null` return.
+
 ### Don't Pass Null
 Passing null as an argument is even worse than returning it. It forces every function to start with null-checking boilerplate.
 
@@ -133,9 +144,24 @@ A method `f` of class `C` should only call methods on:
 - Objects held in instance variables of `C`
 
 ```typescript
-// Bad — train wreck
-const outputDir = ctxt.getOptions().getScratchDir().getAbsolutePath();
+// Bad — train wreck: the caller navigates three objects to decide something
+if (order.getCustomer().getAddress().getCountry() === "BR") {
+    order.applyTax(BRAZIL_TAX);
+}
 
-// Good — tell, don't ask
-const outputDir = ctxt.getOutputDirectoryPath();
+// Still asking — the chain is hidden behind a getter, but the caller still
+// pulls data out and makes the decision itself
+if (order.getCustomerCountry() === "BR") {
+    order.applyTax(BRAZIL_TAX);
+}
+
+// Good — tell, don't ask: the object that owns the data makes the decision
+order.applyTaxes(taxPolicy);
 ```
+
+Wrapping a chain in a delegating getter only moves the coupling; the fix is to move the *behavior* to the object that owns the data.
+
+**When not to apply:**
+- **Data structures and DTOs** — they exist to expose data; `dto.Address.City` is fine.
+- **Fluent APIs and builders** — each call returns the same kind of object (`builder.WithName(x).WithAge(y)`).
+- **Query pipelines** — LINQ, Java streams and similar chains transform one sequence; they are not navigating object graphs.

@@ -24,6 +24,16 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ### Changed
 
+- `dev-craftsmanship-clean-code`: function length and argument counts are now
+  review signals, not verdicts; language conventions override generic naming
+  rules (the C# `I` interface prefix is no longer listed as an encoding to
+  remove); "Don't Return Null" lists idiomatic alternatives (Try-pattern,
+  nullable reference types, Optional, empty collections); the Law of Demeter
+  example now shows real tell-don't-ask and when the law does not apply (DTOs,
+  fluent APIs, query pipelines).
+- `dev-craftsmanship-refactoring`: "deadline is imminent" now has a decision
+  criterion, and a new `references/design-rot.md` covers rigidity, fragility,
+  immobility and viscosity with review signals.
 - Removed skill `tamandua-agents` from the `custom-agent` plugin (now 1 skill:
   `graphify`); marketplace now ships 121 skills.
 - Token-efficiency pass over all skills:
