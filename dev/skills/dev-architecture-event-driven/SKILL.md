@@ -67,8 +67,40 @@ Compensating transactions are used in the saga pattern (see `dev-architecture-mi
 |---------|----------|------------|
 | **EDA** | Multiple consumers need to react to changes; temporal decoupling needed; high scalability | Simple CRUD apps; strong consistency required; small systems with few components |
 | **Event Sourcing** | Audit trail is critical; temporal queries needed; domain is event-centric; complex business rules | Simple CRUD domains; team unfamiliar with the pattern; high-volume writes with no audit need |
-| **CQRS** | Read and write patterns differ significantly; need independent scaling; complex query requirements | Simple domains where reads and writes are symmetric; small systems; team unfamiliar with the pattern |
+| **CQRS** | Concrete signals are present (see *Adopting CQRS* below) | Reads and writes are symmetric; indexes, query tuning and hardware are not yet exhausted; a read replica would do |
 | **All three** | Complex domains with audit requirements, different read/write scaling needs, and reactive workflows | MVP or prototype; small team; simple domain; when any individual pattern would suffice |
+
+### Adopting CQRS
+
+Look for concrete signals, not a general feeling that the domain is complex:
+
+- **Reads vastly outnumber writes and are expensive** — joins, aggregations or search that cost far more than the writes feeding them.
+- **Read and write workloads contend** for the same locks, connections, CPU or I/O, so heavy reporting degrades command latency.
+- **The shape the UI needs is a poor fit for the write model** — screens stitch together several aggregates, or need denormalised, pre-computed or searchable views. This is often the decisive signal.
+
+Before adopting it:
+
+- **A read replica is not CQRS.** A replica scales the same model; CQRS introduces a *different* read model. If the same queries just need more capacity, a replica is the cheaper answer.
+- **Exhaust the cheap options first**: indexes, query rewrites, caching, more hardware.
+- **Treat the read store as disposable.** It must be rebuildable from the write side (replaying events or re-projecting current state). Feed it from a transactional outbox (see `dev-integration-patterns-transactional-outbox`) or change data capture — never from a second write in the command handler.
+- **Apply it per flow, never system-wide.** Use it for the one or two query paths that show the signals; the rest of the system stays plain CRUD.
+
+## Log vs Queue Brokers
+
+The broker type changes what consumers can rely on:
+
+| | Log-based (Kafka-style) | Queue-based (RabbitMQ-style) |
+|---|---|---|
+| **Retention** | Events kept for a retention period after consumption | Message deleted once acknowledged |
+| **Replay** | Yes — reset the consumer offset to rebuild a projection or onboard a new consumer | No — a new consumer sees only new messages |
+| **Ordering per key** | Guaranteed within a partition; route by key to the same partition | Only with a single active consumer per queue, or consistent-hash routing to per-key queues |
+| **Fits** | Event streams, projections, multiple independent readers | Work distribution, commands, per-message routing |
+
+If projections must be rebuildable from the broker, you need a log; with a queue broker, rebuild from the write store or an event store instead.
+
+## Publishing Reliably
+
+Saving state and then publishing the event is a **dual write**: a crash between the two loses the event (or publishes one for a rolled-back change). Write the event to an outbox in the same transaction as the state change and relay it afterwards — see `dev-integration-patterns-transactional-outbox`. Consumers must still be idempotent, because the relay delivers at least once.
 
 ## Best Practices
 - Start with EDA alone if you only need loose coupling and reactive behavior. Add event sourcing or CQRS only when you have a specific need.

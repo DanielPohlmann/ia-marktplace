@@ -14,6 +14,8 @@ When a popular cache key expires, many concurrent requests simultaneously miss t
 | **Probabilistic early expiration** | Each request has a small probability of refreshing the cache before TTL expires, spreading the refresh load |
 | **Stale-while-revalidate** | Serve the stale value while asynchronously refreshing in the background |
 | **Pre-warming** | Proactively refresh cache entries before they expire (scheduled or event-triggered) |
+| **Request coalescing (single-flight)** | Concurrent misses for the same key in one process share a single in-flight load instead of each querying the source |
+| **TTL jitter** | Add a random offset to each TTL (e.g. ±10%) so keys written together do not expire together |
 
 ```python
 # Probabilistic early expiration (XFetch algorithm)
@@ -80,6 +82,7 @@ Cache-Control: public, max-age=3600, s-maxage=86400, stale-while-revalidate=60
 - Fastest possible access (no network hop).
 - Limited by process memory; not shared across instances.
 - Use for extremely hot data with short TTLs (e.g., config, feature flags, rate limit counters).
+- On a multi-instance deployment each node has its own copy, so instances diverge after a write until their entries expire. Keep TTLs short, put shared mutable data in a distributed cache, or publish invalidation messages that every instance subscribes to.
 - Examples: Caffeine (Java), MemoryCache (.NET), node-cache (Node.js), lru-cache (Python).
 
 ## Multi-Tier Caching

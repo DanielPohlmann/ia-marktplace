@@ -22,6 +22,18 @@ Write path:
 **Pros:** Simple to implement; cache only contains data that is actually requested; works with any database.
 **Cons:** First request always hits the database (cold start); potential for stale data between write and invalidation.
 
+**Ordering matters.** Delete the key *after* the database transaction commits. Deleting first (or inside the transaction) opens a window where a reader misses, loads the still-old row and caches it with a full TTL.
+
+**The read/invalidate race remains even after commit:**
+
+```
+Reader A: cache miss → reads row v1 from DB ......... (slow) ... writes v1 to cache
+Writer B:                 updates row to v2 → commit → deletes key
+Result: cache holds v1 until TTL expires
+```
+
+Mitigations, cheapest first: a short TTL so the stale window is bounded; versioned keys (`product:42:v7`) where the writer bumps the version so stale entries are simply never read; a second delayed delete shortly after the first; or conditional set (only write to the cache if the stored version is not newer).
+
 **Best for:** General-purpose caching where the application can tolerate brief staleness.
 
 ## Read-Through
@@ -52,10 +64,10 @@ Write path:
   3. Cache confirms write to app
 ```
 
-**Pros:** Cache is always consistent with the database; no stale reads after writes.
-**Cons:** Higher write latency (two writes in series); cache may contain data that is never read.
+**Pros:** Read-after-write on the happy path — a value just written is served from cache on the next read.
+**Cons:** Higher write latency (two writes in series); cache may contain data that is never read. It is still two writes to two systems: unless a single provider performs both atomically, a crash or timeout between them, or two concurrent writers interleaving, leaves cache and database disagreeing. There is no atomicity — keep a TTL and treat the database as the source of truth.
 
-**Best for:** Read-heavy workloads where consistency is critical and write volume is moderate.
+**Best for:** Read-heavy workloads where recently written data is read back immediately and write volume is moderate.
 
 ## Write-Behind (Write-Back)
 
