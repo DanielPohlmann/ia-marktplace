@@ -35,7 +35,7 @@ Rough single-node capacities (order of magnitude only; measure your own stack):
 
 **Bandwidth** = QPS × payload size. Compute both ingress and egress; egress for media is what usually costs money and motivates a CDN.
 
-**Key-space size** = base^length. Base62 with 7 characters gives 62^7 ≈ 3.5 × 10^12 values. Collisions on random keys become likely around the square root of the key space (birthday bound): ~1.9 × 10^6 keys for 62^7 if you never check for collisions. So either check-and-retry on insert or use a counter-derived key.
+**Key-space size** = base^length. Base62 with 7 characters gives 62^7 ≈ 3.5 × 10^12 values. Collisions on random keys start to appear around the square root of the key space and reach ~50% at about 1.18·√S (birthday bound): ~2.2 × 10^6 keys for 62^7 if you never check for collisions. So either check-and-retry on insert or use a counter-derived key.
 
 ## Worked mini-examples
 

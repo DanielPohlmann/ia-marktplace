@@ -29,9 +29,9 @@ Principles are only named here — for the reasoning behind each one, load `dev-
 | 6 | Status string/enum with a public setter; transition checks scattered across services | Encapsulation / State | Private setter plus intention-revealing methods (`Approve()`, `Cancel()`) that guard transitions; State pattern only if per-state behavior grows |
 | 7 | Entity with only getters/setters; every rule about it lives in services (anemic model) | Tell, don't ask | Move behavior to the class that owns the data |
 | 8 | Primitives for domain concepts (email, money, tax documents, typed ids) validated in many places | Primitive obsession | Value object that validates once at construction |
-| 9 | `a.B.C.D.DoSomething()` navigation through collaborators | Law of Demeter | Ask the nearest collaborator for what you need; add a delegating method |
+| 9 | `a.B.C.D.DoSomething()` navigation through collaborators | Law of Demeter | Move the behavior to the object that owns the data (tell, don't ask); a delegating getter only hides the chain |
 | 10 | Deep `else` cascades, nesting three or more levels | Readability of control flow | Guard clauses and early return |
-| 11 | Same creation `if`/`switch` copied in several places | DRY / creation | A simple factory method or class |
+| 11 | Same creation `if`/`switch` copied in several places | DRY / creation | One injectable factory or registry (avoid static factory methods — they block test substitution) |
 | 12 | Parallel classes repeating the same sequence of steps with small differences | DRY / OCP | Template method, or composition of a fixed pipeline with injected steps |
 | 13 | Optional behavior switched on by boolean flags or constructor options | OCP / SRP | Decorator per optional behavior |
 | 14 | Logging, caching, retries, authorization or transactions inside business methods | SRP | Proxy/decorator, middleware or pipeline behavior |

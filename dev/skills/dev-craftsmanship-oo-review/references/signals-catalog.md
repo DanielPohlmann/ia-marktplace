@@ -57,8 +57,13 @@ foreach (var account in accounts)
 
 // after: withdrawal is a capability, not a promise of the base type
 public interface IWithdrawable { void Withdraw(decimal amount); }
-foreach (var account in accounts.OfType<IWithdrawable>())
-    account.Withdraw(amount);
+
+// the caller receives what it can actually use — no runtime filtering
+public void WithdrawFromAll(IEnumerable<IWithdrawable> accounts, decimal amount)
+{
+    foreach (var account in accounts)
+        account.Withdraw(amount);
+}
 ```
 
 **Skip** for type checks in serialization, mapping or pattern-matching over closed discriminated unions where that is the intended design. **Severity:** blocking when an existing caller can now fail.
@@ -118,8 +123,15 @@ public sealed class RateCache
     public Dictionary<string, decimal> Rates = new();   // shared, unsynchronized
 }
 
-// after
-services.AddSingleton<RateCache>();   // thread-safe internals, injected where needed
+// after: one container-managed instance, state encapsulated and synchronized
+public sealed class RateCache
+{
+    private readonly ConcurrentDictionary<string, decimal> _rates = new();
+    public decimal? Get(string currency) => _rates.TryGetValue(currency, out var r) ? r : null;
+    public void Set(string currency, decimal rate) => _rates[currency] = rate;
+}
+
+services.AddSingleton<RateCache>();   // injected where needed
 ```
 
 `Lazy<T>` is fine for an expensive **immutable** value. **Skip** for static pure functions and constants. **Severity:** blocking if the state is mutated from concurrent requests.
@@ -181,11 +193,13 @@ Older C# without `record`: implement `Equals`, `GetHashCode` and `==` by hand. T
 ## 9. Train-wreck navigation → Law of Demeter
 
 ```ts
-// before
-const city = order.getCustomer().getAddress().getCity().toUpperCase();
+// before: the caller digs out data and decides
+if (order.getCustomer().getAddress().getCountry() === "BR") order.applyTax(BR_TAX);
 
-// after
-const city = order.shippingCity();   // Order decides how it knows this
+// after: tell the owner what to do
+order.applyTaxes(taxPolicy);
+
+// not a fix: order.customerCountry() still hands data out for the caller to decide
 ```
 
 **Not a violation:** fluent builders, LINQ/stream pipelines, navigating plain DTO trees in a mapping layer. **Severity:** suggestion.
@@ -196,9 +210,8 @@ const city = order.shippingCity();   // Order decides how it knows this
 // before
 if (user != null) { if (user.IsActive) { if (amount > 0) { Pay(user, amount); } else { throw ...; } } }
 
-// after
-if (user is null) throw new ArgumentNullException(nameof(user));
-if (!user.IsActive) return;
+// after — same behavior: null or inactive users are still ignored
+if (user is null || !user.IsActive) return;
 if (amount <= 0) throw new ArgumentOutOfRangeException(nameof(amount));
 Pay(user, amount);
 ```
@@ -211,8 +224,11 @@ Pay(user, amount);
 // before: copied in the API handler, the CLI and the import job
 const parser = format === "csv" ? new CsvParser(sep) : format === "json" ? new JsonParser() : new XmlParser();
 
-// after
-const parser = Parsers.for(format, options);
+// after: one injectable factory (or registry) owns the choice
+class ParserFactory {
+    create(format: Format, options: ParserOptions): Parser { /* the single switch lives here */ }
+}
+const parser = this.parserFactory.create(format, options);   // injected, replaceable in tests
 ```
 
 **Skip** when the creation appears once. **Severity:** suggestion; higher when copies already differ.

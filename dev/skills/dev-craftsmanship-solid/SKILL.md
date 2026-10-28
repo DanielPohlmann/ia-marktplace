@@ -1,6 +1,6 @@
 ---
 name: dev-craftsmanship-solid
-description: Use when applying or auditing SOLID at class and interface level. USE FOR: SRP audits, OCP extension points, LSP violations, interface segregation, dependency inversion, coupling and testability. DO NOT USE FOR: layer boundaries (use dev-craftsmanship-clean-architecture), pattern selection (use dev-design-patterns), refactoring mechanics (use dev-craftsmanship-refactoring).
+description: Use when applying or auditing SOLID at class and interface level. USE FOR: SRP audits, OCP extension points, LSP violations, interface segregation, dependency inversion, coupling and testability. DO NOT USE FOR: layer boundaries (use dev-craftsmanship-clean-architecture), pattern selection (use dev-design-patterns), refactoring mechanics (use dev-craftsmanship-refactoring), PR review checklist (use dev-craftsmanship-oo-review).
 ---
 
 # SOLID Principles

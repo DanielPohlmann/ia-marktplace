@@ -82,7 +82,7 @@ Before adopting it:
 
 - **A read replica is not CQRS.** A replica scales the same model; CQRS introduces a *different* read model. If the same queries just need more capacity, a replica is the cheaper answer.
 - **Exhaust the cheap options first**: indexes, query rewrites, caching, more hardware.
-- **Treat the read store as disposable.** It must be rebuildable from the write side (replaying events or re-projecting current state). Feed it from a transactional outbox (see `dev-integration-patterns-transactional-outbox`) or change data capture — never from a second write in the command handler.
+- **Treat the read store as disposable.** It must be rebuildable from the write side (replaying events or re-projecting current state). Feed it from a transactional outbox (see `dev-integration-patterns-transactional-outbox`) or change data capture. A second write in the command handler is only safe when the read tables live in the same database and are updated in the same transaction; to a separate store it is a dual write.
 - **Apply it per flow, never system-wide.** Use it for the one or two query paths that show the signals; the rest of the system stays plain CRUD.
 
 ## Log vs Queue Brokers

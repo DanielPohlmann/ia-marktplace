@@ -18,7 +18,7 @@ description: Use when writing or reviewing code for readability (Robert C. Marti
 |------|----------|
 | Names | Does every name reveal intent? Could a new team member understand this without context? |
 | Functions | Does each function do one thing at one level of abstraction? Length is a signal, not a verdict — a long function deserves a look, not an automatic finding. |
-| Arguments | Does any function take more than 3 arguments? |
+| Arguments | Do long argument lists hide a concept (values that always travel together) or a boolean flag that switches behavior? |
 | Comments | Does every comment explain *why*, not *what*? Are there commented-out blocks? |
 | Formatting | Does the file read top-to-bottom like a newspaper article? |
 | Error Handling | Are exceptions used instead of error codes? Is null returned where absence is not an expected outcome, or passed as an argument? |

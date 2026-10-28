@@ -64,6 +64,8 @@ Use during code review: the middle column suggests the pattern is missing, the r
 | **Proxy** | Cache lookups, permission checks, lazy loading or logging mixed into business methods, often copied across several methods | No shared interface between proxy and real object — clients must know which one they hold, so it is a wrapper, not a proxy; one-off concern better handled by the framework's middleware/interceptors |
 
 
+## Commonly Confused Pairs
+
 ### Adapter vs Facade
 - **Adapter** makes an existing interface conform to another existing interface (1:1 wrapping)
 - **Facade** creates a new simplified interface over multiple subsystem classes (1:many simplification)

@@ -59,8 +59,8 @@ Climb one rung only when a metric shows the current rung is exhausted:
 | 1 | Bigger machine (vertical) | CPU/RAM saturated, still affordable |
 | 2 | Separate app and database hosts | App and DB compete for resources |
 | 3 | Stateless app + load balancer | One app node cannot serve peak, or you need redundancy |
-| 4 | Read replicas | Reads dominate and the primary is saturated, or a hot standby is needed for availability |
-| 5 | Cache-aside | Repeated reads of the same hot data |
+| 4 | Cache-aside | Repeated reads of the same hot data |
+| 5 | Read replicas | Reads still dominate after caching and the primary is saturated — or earlier, when a hot standby is needed for availability |
 | 6 | Queues for async work | Slow work in the request path, or bursty writes to level |
 | 7 | Partitioning / sharding | Write volume or dataset exceeds one primary |
 | 8 | Multi-region | Regional outage tolerance or global latency targets |

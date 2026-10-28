@@ -48,7 +48,7 @@ Object calisthenics is a set of nine deliberately strict constraints, originally
 
 - **Intent:** avoid depending on the structure of objects you do not own directly (Law of Demeter).
 - **Signal:** `a.GetB().GetC().DoD()` chains that reach through collaborators' internals.
-- **Correction:** ask the nearest collaborator for the result (add a delegating method), or pass in the object you actually need.
+- **Correction:** move the behavior to the object that owns the data (tell, don't ask), or pass in the object you actually need. A delegating getter that returns the same data only hides the chain.
 - **When not to apply:** fluent APIs and builders, LINQ/stream pipelines, string and date method chains, and navigating plain data trees in mapping code. The rule is about knowledge of collaborators, not punctuation.
 
 ## 6. Don't abbreviate

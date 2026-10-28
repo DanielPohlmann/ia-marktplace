@@ -12,20 +12,20 @@ Violation → correction for each principle. Examples are in TypeScript; the sha
 class Invoice {
     // Rules owned by the billing team
     total(): number {
-        return round(this.items.reduce((sum, i) => sum + i.price * i.qty, 0));
+        return round(this.items.reduce((sum, i) => sum.plus(i.price.times(i.qty)), Decimal.zero));
     }
 
     // Layout owned by the tax authority's specification
     toTaxDocument(): string {
         return this.items
-            .map(i => `${i.code};${round(i.price * i.qty)}`)
+            .map(i => `${i.code};${round(i.price.times(i.qty))}`)
             .join("\n");
     }
 }
 
-// Shared helper — the trap
-function round(value: number): number {
-    return Math.round(value * 100) / 100;
+// Shared helper — the trap (prices use a decimal type; see numeric-precision)
+function round(value: Decimal): Decimal {
+    return value.toDecimalPlaces(2, Decimal.ROUND_HALF_EVEN);
 }
 ```
 

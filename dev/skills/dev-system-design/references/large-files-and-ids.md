@@ -39,7 +39,7 @@ Base64 inflates size by about 33%, forces the whole payload into memory for pars
 | Random or hash-derived short code | No | Collision check | Short, unguessable | Collision risk grows with volume; needs check-and-retry |
 
 ### Collision math
-For random codes from a space of size S, the probability of at least one collision becomes significant (around 50%) after roughly √(1.2·S) codes — the birthday paradox. With 62^7 ≈ 3.5 × 10^12, that is about 2 million codes. Either:
+For random codes from a space of size S, the probability of at least one collision becomes significant (around 50%) after roughly 1.18·√S codes (√(2·ln2·S)) — the birthday paradox. With 62^7 ≈ 3.5 × 10^12, that is about 2 million codes. Either:
 - check uniqueness on insert (unique constraint) and regenerate on conflict,
 - lengthen the code, or
 - derive the code from a counter so collisions are impossible.

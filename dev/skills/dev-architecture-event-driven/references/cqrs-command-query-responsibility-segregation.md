@@ -62,7 +62,7 @@ The read store is derived data: it can be dropped and rebuilt at any time. Feed 
 - **Change data capture** — a connector tails the write database's log and emits row changes.
 - **Event store** — with event sourcing, projections subscribe to the stream directly.
 
-Avoid updating the read store as a second write inside the command handler; a failure between the two writes leaves the views silently wrong.
+When the read store is a separate resource, avoid updating it as a second write inside the command handler; a failure between the two writes leaves the views silently wrong. Read tables in the same database, updated in the same transaction as the write, are atomic and a valid CQRS setup.
 
 ## Projections (Read Models)
 
