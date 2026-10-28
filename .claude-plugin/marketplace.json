@@ -11,7 +11,7 @@
     {
       "name": "dev",
       "source": "./dev",
-      "description": "Software engineering fundamentals (42 skills): GoF design patterns, algorithms & data structures, architectural styles (DDD, hexagonal, microservices, event-driven, monoliths, well-architected), backend/frontend architecture, craftsmanship (SOLID, clean code, refactoring, twelve-factor, clean architecture), and enterprise integration patterns."
+      "description": "Software engineering fundamentals (44 skills): GoF design patterns, algorithms & data structures, architectural styles (DDD, hexagonal, microservices, event-driven, monoliths, well-architected), backend/frontend architecture, craftsmanship (SOLID, clean code, refactoring, twelve-factor, clean architecture), and enterprise integration patterns."
     },
     {
       "name": "stack",

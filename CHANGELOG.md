@@ -10,6 +10,22 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ### Added
 
+- New skill `dev-system-design` (`dev` plugin, now 44 skills): an 8-step
+  procedure for designing or reviewing systems under volume, spikes, live
+  updates or data growth — requirements with numbers, estimation, entities,
+  API, naive-first high-level design, deep dives — with references on
+  estimation, the scaling ladder, load balancing, database selection
+  (CAP/PACELC), sharding, real-time delivery, contention and spikes, and large
+  files / ID generation.
+- New skill `dev-craftsmanship-oo-review`: OO design checklist for code review —
+  signal → principle → minimal correction table, a YAGNI gate before every
+  finding, severity guide, language/ORM exceptions and a finding format; with
+  references for a signals catalog and object calisthenics (as review alarms,
+  not laws).
+- `dev-backend-data-modeling/references/numeric-precision.md`: money and exact
+  quantities as decimal or integer minor units, database precision/scale,
+  rounding policy, narrowing conversions and serialization pitfalls.
+
 - New skill `dev-integration-patterns-transactional-outbox` (`dev` plugin, now
   42 skills): the dual-write problem and its strategies — transactional outbox
   with polling publisher or CDC/log tailing, inbox/idempotent consumers,
@@ -42,6 +58,25 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
   rule (own the dependency, then invert only for tests, a second
   implementation or a module boundary). Code examples moved to
   `references/examples.md`; body is back under the 1500-word budget.
+- `dev-design-patterns-creational/-structural/-behavioral`: every pattern now
+  has review signals and when-not-to-use guidance; adds Simple Factory (not
+  GoF), Singleton thread-safety, Observer pitfalls, State transition signals,
+  and Template Method only after duplication exists.
+- `dev-backend-caching`: write-through is no longer described as strongly
+  consistent (it is a dual write); adds when to cache at all, invalidate after
+  commit, stampede, cache-down fallback and multi-instance in-process drift.
+- `dev-architecture-event-driven`: concrete CQRS adoption signals (a read
+  replica is not CQRS; feed the read store via outbox/CDC), log vs queue
+  brokers, and publishing reliably.
+- `dev-architecture-microservices` and `dev-integration-patterns` now state the
+  same sync vs async rule instead of contradicting each other.
+- `dev-integration-patterns-messaging-endpoints`: Transactional Client
+  atomicity caveat with a separate broker; Idempotent Receiver records the
+  message ID in the same transaction under a unique constraint.
+- `dev-backend-api-design`: money modeled as decimal / minor units instead of
+  `Float` / `double` in GraphQL, gRPC and JSON examples.
+- `dev` and `dev-craftsmanship` routers point to the two new skills.
+- `README.md` total corrected to 124 skills.
 - Removed skill `tamandua-agents` from the `custom-agent` plugin (now 1 skill:
   `graphify`); marketplace now ships 121 skills.
 - Token-efficiency pass over all skills:

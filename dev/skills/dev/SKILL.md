@@ -1,6 +1,6 @@
 ---
 name: dev
-description: Use only when unsure which dev-* area fits a software design question. USE FOR: routing between algorithms, architecture, design patterns, integration, craftsmanship, frontend, and backend skills. DO NOT USE FOR: any concrete topic (use dev-algorithms, dev-architecture, dev-design-patterns, dev-integration-patterns, dev-craftsmanship, dev-frontend, dev-backend or their sub-skills).
+description: Use only when unsure which dev-* area fits a software design question. USE FOR: routing between algorithms, architecture, design patterns, integration, craftsmanship, frontend, and backend skills. DO NOT USE FOR: any concrete topic (use dev-algorithms, dev-architecture, dev-system-design, dev-design-patterns, dev-integration-patterns, dev-craftsmanship, dev-frontend, dev-backend or their sub-skills).
 ---
 
 # Development Fundamentals
@@ -15,6 +15,10 @@ This skill covers the foundational knowledge every software developer should com
 │  Architecture                                           │
 │  Microservices, Monoliths, DDD, Event-Driven,          │
 │  Hexagonal, Well-Architected Frameworks                 │
+├─────────────────────────────────────────────────────────┤
+│  System Design                                          │
+│  Estimation, Scaling Ladder, Load Balancing, Sharding,  │
+│  Database Choice, Real-Time, Contention, IDs            │
 ├─────────────────────────────────────────────────────────┤
 │  Frontend                    │  Backend                 │
 │  SPA, PWA, Micro-frontends, │  Data Modeling, API      │
@@ -61,6 +65,7 @@ This skill covers the foundational knowledge every software developer should com
 | Algorithm selection / optimization | Algorithms |
 | Code readability and maintainability | Craftsmanship |
 | System decomposition and boundaries | Architecture |
+| Volume, spikes, real-time updates, data growth, capacity | System Design (`dev-system-design`) |
 | Client-side application structure | Frontend |
 | Server-side data and API structure | Backend |
 

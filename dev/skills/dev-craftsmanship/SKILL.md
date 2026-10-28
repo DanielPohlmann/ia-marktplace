@@ -84,6 +84,7 @@ From *The Pragmatic Programmer* by Andrew Hunt and David Thomas:
 | Classes have too many responsibilities, changes break unrelated things | `dev-craftsmanship-solid` |
 | Deploying to the cloud, configuring environments, managing processes | `dev-craftsmanship-twelve-factor` |
 | Code smells accumulate, need systematic improvement without changing behavior | `dev-craftsmanship-refactoring` |
+| Reviewing a class or PR for OO design flaws — type-code conditionals, anemic entities, suspicious overrides, singletons | `dev-craftsmanship-oo-review` |
 | General quality mindset, deciding which approach to take first | This skill (`dev-craftsmanship`) |
 
 ## The Craftsmanship Mindset

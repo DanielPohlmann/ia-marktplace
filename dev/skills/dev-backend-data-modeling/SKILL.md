@@ -227,6 +227,15 @@ This pattern prevents breaking changes during rolling deployments where old and 
 - Use expand-contract migrations for any schema change in a system that requires zero-downtime deployments.
 - Time-series data needs retention policies from day one. Without them, storage costs grow unbounded.
 - In microservices, prefer database-per-service for independence, and accept the complexity of cross-service data coordination.
+- Store money and other exact values as `DECIMAL(p,s)` or integer minor units with the currency alongside — never binary floating point.
+
+## Detailed reference
+
+Load only the file that matches the task — each is self-contained.
+
+| File | Contents |
+|---|---|
+| [references/numeric-precision.md](references/numeric-precision.md) | Numeric precision — float vs decimal, exact DB types, driver overflow, rounding policy, narrowing conversions, wrapping counters, currency, JSON serialization, review checklist |
 
 ## References
 
