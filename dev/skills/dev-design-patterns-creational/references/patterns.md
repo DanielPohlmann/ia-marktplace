@@ -7,6 +7,7 @@
 3. [Builder](#3-builder)
 4. [Prototype](#4-prototype)
 5. [Singleton](#5-singleton)
+6. [Simple Factory (not GoF)](#6-simple-factory-not-gof)
 
 ## 1. Factory Method
 
@@ -448,7 +449,7 @@ Ensure a class has only one instance and provide a global point of access to it.
 - **Global mutable state**: Singletons are effectively global variables, making behavior unpredictable and hard to trace
 - **Hidden dependencies**: Classes that use a Singleton do not declare that dependency in their constructor
 - **Testing difficulty**: Singletons carry state between tests, causing flaky test suites and order-dependent failures
-- **Concurrency hazards**: Lazy initialization of singletons is a classic source of race conditions
+- **Concurrency hazards**: Hand-written lazy initialization (`if (instance == null) instance = new X()`) is a check-then-create race on multi-threaded runtimes — two threads can each see `null` and build separate instances. In .NET use a DI singleton lifetime, or `Lazy<T>` / a `static readonly` field when there is no container; do not hand-roll double-checked locking. (The TypeScript example below is safe only because JavaScript runs it on a single thread.)
 - **Prefer dependency injection**: In modern systems, use a DI container to register a service with singleton lifetime. This gives you single-instance behavior without the drawbacks
 
 ### TypeScript Example
@@ -490,4 +491,69 @@ console.log(config.dbHost); // localhost
 // Register as singleton lifetime in your DI container:
 //   container.registerSingleton<AppConfig>(AppConfig);
 // Then inject via constructor — no static access, fully testable.
+```
+
+---
+
+## 6. Simple Factory (not GoF)
+
+### Intent
+Put the decision "which concrete class do I instantiate for this input?" in exactly one place. Simple Factory is a widely used idiom, **not** one of the 23 GoF patterns; it is often confused with Factory Method, which relies on subclassing the creator.
+
+### Trade-off
+The factory still contains an `if`/`switch` over the variants, so adding a variant still means editing it — the Open/Closed violation is not removed, it is **concentrated** in one known spot instead of being duplicated across every caller. That is usually the right first step; move to a registry when the list of variants changes often or is contributed by plugins.
+
+### Signals in code
+- The same creation conditional (on a type code, enum, config value or request field) appears in several endpoints, message handlers or jobs
+- A new variant was added and a bug appeared because one of the copies was missed
+
+### When NOT to use
+- There is a single call site, or a single implementation
+- As a `static` method: callers are hard-wired to it and tests cannot substitute fakes. Expose it as an injectable interface, or replace the switch with a registry (map of key to constructor/delegate, or keyed DI registrations)
+
+### TypeScript Example
+
+```typescript
+interface PaymentGateway {
+  charge(amountInCents: number): string;
+}
+
+class CardGateway implements PaymentGateway {
+  charge(amountInCents: number): string { return `card:${amountInCents}`; }
+}
+
+class PixGateway implements PaymentGateway {
+  charge(amountInCents: number): string { return `pix:${amountInCents}`; }
+}
+
+// Injectable factory: callers depend on the interface, tests can pass a fake
+interface PaymentGatewayFactory {
+  create(method: string): PaymentGateway;
+}
+
+// Registry variant: the switch becomes data; new methods are registered, not coded in
+class RegistryPaymentGatewayFactory implements PaymentGatewayFactory {
+  constructor(private readonly registry: Map<string, () => PaymentGateway>) {}
+
+  create(method: string): PaymentGateway {
+    const build = this.registry.get(method);
+    if (!build) throw new Error(`Unsupported payment method: ${method}`);
+    return build();
+  }
+}
+
+// Composition root
+const factory: PaymentGatewayFactory = new RegistryPaymentGatewayFactory(
+  new Map<string, () => PaymentGateway>([
+    ["card", () => new CardGateway()],
+    ["pix", () => new PixGateway()],
+  ])
+);
+
+// Every handler receives the factory instead of repeating the conditional
+function checkout(factory: PaymentGatewayFactory, method: string, amount: number): string {
+  return factory.create(method).charge(amount);
+}
+
+console.log(checkout(factory, "pix", 1500)); // pix:1500
 ```

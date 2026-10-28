@@ -24,6 +24,8 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 
 **Rule of thumb**: If the client picks the behavior, it is Strategy. If the object changes its own behavior based on internal conditions, it is State.
 
+With Strategy the selection logic does not disappear — it moves to one place (a factory, a registry or DI configuration) instead of being repeated around the code.
+
 ### Command vs Memento
 
 | Aspect | Command | Memento |
@@ -105,6 +107,15 @@ How do objects communicate or behave?
    └──▶ Interpreter (but consider a parser library first)
 ```
 
+## Review Signals
+
+For a per-pattern table of **signals in code** and **when NOT to use** for all eleven patterns, load [references/review-signals.md](references/review-signals.md). The most frequent findings:
+
+- **Observer** — use it only when one change drives several independent reactions; for a single reaction a direct call is clearer. Check for subscriptions never removed (C# `event` handlers keep subscribers alive → leaks), assumptions about notification order, one throwing observer stopping the rest, and slow work fanned out synchronously (move it to a queue/broker when volume or latency matters).
+- **State** — signal: a status string/enum with a public setter and transition checks scattered across the code, allowing illegal jumps. Fix: each state is a type that decides its allowed transitions; invalid transitions fail loudly.
+- **Strategy** — signal: the same `switch` on a mode/type inside several algorithms. The choice of strategy must live in exactly one factory/registry/DI registration.
+- **Template Method** — apply only after duplication exists (two or more classes with the same sequence of steps). It costs inheritance coupling; composing the fixed sequence with injected Strategy steps is often the better option.
+
 ## Detailed reference
 
 Load only the file that matches the task — each is self-contained.
@@ -122,6 +133,7 @@ Load only the file that matches the task — each is self-contained.
 | [references/template-method.md](references/template-method.md) | 9. Template Method — Intent, Structure, Participants, When to Use, TypeScript Example |
 | [references/visitor.md](references/visitor.md) | 10. Visitor — Intent, Structure, Participants, When to Use, TypeScript Example |
 | [references/interpreter.md](references/interpreter.md) | 11. Interpreter — Intent, Note on Usage, Structure, When to Use, TypeScript Example |
+| [references/review-signals.md](references/review-signals.md) | Code-review table (signals in code / when NOT to use) for all eleven patterns; Observer pitfalls; State correction; Strategy selection; Template Method vs composition |
 
 ## References
 
