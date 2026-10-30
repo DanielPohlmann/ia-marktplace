@@ -60,7 +60,7 @@ The read store is derived data: it can be dropped and rebuilt at any time. Feed 
 
 - **Transactional outbox** — the command handler writes the change and an outbox row in one transaction; a relay publishes to the projector (see `dev-integration-patterns-transactional-outbox`).
 - **Change data capture** — a connector tails the write database's log and emits row changes.
-- **Event store** — with event sourcing, projections subscribe to the stream directly.
+- **Event store** — with event sourcing, projections subscribe to the event store (typically the all-streams or per-category feed) directly.
 
 When the read store is a separate resource, avoid updating it as a second write inside the command handler; a failure between the two writes leaves the views silently wrong. Read tables in the same database, updated in the same transaction as the write, are atomic and a valid CQRS setup.
 
@@ -82,3 +82,19 @@ Multiple projections can be built from the same event stream for different query
 - **Order summary** -- For the customer dashboard
 - **Revenue report** -- For the finance team
 - **Shipping manifest** -- For the warehouse
+
+### Projection Rules
+
+- **At-least-once delivery.** Every feed above can redeliver after a crash or restart, so each handler must be idempotent: applying the same event twice leaves the read model unchanged (upsert by key, or skip events at or below the stored version).
+- **Keep a checkpoint with the read model.** Store the last processed global position (or, per read-model row, the stream version) in the same database and the same transaction as the view update. A checkpoint kept elsewhere drifts: a crash between the two writes skips or double-applies events.
+- **Ordering is per stream, not across streams.** Events of `order-1` arrive in order; there is no guarantee between `order-1` and `customer-7`. A projection joining several streams must tolerate either arriving first (e.g. create a placeholder row, fill in later).
+- **Apply event data; do not re-run business rules.** The decision was made and recorded on the write side. A projection that recomputes discounts or eligibility will disagree with the write side as soon as the rules change, and replays will rewrite history.
+- **Projections have no side effects.** Emails, payments and outbound messages live in separate subscribers that track what they already sent, so a rebuild can replay everything safely.
+
+### Rebuilding a Projection
+
+1. Deploy the new version as a **new** read model (new table/index) with its own checkpoint at position 0.
+2. Let it catch up from the start of the log in parallel with the old one, which keeps serving reads.
+3. When its lag is near zero, switch queries to it, then drop the old one.
+
+Rebuilding in place (truncate and replay) leaves the screen empty or wrong for the duration; only do it for small views.

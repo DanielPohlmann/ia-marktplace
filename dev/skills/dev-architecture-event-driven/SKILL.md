@@ -66,9 +66,9 @@ Compensating transactions are used in the saga pattern (see `dev-architecture-mi
 | Pattern | Use When | Avoid When |
 |---------|----------|------------|
 | **EDA** | Multiple consumers need to react to changes; temporal decoupling needed; high scalability | Simple CRUD apps; strong consistency required; small systems with few components |
-| **Event Sourcing** | Audit trail is critical; temporal queries needed; domain is event-centric; complex business rules | Simple CRUD domains; team unfamiliar with the pattern; high-volume writes with no audit need |
+| **Event Sourcing** | The domain *is* a sequence of facts (ledgers, bookings, claims); past states must be reconstructed and explained | Only an audit trail or history is needed — an append-only history or temporal table is far cheaper; join cost alone; simple CRUD |
 | **CQRS** | Concrete signals are present (see *Adopting CQRS* below) | Reads and writes are symmetric; indexes, query tuning and hardware are not yet exhausted; a read replica would do |
-| **All three** | Complex domains with audit requirements, different read/write scaling needs, and reactive workflows | MVP or prototype; small team; simple domain; when any individual pattern would suffice |
+| **All three** | Fact-centric domains that rebuild past states, different read/write scaling needs, and reactive workflows | MVP or prototype; small team; simple domain; when any individual pattern would suffice |
 
 ### Adopting CQRS
 
@@ -82,7 +82,7 @@ Before adopting it:
 
 - **A read replica is not CQRS.** A replica scales the same model; CQRS introduces a *different* read model. If the same queries just need more capacity, a replica is the cheaper answer.
 - **Exhaust the cheap options first**: indexes, query rewrites, caching, more hardware.
-- **Treat the read store as disposable.** It must be rebuildable from the write side (replaying events or re-projecting current state). Feed it from a transactional outbox (see `dev-integration-patterns-transactional-outbox`) or change data capture. A second write in the command handler is only safe when the read tables live in the same database and are updated in the same transaction; to a separate store it is a dual write.
+- **Treat the read store as disposable.** It must be rebuildable from the write side (replaying events or re-projecting current state). Feed it from a transactional outbox (see `dev-integration-patterns-transactional-outbox`), change data capture or, with event sourcing, a subscription to the event store. A second write in the command handler is only safe when the read tables live in the same database and are updated in the same transaction; to a separate store it is a dual write.
 - **Apply it per flow, never system-wide.** Use it for the one or two query paths that show the signals; the rest of the system stays plain CRUD.
 
 ## Log vs Queue Brokers
@@ -105,9 +105,10 @@ Saving state and then publishing the event is a **dual write**: a crash between 
 ## Best Practices
 - Start with EDA alone if you only need loose coupling and reactive behavior. Add event sourcing or CQRS only when you have a specific need.
 - Design events as first-class domain concepts: past-tense, immutable, carrying business intent (not CRUD operations).
-- Plan for event schema evolution from day one. Use a schema registry (Avro, Protobuf) for strong contracts.
+- Plan for event schema evolution from day one: upcast stored events on read; use a schema registry (Avro, Protobuf) for integration events published to other services.
 - Build projections to be rebuildable: if a projection is corrupted or needs to change, replay events from the beginning.
-- Use snapshots for long-lived event streams to keep replay times reasonable.
+- Validate commands against the write side (rehydrated aggregate), never against projections.
+- Add snapshots only when measured rehydration latency demands it, every N events; keep them versioned and disposable.
 - Handle idempotency in all event consumers: at-least-once delivery is the norm.
 - Monitor projection lag (time between event publication and read model update) as a key operational metric.
 - Keep the write model focused on enforcing business invariants; keep the read model focused on query performance.
@@ -119,9 +120,9 @@ Load only the file that matches the task — each is self-contained.
 | File | Contents |
 |---|---|
 | [references/event-driven-architecture-eda.md](references/event-driven-architecture-eda.md) | Event-Driven Architecture (EDA) — Event Types, EDA Topology, EDA Benefits and Tradeoffs |
-| [references/event-sourcing.md](references/event-sourcing.md) | Event Sourcing — Traditional State vs. Event Sourcing, Event Store Structure, Event Store Implementations, Event Sourcing Benefits, Event Sourcing Challenges |
-| [references/cqrs-command-query-responsibility-segregation.md](references/cqrs-command-query-responsibility-segregation.md) | CQRS (Command Query Responsibility Segregation) — CQRS Architecture, Why Separate Read and Write Models?, Projections (Read Models) |
-| [references/details.md](references/details.md) | Eventual Consistency |
+| [references/event-sourcing.md](references/event-sourcing.md) | Event Sourcing — when to use (vs audit/temporal tables), stream design, store schema, optimistic concurrency, deciding on the write side, snapshots, compensating events, temporal queries, schema evolution/upcasting, personal data, benefits & challenges |
+| [references/cqrs-command-query-responsibility-segregation.md](references/cqrs-command-query-responsibility-segregation.md) | CQRS — architecture, when justified, feeding the read store, projections (idempotency, checkpoints, ordering, rebuild) |
+| [references/details.md](references/details.md) | Eventual consistency — strategies, never validating commands against the read model |
 
 ## References
 

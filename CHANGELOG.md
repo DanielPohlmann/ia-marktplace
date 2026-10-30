@@ -83,6 +83,17 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 - `dev-architecture-event-driven`: concrete CQRS adoption signals (a read
   replica is not CQRS; feed the read store via outbox/CDC), log vs queue
   brokers, and publishing reliably.
+- `dev-architecture-event-driven` (event sourcing): when to use it and when an
+  append-only history or temporal table is enough; stream design; appending with
+  an expected version; validating commands on the write side, never on the read
+  model; snapshots only for measured rehydration latency, versioned and
+  disposable; compensating events instead of rewriting history, with replays
+  that never re-run side effects; recorded vs effective time; upcasting, with
+  stored events kept apart from integration events; personal data via
+  crypto-shredding; Kafka as a store needs infinite retention and no
+  compaction. Projections are idempotent with a checkpoint and rebuilt in
+  parallel. `dev-integration-patterns-transactional-outbox` no longer implies
+  exactly-once delivery for event sourcing.
 - `dev-architecture-microservices` and `dev-integration-patterns` now state the
   same sync vs async rule instead of contradicting each other.
 - `dev-integration-patterns-messaging-endpoints`: Transactional Client
