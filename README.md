@@ -17,11 +17,30 @@ the subsets it needs.
 | **legal** | `/plugin install legal@ia-marketplace` | 16 | Privacy & data protection (GDPR/LGPD/CCPA), open-source licensing, billing & taxation, accessibility, consumer protection, content moderation, contracts, compliance, IP, AI regulation |
 | **tools** | `/plugin install tools@ia-marketplace` | 3 | Docker & Git |
 | **QA** | `/plugin install QA@ia-marketplace` | 3 | Browser automation & E2E testing (playwright-cli) + BDD/Gherkin `.feature` authoring (bdd-gherkin) + Aspire/Playwright .NET functional tests (e2e-functional-testing) |
-| **workflows** | `/plugin install workflows@ia-marketplace` | 1 | Plan execution orchestrator |
+| **workflows** | `/plugin install workflows@ia-marketplace` | 2 | Plan execution orchestrator (workflows) + Tamandua pipeline run operation (workflows-tamandua) |
 | **specs** | `/plugin install specs@ia-marketplace` | 21 | Specifications & architecture documentation: diagramming (C4, Mermaid, UML, PlantUML, D2, ERD, TOGAF, ArchiMate, functional), specification documents (PRD, TRD, BRD, ADR, RFC, Gherkin, Gauge, user guide) and knowledge-base building (LLM Wiki) |
 | **custom-agent** | `/plugin install custom-agent@ia-marketplace` | 1 | graphify — knowledge-graph building & querying over any input |
+| **product** | `/plugin install product@ia-marketplace` | 4 | Product discovery pipeline: ideation → design → architecture, with research/review/critique subagents |
 
-**124 skills total.**
+**129 skills total.**
+
+---
+
+## Product pipeline
+
+The `product` plugin runs a gated discovery flow, handing off through
+`docs/product/<slug>/` artifacts:
+
+```
+Skill("product:product")               # router
+  → product:product-ideation           # idea → validated problem/opportunity
+  → product:product-design             # opportunity → product design
+  → product:product-architecture       # design → architecture (force-driven patterns)
+  → superpowers:brainstorming          # hand off to implementation planning
+```
+
+Subagents (`product:product-market-researcher`, `product:product-design-reviewer`,
+`product:product-architecture-critic`) are dispatched by the skills.
 
 ---
 
@@ -62,7 +81,8 @@ Add to the consuming project's `.claude/settings.json`:
     "QA@ia-marketplace": true,
     "workflows@ia-marketplace": true,
     "specs@ia-marketplace": true,
-    "custom-agent@ia-marketplace": true
+    "custom-agent@ia-marketplace": true,
+    "product@ia-marketplace": true
   }
 }
 ```
@@ -82,6 +102,7 @@ Skills are auto-namespaced by their plugin once installed:
 | `security-owasp` | security | `Skill("security:security-owasp")` |
 | `tools-git` | tools | `Skill("tools:tools-git")` |
 | `workflows` | workflows | `Skill("workflows:workflows")` |
+| `workflows-tamandua` | workflows | `Skill("workflows:workflows-tamandua")` |
 | `graphify` | custom-agent | `Skill("custom-agent:graphify")` |
 
 Each domain keeps a **thin index skill** (`dev`, `stack`, `security`, `legal`,
@@ -94,16 +115,17 @@ reach for. Prefer the most specific skill over its index.
 
 ```
 ia-marktplace/
-├── .claude-plugin/marketplace.json     ← 9 plugins
+├── .claude-plugin/marketplace.json     ← 10 plugins
 ├── dev/          .claude-plugin/plugin.json + skills/  (44)
 ├── stack/        .claude-plugin/plugin.json + skills/  (19)
 ├── security/     .claude-plugin/plugin.json + skills/  (16)
 ├── legal/        .claude-plugin/plugin.json + skills/  (16)
 ├── tools/        .claude-plugin/plugin.json + skills/  (3)
 ├── QA/           .claude-plugin/plugin.json + skills/  (3)
-├── workflows/    .claude-plugin/plugin.json + skills/  (1)
+├── workflows/    .claude-plugin/plugin.json + skills/  (2)
 ├── specs/        .claude-plugin/plugin.json + skills/  (21)
 ├── custom-agent/ .claude-plugin/plugin.json + skills/  (1)
+├── product/      .claude-plugin/plugin.json + skills/  (4) + agents/
 ├── CLAUDE.md · AGENTS.md · CHANGELOG.md · LICENSE
 ```
 

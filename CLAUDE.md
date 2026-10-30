@@ -9,7 +9,7 @@ as installable plugins, organized **one plugin per domain**.
 ```
 ia-marktplace/
 ├── .claude-plugin/
-│   └── marketplace.json          ← declares the 9 plugins
+│   └── marketplace.json          ← declares the 10 plugins
 ├── dev/                          ← plugin: dev (44 skills)
 │   ├── .claude-plugin/plugin.json
 │   └── skills/<skill>/SKILL.md
@@ -20,9 +20,10 @@ ia-marktplace/
 ├── legal/                        ← plugin: legal (16 skills)
 ├── tools/                        ← plugin: tools (3 skills)
 ├── QA/                           ← plugin: QA (3 skills)
-├── workflows/                    ← plugin: workflows (1 skill)
+├── workflows/                    ← plugin: workflows (2 skills)
 ├── specs/                        ← plugin: specs (21 skills)
 ├── custom-agent/                 ← plugin: custom-agent (1 skill)
+├── product/                      ← plugin: product (4 skills)
 ├── CLAUDE.md
 ├── README.md
 ├── AGENTS.md
@@ -74,7 +75,7 @@ produce a PDF report. It is deliberately excluded from the marketplace (no `plug
   loads only the file the task needs.
 - The verifier warns above 600 description chars or 1500 body words.
 
-## The 9 plugins
+## The 10 plugins
 
 | Plugin | Skills | Domain |
 |---|---|---|
@@ -84,9 +85,10 @@ produce a PDF report. It is deliberately excluded from the marketplace (no `plug
 | `legal` | 16 | Privacy/GDPR/LGPD, licensing, billing/taxation, accessibility, compliance |
 | `tools` | 3 | Docker & Git |
 | `QA` | 3 | Browser automation, E2E/functional testing & BDD/Gherkin authoring |
-| `workflows` | 1 | Plan execution orchestrator |
+| `workflows` | 2 | Plan execution orchestrator & Tamandua pipeline run operation |
 | `specs` | 21 | Diagramming (C4, Mermaid, UML, PlantUML, D2, ERD, TOGAF, ArchiMate, functional), specification documents (PRD, TRD, BRD, ADR, RFC, Gherkin, Gauge, user guide) & knowledge-base building (LLM Wiki) |
 | `custom-agent` | 1 | graphify (knowledge-graph building & querying over any input) |
+| `product` | 4 | Product discovery pipeline: ideation → design → architecture, with research/review/critique subagents |
 
 ## Adding a skill
 
@@ -100,6 +102,14 @@ produce a PDF report. It is deliberately excluded from the marketplace (no `plug
 6. Run `python scripts/verify_marketplace.py` — it gates naming, frontmatter,
    anatomy, description cross-links, and every "(N skills)" count claim (also
    enforced in CI by `.github/workflows/verify-marketplace.yml`).
+
+## Adding a subagent
+
+1. Create `<plugin>/agents/<plugin>-<name>.md`; the file stem equals `name:` and carries the plugin prefix.
+2. Frontmatter: `name`, `description` (single line), `tools`, `model` (`sonnet` | `opus` | `haiku` | `inherit`), optional `color`.
+3. Agents do non-interactive work: they cannot ask the user questions, so anything needing dialogue belongs in a skill that dispatches the agent.
+4. Installed agents are dispatched as `subagent_type: "<plugin>:<name>"`.
+5. `python scripts/verify_marketplace.py` enforces these rules via `check_agent()`.
 
 ## Consuming this marketplace
 

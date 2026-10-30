@@ -26,6 +26,21 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
   quantities as decimal or integer minor units, database precision/scale,
   rounding policy, narrowing conversions and serialization pitfalls.
 
+- New skill `workflows-tamandua` (`workflows` plugin, now 2 skills): operator
+  guide for Tamandua delivery runs — start a run for a plan or spec, read
+  status and logs, explain open gate findings, tell paused (rate limit) from
+  blocked (budget, dispute, read-only violation, non-code failure) from failed,
+  and resume a blocked run after a human decision. References: CLI catalog,
+  findings contract (`FINDINGS_JSON` / `RESOLVED` / `DISPUTED_JSON`, severities,
+  fingerprints, dispute rule), troubleshooting. Invoked as
+  `workflows:workflows-tamandua`.
+- New plugin `product` (4 skills, 3 agents): gated product discovery pipeline —
+  `product` (router), `product-ideation`, `product-design`, `product-architecture`
+  (with force-driven pattern selection) — handing off through
+  `docs/product/<slug>/` artifacts, with subagents `product-market-researcher`,
+  `product-design-reviewer` and `product-architecture-critic`.
+- `verify_marketplace.py` validates `<plugin>/agents/*.md` (`check_agent()`),
+  covered by `scripts/test_verify_marketplace.py` in CI.
 - New skill `dev-integration-patterns-transactional-outbox` (`dev` plugin, now
   42 skills): the dual-write problem and its strategies — transactional outbox
   with polling publisher or CDC/log tailing, inbox/idempotent consumers,

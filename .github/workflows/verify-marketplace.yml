@@ -15,3 +15,5 @@ jobs:
           python-version: "3.12"
       - name: Verify marketplace conventions
         run: python scripts/verify_marketplace.py
+      - name: Verifier unit tests
+        run: python -m unittest discover -s scripts -p "test_*.py" -v
