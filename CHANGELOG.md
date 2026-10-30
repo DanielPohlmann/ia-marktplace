@@ -10,6 +10,22 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ### Added
 
+- New skill `dev-system-design` (`dev` plugin, now 44 skills): an 8-step
+  procedure for designing or reviewing systems under volume, spikes, live
+  updates or data growth — requirements with numbers, estimation, entities,
+  API, naive-first high-level design, deep dives — with references on
+  estimation, the scaling ladder, load balancing, database selection
+  (CAP/PACELC), sharding, real-time delivery, contention and spikes, and large
+  files / ID generation.
+- New skill `dev-craftsmanship-oo-review`: OO design checklist for code review —
+  signal → principle → minimal correction table, a YAGNI gate before every
+  finding, severity guide, language/ORM exceptions and a finding format; with
+  references for a signals catalog and object calisthenics (as review alarms,
+  not laws).
+- `dev-backend-data-modeling/references/numeric-precision.md`: money and exact
+  quantities as decimal or integer minor units, database precision/scale,
+  rounding policy, narrowing conversions and serialization pitfalls.
+
 - New skill `workflows-tamandua` (`workflows` plugin, now 2 skills): operator
   guide for Tamandua delivery runs — start a run for a plan or spec, read
   status and logs, explain open gate findings, tell paused (rate limit) from
@@ -39,6 +55,54 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ### Changed
 
+- `dev-craftsmanship-clean-code`: function length and argument counts are now
+  review signals, not verdicts; language conventions override generic naming
+  rules (the C# `I` interface prefix is no longer listed as an encoding to
+  remove); "Don't Return Null" lists idiomatic alternatives (Try-pattern,
+  nullable reference types, Optional, empty collections); the Law of Demeter
+  example now shows real tell-don't-ask and when the law does not apply (DTOs,
+  fluent APIs, query pipelines).
+- `dev-craftsmanship-refactoring`: "deadline is imminent" now has a decision
+  criterion, and a new `references/design-rot.md` covers rigidity, fragility,
+  immobility and viscosity with review signals.
+- `dev-craftsmanship-solid`: restructured around review guardrails — each
+  principle now lists detectable signals, the correction and when not to apply
+  it. SRP is framed by actors (technical-step splits are called out as
+  separation of concerns), OCP states where the variant selection lives, LSP
+  lists concrete client- and override-side signals, and DIP gains a two-step
+  rule (own the dependency, then invert only for tests, a second
+  implementation or a module boundary). Code examples moved to
+  `references/examples.md`; body is back under the 1500-word budget.
+- `dev-design-patterns-creational/-structural/-behavioral`: every pattern now
+  has review signals and when-not-to-use guidance; adds Simple Factory (not
+  GoF), Singleton thread-safety, Observer pitfalls, State transition signals,
+  and Template Method only after duplication exists.
+- `dev-backend-caching`: write-through is no longer described as strongly
+  consistent (it is a dual write); adds when to cache at all, invalidate after
+  commit, stampede, cache-down fallback and multi-instance in-process drift.
+- `dev-architecture-event-driven`: concrete CQRS adoption signals (a read
+  replica is not CQRS; feed the read store via outbox/CDC), log vs queue
+  brokers, and publishing reliably.
+- `dev-architecture-event-driven` (event sourcing): when to use it and when an
+  append-only history or temporal table is enough; stream design; appending with
+  an expected version; validating commands on the write side, never on the read
+  model; snapshots only for measured rehydration latency, versioned and
+  disposable; compensating events instead of rewriting history, with replays
+  that never re-run side effects; recorded vs effective time; upcasting, with
+  stored events kept apart from integration events; personal data via
+  crypto-shredding; Kafka as a store needs infinite retention and no
+  compaction. Projections are idempotent with a checkpoint and rebuilt in
+  parallel. `dev-integration-patterns-transactional-outbox` no longer implies
+  exactly-once delivery for event sourcing.
+- `dev-architecture-microservices` and `dev-integration-patterns` now state the
+  same sync vs async rule instead of contradicting each other.
+- `dev-integration-patterns-messaging-endpoints`: Transactional Client
+  atomicity caveat with a separate broker; Idempotent Receiver records the
+  message ID in the same transaction under a unique constraint.
+- `dev-backend-api-design`: money modeled as decimal / minor units instead of
+  `Float` / `double` in GraphQL, gRPC and JSON examples.
+- `dev` and `dev-craftsmanship` routers point to the two new skills.
+- `README.md` total corrected to 124 skills.
 - Removed skill `tamandua-agents` from the `custom-agent` plugin (now 1 skill:
   `graphify`); marketplace now ships 121 skills.
 - Token-efficiency pass over all skills:

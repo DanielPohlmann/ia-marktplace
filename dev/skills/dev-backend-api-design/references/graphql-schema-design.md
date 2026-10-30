@@ -5,6 +5,8 @@
 ## Schema Example (Schema-First / SDL)
 
 ```graphql
+scalar Decimal  # serialized as a string, e.g. "1234.50"
+
 type User {
   id: ID!
   name: String!
@@ -14,9 +16,14 @@ type User {
 
 type Order {
   id: ID!
-  total: Float!
+  total: Money!
   status: OrderStatus!
   items: [OrderItem!]!
+}
+
+type Money {
+  amount: Decimal!
+  currency: String!  # ISO 4217 code, e.g. "USD"
 }
 
 enum OrderStatus {
@@ -60,6 +67,8 @@ input CreateOrderInput {
   items: [OrderItemInput!]!
 }
 ```
+
+**Money is never `Float`.** GraphQL `Float` is a binary double, which cannot represent most decimal fractions exactly (0.1 + 0.2 is not 0.3), so totals drift through rounding. Use a custom decimal scalar serialized as a string, or an `Int` amount in minor units (cents) plus a currency code — and note that GraphQL `Int` is 32-bit, so large minor-unit amounts also need a string-backed scalar.
 
 ## The N+1 Problem & DataLoader
 

@@ -57,7 +57,7 @@ Each **filter** performs a single processing step (validate, enrich, transform, 
 | Error handling | Caller handles errors in real time | Dead-letter channels, retries, compensation |
 | Complexity | Simple for 1:1 interactions | Worth it when >2 participants or reliability matters |
 
-**Rule of thumb:** Start synchronous. Move to messaging when you need temporal decoupling, load levelling, reliable delivery, or fan-out to multiple consumers.
+**Rule of thumb:** Use a synchronous call when the caller needs the answer to proceed (typically the user-facing request path). Use messaging for work that can complete later, fan-out to several consumers, load levelling of spikes, reliable delivery, and workflows that span several services. Avoid chains of synchronous calls across services: each hop adds latency and a failure anywhere cascades back to the caller.
 
 ## Pattern Selection Guide
 

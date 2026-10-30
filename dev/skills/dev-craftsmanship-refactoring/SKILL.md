@@ -27,7 +27,7 @@ Refactoring is not rewriting. It is a sequence of small, behavior-preserving tra
 | Situation | Reason |
 |-----------|--------|
 | **No tests exist and you cannot write them** | Refactoring without tests is gambling. Write characterization tests first. |
-| **A deadline is imminent** | Technical debt is a valid business decision when managed consciously. Refactor after the deadline. |
+| **A deadline is imminent and the change is local** | Deferring is a valid business decision when it is recorded. Defer only if the change touches one place; if the deadline work itself is slowed by rot (see [design-rot.md](references/design-rot.md)), the refactoring is part of the deadline work, not separate from it. |
 | **The code is going to be replaced** | Do not polish code that will be thrown away. |
 | **The code works and nobody needs to change it** | Refactoring code that is never touched adds risk with no benefit. |
 
@@ -73,6 +73,7 @@ Load only the file that matches the task — each is self-contained.
 | [references/code-smells-catalog.md](references/code-smells-catalog.md) | Code Smells Catalog — Bloaters, Object-Orientation Abusers, Change Preventers, Dispensables, Couplers |
 | [references/key-refactoring-techniques.md](references/key-refactoring-techniques.md) | Key Refactoring Techniques — Extract Method, Inline Method, Extract Class, Move Method, Replace Conditional with Polymorphism, Introduce Parameter Object, … |
 | [references/details.md](references/details.md) | The Refactoring Workflow; Refactoring and Testing |
+| [references/design-rot.md](references/design-rot.md) | Design rot — rigidity, fragility, immobility, viscosity: how to detect each in a diff and use them to justify refactoring now vs later |
 
 ## References
 

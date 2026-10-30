@@ -55,8 +55,10 @@ POST /payments
 Idempotency-Key: pay_req_abc123
 Content-Type: application/json
 
-{ "amount": 99.99, "currency": "USD" }
+{ "amount": "99.99", "currency": "USD" }
 ```
+
+Monetary amounts travel as decimal strings (or integer minor units such as `9999`), never as JSON floats — many parsers decode JSON numbers into binary doubles, which cannot represent most decimal fractions exactly.
 
 ### OpenAPI / Swagger Documentation
 

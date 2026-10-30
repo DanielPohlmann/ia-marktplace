@@ -61,6 +61,8 @@ for (let taskIndex = 0; taskIndex < NUMBER_OF_TASKS; taskIndex++) {
 | Make meaningful distinctions | `a1`, `a2` | `source`, `destination` |
 | Use pronounceable names | `genymdhms` | `generationTimestamp` |
 | Use searchable names | `7` | `MAX_CLASSES_PER_STUDENT` |
-| Avoid encodings / prefixes | `m_name`, `IShapeFactory` | `name`, `ShapeFactory` |
+| Avoid encodings / prefixes | `m_name`, `strName`, `iCount` | `name`, `count` |
 | Use nouns for classes | `Manager`, `Processor`, `Data` (vague) | `Account`, `WikiPage`, `AddressParser` |
 | Use verbs for methods | `data()` | `fetchData()`, `save()`, `deletePage()` |
+
+> **Language conventions override this table.** "Avoid encodings" targets type and scope warts (Hungarian notation, `m_` prefixes). It does not override idioms the ecosystem expects: in C#/.NET the `I` prefix on interfaces (`IShapeFactory`) is the standard convention and should be kept.

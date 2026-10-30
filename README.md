@@ -11,7 +11,7 @@ the subsets it needs.
 
 | Plugin | Install | Skills | Scope |
 |--------|---------|--------|-------|
-| **dev** | `/plugin install dev@ia-marketplace` | 42 | Design patterns, algorithms & data structures, architectural styles (DDD, hexagonal, microservices, event-driven, monoliths), backend/frontend architecture, craftsmanship (SOLID, clean code, refactoring, 12-factor), enterprise integration patterns |
+| **dev** | `/plugin install dev@ia-marketplace` | 44 | Design patterns, algorithms & data structures, architectural styles (DDD, hexagonal, microservices, event-driven, monoliths), backend/frontend architecture, craftsmanship (SOLID, clean code, refactoring, 12-factor), enterprise integration patterns |
 | **stack** | `/plugin install stack@ia-marketplace` | 19 | .NET library selection & usage: MassTransit, MediatR, AutoMapper, Dapper, Serilog, Polly, Redis, Validot, NCrontab, Topshelf, OpenAPI, ASP.NET Identity, i18n, observability/OTLP, Plunk email, Docker, hygiene |
 | **security** | `/plugin install security@ia-marketplace` | 16 | OWASP, threat modeling, auth, cryptography, data protection, input validation, API security, logging/monitoring, supply chain, pen testing, red teaming, secure SDLC, AI security |
 | **legal** | `/plugin install legal@ia-marketplace` | 16 | Privacy & data protection (GDPR/LGPD/CCPA), open-source licensing, billing & taxation, accessibility, consumer protection, content moderation, contracts, compliance, IP, AI regulation |
@@ -22,7 +22,7 @@ the subsets it needs.
 | **custom-agent** | `/plugin install custom-agent@ia-marketplace` | 1 | graphify — knowledge-graph building & querying over any input |
 | **product** | `/plugin install product@ia-marketplace` | 4 | Product discovery pipeline: ideation → design → architecture, with research/review/critique subagents |
 
-**127 skills total.**
+**129 skills total.**
 
 ---
 
@@ -116,7 +116,7 @@ reach for. Prefer the most specific skill over its index.
 ```
 ia-marktplace/
 ├── .claude-plugin/marketplace.json     ← 10 plugins
-├── dev/          .claude-plugin/plugin.json + skills/  (42)
+├── dev/          .claude-plugin/plugin.json + skills/  (44)
 ├── stack/        .claude-plugin/plugin.json + skills/  (19)
 ├── security/     .claude-plugin/plugin.json + skills/  (16)
 ├── legal/        .claude-plugin/plugin.json + skills/  (16)

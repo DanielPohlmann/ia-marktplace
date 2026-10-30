@@ -49,6 +49,21 @@ Do you need to compose or wrap objects?
    └──▶ Proxy
 ```
 
+## Review Signals
+
+Use during code review: the middle column suggests the pattern is missing, the right column suggests it is misapplied.
+
+| Pattern | Signals in code (pattern is needed) | When NOT to use (anti-signals / overuse) |
+|---------|-------------------------------------|------------------------------------------|
+| **Adapter** | Third-party or legacy types (SDK clients, DTOs, exceptions, enums) leak into domain code; vendor-specific conversions repeated at every call site; swapping a vendor would touch the domain | The external API already matches your abstraction; an adapter that only renames methods 1:1 and adds no translation or isolation is noise |
+| **Bridge** | A class hierarchy multiplying along two axes (`PdfEmailReport`, `PdfSlackReport`, `CsvEmailReport`, …) | Only one axis actually varies; building the split up-front "for later" |
+| **Composite** | Client code type-checks nodes (`if (x is Folder) … else …`) and recurses by hand over a tree | The structure is flat, or leaves and containers genuinely need different operations — a uniform interface would force meaningless methods on leaves |
+| **Decorator** | Optional behavior switched on by flags inside a method (`if (enableCache) … if (enableRetry) …`); boolean constructor parameters such as `withLogging`; subclasses like `LoggingRetryingCachingClient` | One fixed combination that never changes; deep stacks whose behavior depends on wrapping order (retry outside vs inside cache, auth before or after logging) — make the order explicit in one composition root and test it |
+| **Facade** | Callers repeat the same multi-step orchestration over several subsystem classes; controllers know the internal call order of a subsystem | A facade over a trivial one-step flow is an extra hop with no value. Watch growth: a facade that accumulates unrelated operations becomes a god object — split it per use case |
+| **Flyweight** | Memory profiling shows huge counts of objects with identical immutable parts (glyphs, tiles, map markers) | No measured memory problem; shared state that must be mutable — sharing it creates cross-object bugs |
+| **Proxy** | Cache lookups, permission checks, lazy loading or logging mixed into business methods, often copied across several methods | No shared interface between proxy and real object — clients must know which one they hold, so it is a wrapper, not a proxy; one-off concern better handled by the framework's middleware/interceptors |
+
+
 ## Commonly Confused Pairs
 
 ### Adapter vs Facade

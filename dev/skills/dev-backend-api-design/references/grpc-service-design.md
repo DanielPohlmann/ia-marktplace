@@ -32,7 +32,14 @@ message Order {
   string user_id = 2;
   repeated OrderItem items = 3;
   OrderStatus status = 4;
-  double total = 5;
+  Money total = 5;
+}
+
+// Never use float/double for money: binary floating point cannot represent
+// most decimal fractions exactly. Integer minor units + currency are exact.
+message Money {
+  string currency_code = 1;  // ISO 4217, e.g. "USD"
+  int64 amount_minor = 2;    // 1234 = 12.34 USD
 }
 
 enum OrderStatus {
@@ -45,7 +52,7 @@ enum OrderStatus {
 message OrderItem {
   string product_id = 1;
   int32 quantity = 2;
-  double unit_price = 3;
+  Money unit_price = 3;
 }
 ```
 

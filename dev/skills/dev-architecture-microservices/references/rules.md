@@ -10,7 +10,7 @@ Best practices and rules for Microservices.
 | 2 | Own your data | MEDIUM | [`microservices-own-your-data.md`](microservices-own-your-data.md) |
 | 3 | Make inter-service communication observable | MEDIUM | [`microservices-make-inter-service-communication-observable.md`](microservices-make-inter-service-communication-observable.md) |
 | 4 | Use consumer-driven contract testing (Pact, Spring Cloud... | HIGH | [`microservices-use-consumer-driven-contract-testing-pact-spring-cloud.md`](microservices-use-consumer-driven-contract-testing-pact-spring-cloud.md) |
-| 5 | Prefer asynchronous communication; use synchronous calls... | LOW | [`microservices-prefer-asynchronous-communication-use-synchronous-calls.md`](microservices-prefer-asynchronous-communication-use-synchronous-calls.md) |
+| 5 | Match sync vs async to the interaction; no synchronous call chains | LOW | [`microservices-match-sync-vs-async-to-the-interaction.md`](microservices-match-sync-vs-async-to-the-interaction.md) |
 | 6 | Keep services small enough to be owned by a single team,... | MEDIUM | [`microservices-keep-services-small-enough-to-be-owned-by-a-single-team.md`](microservices-keep-services-small-enough-to-be-owned-by-a-single-team.md) |
 | 7 | Deploy independently, test independently, fail independently | MEDIUM | [`microservices-deploy-independently-test-independently-fail-independently.md`](microservices-deploy-independently-test-independently-fail-independently.md) |
 
@@ -82,15 +82,15 @@ Own your data: one database per service, no shared database access.
 ---
 
 ---
-title: "Prefer asynchronous communication; use synchronous calls..."
+title: "Match sync vs async to the interaction; no synchronous call chains"
 impact: LOW
 impactDescription: "recommended but situational"
 tags: microservices, dev, architecture, microservice-decomposition, inter-service-communication, service-mesh
 ---
 
-## Prefer asynchronous communication; use synchronous calls...
+## Match sync vs async to the interaction; no synchronous call chains
 
-Prefer asynchronous communication; use synchronous calls only when necessary.
+Use synchronous request/response on the user-facing path when the caller needs the answer to proceed. Use messaging for work that can complete later, fan-out to several consumers, load levelling of spikes, and cross-service workflows. Avoid chains of synchronous calls across services — latency adds up and failures cascade.
 
 ---
 

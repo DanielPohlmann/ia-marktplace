@@ -1,6 +1,6 @@
 ---
 name: dev-craftsmanship
-description: Use when choosing among code-quality approaches or applying general craftsmanship principles. USE FOR: Boy Scout Rule, DRY/KISS/YAGNI, Pragmatic Programmer practices, picking the right quality skill. DO NOT USE FOR: naming/readability (use dev-craftsmanship-clean-code), SOLID (use dev-craftsmanship-solid), refactoring (use dev-craftsmanship-refactoring), layers (use dev-craftsmanship-clean-architecture).
+description: Use when choosing among code-quality approaches or applying general craftsmanship principles. USE FOR: Boy Scout Rule, DRY/KISS/YAGNI, Pragmatic Programmer practices, picking the right quality skill. DO NOT USE FOR: naming/readability (use dev-craftsmanship-clean-code), SOLID (use dev-craftsmanship-solid), refactoring (use dev-craftsmanship-refactoring), OO review (use dev-craftsmanship-oo-review), layers (use dev-craftsmanship-clean-architecture).
 ---
 
 # Software Craftsmanship
@@ -84,6 +84,7 @@ From *The Pragmatic Programmer* by Andrew Hunt and David Thomas:
 | Classes have too many responsibilities, changes break unrelated things | `dev-craftsmanship-solid` |
 | Deploying to the cloud, configuring environments, managing processes | `dev-craftsmanship-twelve-factor` |
 | Code smells accumulate, need systematic improvement without changing behavior | `dev-craftsmanship-refactoring` |
+| Reviewing a class or PR for OO design flaws — type-code conditionals, anemic entities, suspicious overrides, singletons | `dev-craftsmanship-oo-review` |
 | General quality mindset, deciding which approach to take first | This skill (`dev-craftsmanship`) |
 
 ## The Craftsmanship Mindset

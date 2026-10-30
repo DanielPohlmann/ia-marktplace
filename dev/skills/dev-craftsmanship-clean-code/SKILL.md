@@ -17,11 +17,11 @@ description: Use when writing or reviewing code for readability (Robert C. Marti
 | Area | Question |
 |------|----------|
 | Names | Does every name reveal intent? Could a new team member understand this without context? |
-| Functions | Is every function under 20 lines? Does it do exactly one thing? |
-| Arguments | Does any function take more than 3 arguments? |
+| Functions | Does each function do one thing at one level of abstraction? Length is a signal, not a verdict — a long function deserves a look, not an automatic finding. |
+| Arguments | Do long argument lists hide a concept (values that always travel together) or a boolean flag that switches behavior? |
 | Comments | Does every comment explain *why*, not *what*? Are there commented-out blocks? |
 | Formatting | Does the file read top-to-bottom like a newspaper article? |
-| Error Handling | Are exceptions used instead of error codes? Is null ever returned or passed? |
+| Error Handling | Are exceptions used instead of error codes? Is null returned where absence is not an expected outcome, or passed as an argument? |
 | Duplication | Is there any copy-pasted logic? (Apply DRY) |
 | Dead Code | Is there any code that is never executed? |
 
@@ -32,6 +32,8 @@ description: Use when writing or reviewing code for readability (Robert C. Marti
 - Treat tests as first-class citizens of clean code — apply all the same naming, function, and formatting rules.
 - Prefer polymorphism over switch/if-else chains when you find the same condition repeated.
 - When you write a comment, first ask: "Can I make this code so clear that the comment is unnecessary?"
+- The language's own conventions win over generic rules: keep the `I` prefix on C#/.NET interfaces, `snake_case` in Python, and so on.
+- Treat numeric limits (lines per function, arguments per call) as review prompts. Report the underlying problem — mixed abstraction levels, hidden responsibilities — never the count alone.
 
 ## Detailed reference
 

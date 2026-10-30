@@ -121,9 +121,9 @@ A consumer that can safely process the same message multiple times, producing th
 ┌──────────┐    ┌─────────────────────────────────────┐
 │ Channel  │───>│ Idempotent Receiver                 │
 │          │    │                                     │
-│ msg-001  │    │  1. Check: seen msg-001 before?     │
-│ msg-001  │    │     YES -> skip (already processed) │
-│ (retry)  │    │     NO  -> process and record ID    │
+│ msg-001  │    │  BEGIN TX                           │
+│ msg-001  │    │   insert msg-001 (unique) + effect  │
+│ (retry)  │    │   duplicate key -> already done     │
 └──────────┘    │                                     │
                 │  ┌────────────────┐                 │
                 │  │ Processed IDs  │                 │
@@ -135,7 +135,7 @@ A consumer that can safely process the same message multiple times, producing th
 **When to use:** Always. Most messaging systems provide at-least-once delivery, meaning duplicates are possible. Idempotent receivers are the standard defence.
 
 **Implementation strategies:**
-- **Deduplication table:** Store processed message IDs, check before processing.
+- **Deduplication table:** Insert the message ID in the *same transaction* as the side effect, under a unique constraint; a duplicate-key error means "already processed" — ack and skip. A separate check-then-act lets two concurrent deliveries both pass the check (an inbox; see dev-integration-patterns-transactional-outbox).
 - **Natural idempotency:** Design operations to be inherently idempotent (e.g., "set balance to X" vs. "add X to balance").
 - **Idempotency key:** Use a business key (orderId + operation) rather than just messageId.
 
@@ -152,13 +152,15 @@ Coordinates message consumption with local data changes in a single transaction,
                 │    3. Send outgoing message        │
                 │  COMMIT (or ROLLBACK)              │
                 │                                   │
-                │  Message ACK only on COMMIT       │
+                │  ACK after COMMIT                 │
                 └───────────────────────────────────┘
 ```
 
 **When to use:** When message processing must be atomic with database changes. Common in financial systems, inventory management, and any system where partial processing is unacceptable.
 
-**Trade-offs:** Distributed transactions (2PC) are expensive. Prefer the Outbox Pattern (store outgoing messages in the local DB, publish asynchronously) when cross-resource transactions are unavailable — see dev-integration-patterns-transactional-outbox.
+**Atomicity caveat:** consume, update and send are truly atomic only when the broker and the store are the same transactional resource (e.g. a database-backed queue) or enlisted in a real distributed transaction. With a separate broker and database, ack after commit still leaves a gap: a crash between commit and ack redelivers the message, so the consumer must be idempotent (see Idempotent Receiver), and outgoing messages need an outbox rather than a direct send.
+
+**Trade-offs:** Distributed transactions (2PC) are expensive and often unsupported. Prefer inbox + outbox (dedup incoming IDs and store outgoing messages in the local DB, relay asynchronously) — see dev-integration-patterns-transactional-outbox.
 
 ### Service Activator
 Connects a service to the messaging system, invoking the service when a message arrives and optionally sending a reply.

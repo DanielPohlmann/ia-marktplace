@@ -51,7 +51,7 @@ Use Domain-Driven Design bounded contexts as service boundaries (see `dev-archit
 | **Command Message** | Message broker (queue) | Tell a specific service to do something |
 | **Async Request/Response** | Correlation ID + reply queue | Need a response but don't want to block |
 
-**Rule of thumb:** Prefer asynchronous communication for inter-service calls. Use synchronous only when a real-time response is required (e.g., user-facing request/response).
+**Rule of thumb:** Use synchronous request/response on the user-facing path when the caller needs the answer to proceed. Use messaging for work that can complete later, fan-out to several consumers, load levelling of spikes, and cross-service workflows (sagas). Avoid chains of synchronous calls across services: latency adds up hop by hop and one slow or failing service cascades to every caller upstream.
 
 ### Communication Anti-Patterns
 - **Distributed monolith** -- Services are "microservices" in name only; they deploy together, share databases, or cannot function independently.
@@ -192,7 +192,7 @@ Microservices introduce significant operational complexity. Do not use them when
 - Own your data: one database per service, no shared database access.
 - Make inter-service communication observable: distributed tracing (OpenTelemetry), centralized logging, metrics.
 - Use consumer-driven contract testing (Pact, Spring Cloud Contract) to prevent breaking changes.
-- Prefer asynchronous communication; use synchronous calls only when necessary.
+- Match the style to the interaction: synchronous when the caller needs the answer to proceed; messaging for deferrable work, fan-out, load levelling and cross-service workflows; no chains of synchronous calls across services.
 - Keep services small enough to be owned by a single team, but large enough to justify the operational overhead.
 - Deploy independently, test independently, fail independently.
 

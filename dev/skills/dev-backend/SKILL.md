@@ -1,6 +1,6 @@
 ---
 name: dev-backend
-description: Use when making a backend architecture decision that spans API style, storage, caching, and auth. USE FOR: backend system design, choosing API styles and database types, server-side patterns, routing to a backend sub-skill. DO NOT USE FOR: one specific concern (use dev-backend-data-modeling, dev-backend-api-design, dev-backend-caching, dev-backend-authentication), frontend (use dev-frontend).
+description: Use when making a backend architecture decision that spans API style, storage, caching, and auth. USE FOR: backend architecture decisions, choosing API styles and database types, server-side patterns, routing to a backend sub-skill. DO NOT USE FOR: one specific concern (use dev-backend-data-modeling, dev-backend-api-design, dev-backend-caching, dev-backend-authentication), scalability and capacity (use dev-system-design), frontend (use dev-frontend).
 ---
 
 # Backend Architecture
