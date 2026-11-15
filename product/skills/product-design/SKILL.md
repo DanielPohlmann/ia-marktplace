@@ -20,6 +20,10 @@ Find the design-system document: the path under a `Design system` heading in `CL
 
 Each screen targets exactly one **surface** declared in the design system.
 
+## Step 1 — Interview
+
+Before any journey or screen, interview the user with `references/elicitation-questions.md`, block by block (A context of use → B tasks → C roles → D journey → E scope → F content → G errors → H notifications → I accessibility → J copy → K surfaces → L UX metrics). Ask every question that applies, one per message, multiple choice when possible; skip only what the idea brief, the design system or an earlier answer already settled, and say so. Ask for the last real occurrence, not preferences. Record answers in `## Interview notes`; each "don't know" goes to `## Open questions` with how we would find out. Block M is a self-check of your own screens, run before step 8.
+
 ## Process
 
 External skills referenced in this skill are used when installed; otherwise apply the practice directly.
@@ -44,9 +48,11 @@ External skills referenced in this skill are used when installed; otherwise appl
 - Copying patterns listed as leftovers.
 - Hardcoded strings in prototypes.
 - Happy path only.
+- Designing screens before asking how the task is done today.
 
 ## Detailed reference
 
 | File | Contents |
 |---|---|
 | `references/design-template.md` | Skeleton of `02-design.md` |
+| `references/elicitation-questions.md` | Interview question bank: Contextual Inquiry, task analysis, journey mapping, story mapping and Kano, WCAG 2.2, Google HEART, Nielsen's heuristics self-check |

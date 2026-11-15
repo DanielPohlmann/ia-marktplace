@@ -55,6 +55,17 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ### Changed
 
+- `product` pipeline: every stage now opens with an interview from a new
+  `references/elicitation-questions.md` and writes no section before it.
+  Ideation: The Mom Test, JTBD switch interview and four forces, Value
+  Proposition Canvas, Lean Canvas business model, Cagan's four risks and
+  Opportunity Assessment, Lean UX validation. Design: Contextual Inquiry,
+  task analysis, journey mapping, story mapping and Kano, WCAG 2.2, Google
+  HEART, plus a Nielsen-heuristics self-check. Architecture: ATAM
+  quality-attribute scenarios with numbers, volumetrics, SLO and RPO/RTO,
+  consistency, Event Storming prompts, integration, data lifecycle,
+  STRIDE/ASVS, Well-Architected operability and cost. The three templates and
+  the artifact contract gain an `## Interview notes` section.
 - `dev-craftsmanship-clean-code`: function length and argument counts are now
   review signals, not verdicts; language conventions override generic naming
   rules (the C# `I` interface prefix is no longer listed as an encoding to

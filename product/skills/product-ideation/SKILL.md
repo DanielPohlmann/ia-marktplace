@@ -16,12 +16,7 @@ This stage produces an idea brief, not a spec. No requirement lists, screens, AP
 1. **Context.** Read the product context: the path under a `Product context` heading in `CLAUDE.md`, else `README.md`. If neither describes the product, ask for a one-paragraph summary.
 2. **Artifact.** Create it from `references/ideation-template.md` with `status: draft`.
 3. **Research in background.** Dispatch `product:product-market-researcher` with the one-sentence idea, target audience and market/country. Keep interviewing while it runs.
-4. **Interview, one question per message**, multiple choice when possible:
-   - Who has the problem, and at which moment of their day?
-   - What do they do today instead?
-   - What does it cost them (time, money, risk)?
-   - Why now?
-   - What would make this a success in 90 days?
+4. **Interview** with `references/elicitation-questions.md`, block by block (A problem → B jobs → C segments → D value → E alternatives → F business model → G market → H product risks → I validation → J constraints), before writing any section. Ask every question that applies, one per message, multiple choice when possible; skip only what the context or an earlier answer already settled, and say so. Ask for past behavior, not opinions (The Mom Test). Record answers in `## Interview notes`; each "don't know" goes to `## Open questions` with how we would find out.
 5. **Frame.** Use these when installed; otherwise apply the framework directly:
    - problem → `problem-framing-canvas:problem-framing-canvas`, `problem-statement:problem-statement`
    - user → `jobs-to-be-done:jobs-to-be-done`, `proto-persona:proto-persona`
@@ -40,9 +35,12 @@ This stage produces an idea brief, not a spec. No requirement lists, screens, AP
 - Jumping to features — ask which job each one serves.
 - Treating research as truth — keep source and date on every claim.
 - Several questions in one message.
+- Filling a section from assumptions when the interview never asked about it.
+- Accepting compliments or "I would use it" as evidence.
 
 ## Detailed reference
 
 | File | Contents |
 |---|---|
 | `references/ideation-template.md` | Skeleton of `01-ideation.md` |
+| `references/elicitation-questions.md` | Interview question bank: Mom Test, JTBD switch interview, Value Proposition Canvas, Lean Canvas, Cagan's four risks and Opportunity Assessment, Lean UX validation |

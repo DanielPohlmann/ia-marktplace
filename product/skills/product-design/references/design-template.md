@@ -51,6 +51,10 @@ inputs: [01-ideation.md]
 | Screen | Reads | Writes / commands | Real-time? | Permissions |
 |---|---|---|---|---|
 
+## Interview notes
+| Block | Question | Answer (user's words) | Used in |
+|---|---|---|---|
+
 ## Open questions
 
 ## Change log
