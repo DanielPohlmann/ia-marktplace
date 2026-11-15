@@ -76,6 +76,10 @@ sequenceDiagram
 | Finding | Severity | Resolution |
 |---|---|---|
 
+## Interview notes
+| Block | Question | Answer (user's words) | Used in |
+|---|---|---|---|
+
 ## Open questions
 
 ## Change log

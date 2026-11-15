@@ -15,6 +15,10 @@ Read `01-ideation.md` and `02-design.md` in `docs/product/<slug>/`. If `02-desig
 
 Read the architecture document (path under an `Architecture` heading in `CLAUDE.md`, else the first `**/ARCHITECTURE.md`), the conventions document next to it if present, and the concerns/tech-debt document. Fit the existing style, contexts and conventions; every departure needs an ADR. If the architecture or conventions document is not found, use generic DDD, Clean Architecture and event-driven defaults and record the gap under `## Open questions`.
 
+## Step 1 — Interview
+
+Before the Event Storming, interview the user with `references/elicitation-questions.md`, block by block (A business drivers → B volumetrics → C performance → D availability → E consistency → F domain → G integration → H data → I security → J operability → K evolvability → L cost → M acceptance). Ask every question that applies, one per message, multiple choice or a proposed default when possible; skip only what the earlier artifacts, the architecture documents or an earlier answer already settled, and say so. Turn every quality answer into a scenario with a number ("p95 < 300 ms at 500 bookings/min"), never "fast" or "scalable". Record answers in `## Interview notes`; each "don't know" becomes an explicit assumption under `## Open questions`. These answers are the **forces** that justify every pattern and ADR below.
+
 ## Process
 
 Skills referenced in this skill are used when installed; otherwise apply the practice directly.
@@ -52,9 +56,11 @@ Choose a pattern only against a **written force** — a concrete problem in this
 - Fat integration events; two aggregates in one transaction.
 - Patterns without a force, or cross-context events without a delivery strategy.
 - Diagrams that disagree with the text.
+- Quality requirements without numbers ("fast", "scalable", "secure").
 
 ## Detailed reference
 
 | File | Contents |
 |---|---|
 | `references/architecture-template.md` | Skeleton of `03-architecture.md` |
+| `references/elicitation-questions.md` | Interview question bank: ATAM quality-attribute scenarios, volumetrics, SRE availability (SLO, RPO/RTO), consistency, Event Storming prompts, integration, data lifecycle, STRIDE/ASVS, Well-Architected operability and cost |

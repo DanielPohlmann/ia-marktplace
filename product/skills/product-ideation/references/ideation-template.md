@@ -53,6 +53,10 @@ inputs: []
 | Risk | Type (market / legal / technical / operational) | Note |
 |---|---|---|
 
+## Interview notes
+| Block | Question | Answer (user's words) | Used in |
+|---|---|---|---|
+
 ## Open questions
 
 ## Change log

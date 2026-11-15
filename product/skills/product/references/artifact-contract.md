@@ -49,3 +49,16 @@ Every artifact ends with:
 ```
 
 One row per status change or substantive edit.
+
+## Interview notes
+
+Every artifact has an `## Interview notes` section before `## Open questions`:
+
+```markdown
+## Interview notes
+| Block | Question | Answer (user's words) | Used in |
+|---|---|---|---|
+| A2 | When did this problem last happen? | "Yesterday, 3 clients cancelled by WhatsApp…" | Problem |
+```
+
+`Block` is the question id from the stage's `references/elicitation-questions.md`. A question skipped because something else already answered it gets a row with `Answer: see <source>`. A "don't know" gets a row and an entry in `## Open questions`.

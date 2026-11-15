@@ -15,6 +15,8 @@ Three gated stages turn a raw idea into an architecture ready for a spec. Each s
 | 2 | `product:product-design` | `product:product-design-reviewer` | `docs/product/<slug>/02-design.md`, `prototype/` |
 | 3 | `product:product-architecture` | `product:product-architecture-critic` | `docs/product/<slug>/03-architecture.md` |
 
+Every stage opens with an interview from its own `references/elicitation-questions.md` (established discovery, UX-research and architecture methods) and writes no section before it. Thorough beats short: ask every question that applies.
+
 After stage 3 is approved, hand off to `superpowers:brainstorming` (spec) and `superpowers:writing-plans` (plan) with the three artifacts as input.
 
 ## Routing procedure
